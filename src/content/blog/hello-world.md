@@ -1,9 +1,9 @@
 ---
-external: false
-draft: true
+draft: false
 title: Hello World
 description: It's a beautiful world out there.
-date: 2022-11-05
+publishDate: 2022-11-05
+tags: ['blog']
 ---
 
 It's a beautiful world out there.

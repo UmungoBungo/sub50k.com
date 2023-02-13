@@ -1,52 +1,37 @@
 ---
-import { readOne, readAll } from "../../lib/markdoc/read";
-import { blog } from "../../lib/markdoc/frontmatter.schema";
-import Renderer from "../../components/Renderer.astro";
+import { CollectionEntry, getCollection } from "astro:content";
+
 import BlogPostMeta from "../../components/BlogPostMeta.astro";
-import ContentLayout from "../../layouts/ContentLayout.astro";
 import { SITE_URL } from "../../config";
+import ContentLayout from "../../layouts/ContentLayout.astro";
+
+interface Props {
+  entry: CollectionEntry<"blog">;
+}
 
 export async function getStaticPaths() {
-  const posts = await readAll({
-    directory: "blog",
-    frontmatterSchema: blog,
-  });
-
-  // we don't want to generate pages for posts that link to external websites
-  const filteredPosts = posts
-    .filter((p) => p.frontmatter.draft !== true)
-    .filter(({ frontmatter }) => !frontmatter.external);
-
-  return filteredPosts.map((post) => {
-    return { params: { slug: post.slug } };
-  });
+  const blogs = await getCollection("blog");
+  return blogs.map((blog) => ({
+    params: { slug: blog.slug },
+    props: { blog },
+  }));
 }
 
-const { slug } = Astro.params;
-if (typeof slug !== "string") {
-  throw Error(`slug should be string. Received: ${slug}`);
-}
+const { blog } = Astro.props;
 
-const { content, frontmatter } = await readOne({
-  directory: "blog",
-  slug,
-  frontmatterSchema: blog,
-});
+console.log("Astro", Astro);
 
-const ogImageAbsoluteUrl =
-  frontmatter.external !== true && frontmatter.ogImagePath
-    ? new URL(frontmatter.ogImagePath, SITE_URL).toString()
-    : undefined;
+const { Content } = await blog.render();
 ---
 
-<ContentLayout title={frontmatter.title} date={frontmatter.date}>
-  <BlogPostMeta
-    title={frontmatter.title}
-    description={frontmatter.external ? undefined : frontmatter.description}
-    publishDate={frontmatter.date.toISOString()}
+<ContentLayout title={blog.data.title} date={blog.data.publishDate}>
+  <!-- <BlogPostMeta
+    title={entry.data.title}
+    description={entry.data.external ? undefined : entry.data.description}
+    publishDate={entry.data.date.toISOString()}
     pagePath={`/blog/${slug}`}
     ogImageAbsoluteUrl={ogImageAbsoluteUrl}
     slot="meta"
-  />
-  <Renderer content={content} slot="content" />
+  /> -->
+  <Content />
 </ContentLayout>
