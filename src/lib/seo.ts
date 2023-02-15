@@ -111,7 +111,7 @@ export function getPageMeta({
   };
 }
 
-export function getBlogPostMeta({
+export function getArtistPostMeta({
   title: pageTitle,
   description,
   canonicalUrl,
