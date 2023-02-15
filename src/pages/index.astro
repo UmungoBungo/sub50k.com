@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import PageLayout from "../layouts/PageLayout.astro";
 import PageMeta from "../components/PageMeta.astro";
 import { SITE_TITLE } from "../config";
+import bannerVid from "../videos/Sub50kBanner.mp4";
 
 const sortedPosts = (await getCollection("artist")).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
@@ -12,6 +13,12 @@ const sortedPosts = (await getCollection("artist")).sort(
 <PageLayout>
   <PageMeta title={SITE_TITLE} slot="meta" />
   <section slot="main">
+    <video
+      src={bannerVid}
+      class="w-full rounded border border-white md:mb-16 lg:mb-24 mb-8"
+      autoplay
+      muted
+      playsinline></video>
     <ul>
       {
         sortedPosts.map((post) => {
