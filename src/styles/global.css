@@ -12,8 +12,8 @@
 
     /* light theme */
     .theme-sleek {
-        /* Tailwind orange-500 #f97316 */
-        --color-primary-main: 249 115 22;
+        /* Tailwind pink-500 #ec4899 */
+        --color-primary-main: 236 72 153;
 
         /* Tailwind gray-700 #374151 */
         --color-text-body: 55 65 81;
@@ -23,8 +23,8 @@
         --color-text-bold: 55 65 81;
         /* Tailwind gray-500 #6b7280 */
         --color-text-muted: 107 114 128;
-        /* Tailwind orange-500 #f97316 */
-        --color-text-link: 249 115 22;
+        /* Tailwind pink-500 #ec4899 */
+        --color-text-link: 236 72 153;
         /* black */
         --color-text-code: 0 0 0;
         /* black */
@@ -32,13 +32,13 @@
 
         /* white */
         --color-bg-body: 255 255 255;
-        /* Tailwind orange-50 #fff7ed */
-        --color-bg-code: 255 247 237;
-        /* Tailwind amber-200 #fde68a */
-        --color-bg-selection: 253 230 138;
+        /* Tailwind pink-50 #fdf2f8 */
+        --color-bg-code: 253 242 248;
+        /* Tailwind pink-200 #fbcfe8 */
+        --color-bg-selection: 251 207 232;
 
-        /* Tailwind orange-100 #ffedd5 */
-        --color-border-code: 255 237 213;
+        /* Tailwind pink-100 #fce7f3 */
+        --color-border-code: 252 231 243;
 
     }
 
