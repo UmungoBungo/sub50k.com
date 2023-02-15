@@ -1,8 +1,7 @@
 ---
 draft: false
-title: XTRMST
-description: It's a cold world out here.
 publishDate: 2023-02-15
+name: XTRMST
 monthlyListeners: 1222
 tags: 
     - 'hardcore'

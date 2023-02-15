@@ -22,10 +22,13 @@ const sortedPosts = (await getCollection("artist")).sort(
           });
           return (
             <li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start">
-              <div class="title">
-                <a href={`/artist/${post.slug}`} class="unset hover:text-text-link">
-                  {post.data.title}
-                </a>
+              <div class="flex">
+                <div class="title">
+                  <a href={`/artist/${post.slug}`} class="unset hover:text-text-link">
+                    {post.data.name}
+                  </a>
+                </div>
+                <span class="ml-8 highlight">{post.data.monthlyListeners.toLocaleString("en-US")}</span>
               </div>
               <div class="text-text-muted text-sm italic">
                 <time datetime={post.data.publishDate.toISOString()}>{formattedDate}</time>

@@ -205,5 +205,33 @@
         transform: translateZ(0) scale(1);
     }
 
+    .highlight {
+        position: relative;
+    }
+
+    .highlight:before,
+    .highlight:after {
+        content: " ";
+        display: block;
+        border-radius: 15%;
+        height: 100%;
+        width: 115%;
+        margin-left: -5%;
+        margin-right: -5%;
+        position: absolute;
+        transform: rotate(-5deg);
+        /* transform: skew(-15deg); */
+    }
+
+    .highlight:before {
+        background: theme('colors.primary.main');
+        z-index: -100;
+    }
+
+    .highlight {
+        color: theme('colors.bg.body');
+        z-index: 1;
+    }
+
     /* ------ REUSABLE UTILS - END ------ */
 }

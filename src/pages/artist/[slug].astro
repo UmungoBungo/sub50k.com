@@ -23,7 +23,7 @@ const { Content } = await entry.render();
 console.log("entry", entry);
 ---
 
-<ContentLayout title={entry.data.title} date={entry.data.publishDate}>
+<ContentLayout title={entry.data.name} date={entry.data.publishDate}>
   <!-- <BlogPostMeta
     title={entry.data.title}
     description={entry.data.external ? undefined : entry.data.description}
