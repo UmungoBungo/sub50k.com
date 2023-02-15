@@ -41,13 +41,11 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
     <FontAwesome />
   </head>
 
-  <body
-    class="min-h-screen max-w-3xl mx-auto px-6 sm:px-8"
-  >
+  <body class="min-h-screen max-w-3xl mx-auto px-6 sm:px-8">
     <Header />
     <main id="main">
       <section class="blog-post prose max-w-none prose-sleek">
-        <h1 class="m-0 mb-[0.25em]">{title}</h1>
+        <h1 class="m-0 mb-[0.25em] text-primary-main">{title}</h1>
         <time class="block mb-[2em] text-text-muted">{formattedDate}</time>
         <slot name="content" />
       </section>

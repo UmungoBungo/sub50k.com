@@ -44,8 +44,8 @@
 
     /* dark theme */
     .theme-sleek.dark {
-        /* Tailwind yellow-400 #facc15 */
-        --color-primary-main: 250 204 21;
+        /* Tailwind lime-400 #a3e635 */
+        --color-primary-main: 163 230 53;
 
         /* Tailwind stone-300 #d6d3d1 */
         --color-text-body: 214 211 209;
@@ -55,8 +55,8 @@
         --color-text-bold: 255 255 255;
         /* Tailwind stone-400 #a8a29e */
         --color-text-muted: 168 162 158;
-        /* Tailwind yellow-400 #facc15 */
-        --color-text-link: 250 204 21;
+        /* Tailwind lime-400 #a3e635 */
+        --color-text-link: 163 230 53;
         /* black */
         --color-text-code: 255 255 255;
         /* black */
@@ -64,13 +64,13 @@
 
         /* #0e141b */
         --color-bg-body: 14 20 27;
-        /* Tailwind yellow-500 #eab308 */
-        --color-bg-code: 234 179 8;
-        /* Tailwind yellow-300 #fde047 */
-        --color-bg-selection: 253 224 71;
+        /* Tailwind lime-500 #84cc16 */
+        --color-bg-code: 132 204 22;
+        /* Tailwind lime-300 #bef264 */
+        --color-bg-selection: 190 242 100;
 
-        /* Tailwind yellow-100 #fef9c3 */
-        --color-border-code: 254 243 199;
+        /* Tailwind lime-100 #ecfccb */
+        --color-border-code: 236 252 203;
     }
 
     :root {
