@@ -13,16 +13,24 @@ const sortedPosts = (await getCollection("artist")).sort(
 <PageLayout>
   <PageMeta title={SITE_TITLE} slot="meta" />
   <section slot="main">
+    <h1
+      class="font-extrabold text-5xl tracking-tight pt-4 pb-2 overflow-hidden"
+    >
+      SUB 50k
+    </h1>
     <video
       src={bannerVid}
       class="w-full rounded border border-white md:mb-16 lg:mb-24 mb-8"
       autoplay
       muted
       playsinline></video>
+
     <ul>
       {
         sortedPosts.map((post) => {
-          const formattedDate = new Date(post.data.publishDate).toLocaleDateString("en-us", {
+          const formattedDate = new Date(
+            post.data.publishDate
+          ).toLocaleDateString("en-us", {
             year: "numeric",
             month: "short",
             day: "numeric",
@@ -31,14 +39,21 @@ const sortedPosts = (await getCollection("artist")).sort(
             <li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start">
               <div class="flex">
                 <div class="title">
-                  <a href={`/artist/${post.slug}`} class="unset hover:text-text-link">
+                  <a
+                    href={`/artist/${post.slug}`}
+                    class="unset hover:text-text-link"
+                  >
                     {post.data.name}
                   </a>
                 </div>
-                <span class="ml-8 highlight">{post.data.monthlyListeners.toLocaleString("en-US")}</span>
+                <span class="ml-8 highlight">
+                  {post.data.monthlyListeners.toLocaleString("en-US")}
+                </span>
               </div>
               <div class="text-text-muted text-sm italic">
-                <time datetime={post.data.publishDate.toISOString()}>{formattedDate}</time>
+                <time datetime={post.data.publishDate.toISOString()}>
+                  {formattedDate}
+                </time>
               </div>
             </li>
           );
