@@ -21,7 +21,6 @@ const { entry } = Astro.props;
 const { slug } = Astro.params;
 
 const { Content } = await entry.render();
-console.log("entry", entry);
 ---
 
 <ContentLayout title={entry.data.name} date={entry.data.publishDate}>
