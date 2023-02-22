@@ -7,7 +7,7 @@
 // Import the global.css file here so that it is included on
 import "../styles/global.css";
 
-import GoogleFont from "./GoogleFont.astro";
+import GoogleFontCollection from "./GoogleFontCollection.astro";
 import FontAwesome from "./FontAwesome.astro";
 import ThemeScript from "./ThemeScript.astro";
 import Favicon from "./Favicon.astro";
@@ -36,7 +36,7 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
     <meta name="generator" content="Blogster" />
     <Favicon />
     <slot name="meta" />
-    <GoogleFont />
+    <GoogleFontCollection />
     <ThemeScript />
     <FontAwesome />
   </head>
