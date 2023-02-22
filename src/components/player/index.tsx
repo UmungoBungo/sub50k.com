@@ -11,7 +11,7 @@ should receive the duration of the track
 should pass duration through inputProps
 */}
 
-export const RemotionPlayer: React.FC = () => {
+const RemotionPlayer: React.FC = () => {
     const durationInSeconds = 30;
     const playerRef = useRef<PlayerRef>(null);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -44,3 +44,5 @@ export const RemotionPlayer: React.FC = () => {
         </div>
     );
 };
+
+export default RemotionPlayer;
