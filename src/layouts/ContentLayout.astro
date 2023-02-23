@@ -17,9 +17,12 @@ import Footer from "../components/Footer.astro";
 export interface Props {
   title: string;
   date: Date;
+  bannerSrc: string;
+  avatarSrc: string;
+  monthlyListeners: number;
 }
 
-const { title, date } = Astro.props;
+const { title, date, bannerSrc, avatarSrc, monthlyListeners } = Astro.props;
 const formattedDate = new Date(date).toLocaleDateString("en-us", {
   year: "numeric",
   month: "short",
@@ -45,8 +48,25 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
     <Header />
     <main id="main">
       <section class="blog-post prose max-w-none prose-sleek">
+        <div
+          class="bg-cover bg-center w-full h-52 relative rounded"
+          style={{ backgroundImage: `url(${bannerSrc});` }}
+        >
+          <div class="absolute -bottom-16 left-4">
+            <div
+              class="rounded-full h-32 w-32 border-bg-body border-4 bg-cover bg-center overflow-hidden"
+              style={{ backgroundImage: `url(${avatarSrc});` }}
+            >
+            </div>
+          </div>
+        </div>
+        <div class="w-full h-20"></div>
         <h1 class="m-0 mb-[0.25em] text-primary-main">{title}</h1>
-        <time class="block mb-[2em] text-text-muted">{formattedDate}</time>
+        <span class="block mb-[2em] text-text-muted space-x-4"
+          ><span>{formattedDate}</span>
+          <span>{monthlyListeners.toLocaleString("en-US")} listeners</span
+          ></span
+        >
         <slot name="content" />
       </section>
     </main>

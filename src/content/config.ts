@@ -8,7 +8,9 @@ const artistCollection = defineCollection({
     forFansOf: z.array(z.string()),
     image: z.string().optional(),
     publishDate: z.coerce.date(),
-    monthlyListeners: z.number()
+    monthlyListeners: z.number(),
+    banner: z.string(),
+    avatar: z.string()
   }),
 });
 // 3. Export a single `collections` object to register your collection(s)

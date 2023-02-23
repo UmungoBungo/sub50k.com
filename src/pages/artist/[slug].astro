@@ -23,7 +23,13 @@ const { slug } = Astro.params;
 const { Content } = await entry.render();
 ---
 
-<ContentLayout title={entry.data.name} date={entry.data.publishDate}>
+<ContentLayout
+  title={entry.data.name}
+  date={entry.data.publishDate}
+  bannerSrc={entry.data.banner}
+  avatarSrc={entry.data.avatar}
+  monthlyListeners={entry.data.monthlyListeners}
+>
   <ArtistPostMeta
     title={entry.data.name}
     publishDate={entry.data.publishDate.toISOString()}

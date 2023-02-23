@@ -1,4 +1,4 @@
-import { Audio, staticFile, useVideoConfig, interpolate, useCurrentFrame } from "remotion";
+import { Audio, useVideoConfig, interpolate, useCurrentFrame } from "remotion";
 
 export const AudioPlayerComp = ({ filename, trackName }: { filename: string, trackName: string }) => {
   const { durationInFrames } = useVideoConfig();
