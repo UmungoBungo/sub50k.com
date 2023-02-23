@@ -50,10 +50,7 @@ const RemotionPlayer: React.FC<{ durationInSeconds: number, filename: string, tr
 
     return (
         <div className="flex not-prose items-center">
-            {/* is playing state needs to reference playerRef, as pause button remains in place when audio is finished */}
             <button type='button' className='bg-primary hover:ring-primary focus:border-code focus:ring-primary mr-2 flex h-10 w-10 items-center justify-center rounded border border-gray-500 hover:ring-1 hover:ring-offset-0 focus:outline-none text-primary-main' onClick={handleTogglePlay}>{isPlaying ? <PauseIcon className="h-5 w-5" /> : <PlayIcon className="h-5 w-5" />}</button>
-
-
             <div className="relative group">
                 <Player
                     ref={playerRef}
