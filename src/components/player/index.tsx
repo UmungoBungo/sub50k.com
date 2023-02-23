@@ -86,7 +86,7 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
                     }}
                     fps={fps}
                 />
-                <h2 ref={titleRef} className="text-3xl font-bold h-10 invisible absolute">{trackName}</h2>
+                <h2 ref={titleRef} className="text-3xl font-bold h-10 invisible absolute whitespace-nowrap">{trackName}</h2>
                 <div className="absolute inset-0 group-hover:opacity-100 opacity-0 transition-opacity">
                     <div className="h-10 flex items-end">
                         <button type='button' className='bg-bg-body hover:ring-text-link focus:border-text-link focus:ring-text-link mr-2 flex h-5 w-5 items-center justify-center rounded border border-text-muted hover:ring-1 hover:ring-offset-0 focus:outline-none text-primary-main' onClick={handleReset}><BackwardIcon className="h-3 w-3" /></button>

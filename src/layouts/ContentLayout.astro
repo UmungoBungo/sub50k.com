@@ -44,30 +44,33 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
     <FontAwesome />
   </head>
 
-  <body class="min-h-screen max-w-3xl mx-auto px-6 sm:px-8">
-    <Header />
+  <body class="min-h-screen max-w-4xl lg:max-w-3xl mx-auto px-0 lg:px-8">
+    <span class="px-6 py-4 lg:px-0 md:px-8">
+      <Header />
+    </span>
     <main id="main">
       <section class="blog-post prose max-w-none prose-sleek">
         <div
-          class="bg-cover bg-center w-full h-52 relative rounded"
+          class="bg-cover bg-center w-full h-52 relative lg:rounded mb-10 lg:mb-20"
           style={{ backgroundImage: `url(${bannerSrc});` }}
         >
-          <div class="absolute -bottom-16 left-4">
+          <div class="absolute lg:-bottom-16 lg:left-4 -bottom-10 left-4">
             <div
-              class="rounded-full h-32 w-32 border-bg-body border-4 bg-cover bg-center overflow-hidden"
+              class="rounded-full h-20 w-20 lg:h-32 lg:w-32 border-bg-body border-2 lg:border-4 bg-cover bg-center overflow-hidden"
               style={{ backgroundImage: `url(${avatarSrc});` }}
             >
             </div>
           </div>
         </div>
-        <div class="w-full h-20"></div>
-        <h1 class="m-0 mb-[0.25em] text-primary-main">{title}</h1>
-        <span class="block mb-[2em] text-text-muted space-x-4"
-          ><span>{formattedDate}</span>
-          <span>{monthlyListeners.toLocaleString("en-US")} listeners</span
-          ></span
-        >
-        <slot name="content" />
+        <div class="px-6 lg:px-0">
+          <h1 class="m-0 mb-[0.25em] text-primary-main">{title}</h1>
+          <span class="block mb-[2em] text-text-muted space-x-4"
+            ><span>{formattedDate}</span>
+            <span>{monthlyListeners.toLocaleString("en-US")} listeners</span
+            ></span
+          >
+          <slot name="content" />
+        </div>
       </section>
     </main>
     <Footer />

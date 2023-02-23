@@ -20,16 +20,16 @@ export const AudioPlayerComp = ({ filename, trackName }: { filename: string, tra
       } />
       <div className="relative h-10 flex w-fit">
         <div className="absolute inset-0 flex items-end">
-          <h2 className="text-3xl font-bold color-bg-body textOutline">{trackName}</h2>
+          <h2 className="text-3xl font-bold color-bg-body textOutline whitespace-nowrap">{trackName}</h2>
         </div>
         <div className="absolute inset-0 flex items-end">
-          <h2 className="text-3xl font-bold color-bg-body overflow-hidden" style={{
+          <h2 className="text-3xl font-bold color-bg-body overflow-hidden whitespace-nowrap" style={{
             width: `${frame / durationInFrames * 100}%`,
             backgroundColor: 'rgb(var(--color-bg-body))',
             color: 'rgb(var(--color-primary-main))',
           }}>{trackName}</h2>
         </div>
-        <h2 className="text-3xl font-bold h-10 invisible">{trackName}</h2>
+        <h2 className="text-3xl font-bold h-10 invisible whitespace-nowrap">{trackName}</h2>
       </div>
       <div className="ml-2 text-default flex items-end font-mono text-xs font-medium leading-5">
         <span className="flex w-10 justify-center">{toHHMMSS(Math.round(frame / 30))}</span>

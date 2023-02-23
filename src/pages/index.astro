@@ -32,7 +32,11 @@ const sortedPosts = (await getCollection("artist")).sort(
           });
           return (
             <li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start">
-              <div class="flex">
+              <div class="flex items-center">
+                <div
+                  class="h-6 w-6 border border-white/50 bg-cover bg-center rounded-full mr-2"
+                  style={{ backgroundImage: `url(${post.data.avatar});` }}
+                />
                 <div class="title">
                   <a
                     href={`/artist/${post.slug}`}
