@@ -1,6 +1,6 @@
 import { Player, PlayerRef } from "@remotion/player";
-import { useRef, useState, useEffect } from "react";
-import { MyComposition } from "./myComposition";
+import { useRef, useState, useMemo, useEffect } from "react";
+import { AudioPlayerComp } from "./audioPlayerComp";
 import {
     PlayIcon, PauseIcon, BackwardIcon
 } from '@heroicons/react/24/solid/index.js';
@@ -9,7 +9,10 @@ import {
 const RemotionPlayer: React.FC<{ durationInSeconds: number, filename: string, trackName: string }> = ({ durationInSeconds, filename, trackName }) => {
     const playerRef = useRef<PlayerRef>(null);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [compWidth, setCompWidth] = useState(5);
     const fps = 30;
+
+    const titleRef = useRef(null);
 
     useEffect(() => {
         const { current } = playerRef;
@@ -31,6 +34,27 @@ const RemotionPlayer: React.FC<{ durationInSeconds: number, filename: string, tr
             current.removeEventListener("play", playListener)
         };
     }, []);
+
+    const observer = useMemo(() => {
+        return new ResizeObserver((entries) => {
+            if (!titleRef.current) return;
+            const { width } = entries[0].contentRect;
+            const accountForTimer = 120
+            setCompWidth(Math.round(width + accountForTimer));
+        });
+    }, [titleRef]);
+
+    useEffect(() => {
+        if (titleRef.current) {
+            observer.observe(titleRef.current);
+        }
+
+        return () => {
+            if (titleRef.current) {
+                observer.unobserve(titleRef.current);
+            }
+        };
+    }, [titleRef, observer]);
 
     function handleTogglePlay(event: React.MouseEvent<HTMLButtonElement>) {
         if (!playerRef.current) return
@@ -54,15 +78,16 @@ const RemotionPlayer: React.FC<{ durationInSeconds: number, filename: string, tr
             <div className="relative group">
                 <Player
                     ref={playerRef}
-                    component={MyComposition}
+                    component={AudioPlayerComp}
                     durationInFrames={fps * durationInSeconds}
-                    compositionWidth={500}
+                    compositionWidth={compWidth}
                     compositionHeight={43}
                     inputProps={{
                         filename: filename, trackName: trackName
                     }}
                     fps={fps}
                 />
+                <h2 ref={titleRef} className="text-3xl font-bold h-10 invisible absolute">{trackName}</h2>
                 <div className="absolute inset-0 group-hover:opacity-100 opacity-0 transition-opacity">
                     <div className="h-10 flex items-end">
                         <button type='button' className='bg-bg-body hover:ring-text-link focus:border-text-link focus:ring-text-link mr-2 flex h-5 w-5 items-center justify-center rounded border border-text-muted hover:ring-1 hover:ring-offset-0 focus:outline-none text-primary-main' onClick={handleReset}><BackwardIcon className="h-3 w-3" /></button>

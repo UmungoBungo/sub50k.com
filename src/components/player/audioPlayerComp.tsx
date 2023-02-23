@@ -1,6 +1,6 @@
-import { Audio, staticFile, useVideoConfig, interpolate, AbsoluteFill, useCurrentFrame } from "remotion";
-// conformist_inhale
-export const MyComposition = ({ filename, trackName }: { filename: string, trackName: string }) => {
+import { Audio, staticFile, useVideoConfig, interpolate, useCurrentFrame } from "remotion";
+
+export const AudioPlayerComp = ({ filename, trackName }: { filename: string, trackName: string }) => {
   const { durationInFrames } = useVideoConfig();
   const frame = useCurrentFrame();
 
