@@ -5,14 +5,8 @@ import {
     PlayIcon, PauseIcon, BackwardIcon
 } from '@heroicons/react/24/solid/index.js';
 
-{/* 
-Should receive the track name to be retrieved from public folder
-should receive the duration of the track
-should pass duration through inputProps
-*/}
 
-const RemotionPlayer: React.FC = () => {
-    const durationInSeconds = 30;
+const RemotionPlayer: React.FC<{ durationInSeconds: number, filename: string, trackName: string }> = ({ durationInSeconds, filename, trackName }) => {
     const playerRef = useRef<PlayerRef>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const fps = 30;
@@ -68,7 +62,7 @@ const RemotionPlayer: React.FC = () => {
                     compositionWidth={500}
                     compositionHeight={43}
                     inputProps={{
-                        filename: "conformist.m4a", trackName: "Conformist"
+                        filename: filename, trackName: trackName
                     }}
                     fps={fps}
                 />
