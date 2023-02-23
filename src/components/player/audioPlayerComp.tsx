@@ -22,7 +22,7 @@ export const AudioPlayerComp = ({ filename, trackName }: { filename: string, tra
         <div className="absolute inset-0 flex items-end">
           <h2 className="text-3xl font-bold color-bg-body" style={{
             color: 'rgb(var(--color-bg-body))',
-            'textShadow': '-1px -1px 0 rgb(var(--color-text-body)), 1px -1px 0 rgb(var(--color-text-body)), -1px 1px 0 rgb(var(--color-text-body)), 1px 1px 0 rgb(var(--color-text-body));'
+            textShadow: '-1px -1px 0 rgb(var(--color-text-body)), 1px -1px 0 rgb(var(--color-text-body)), -1px 1px 0 rgb(var(--color-text-body)), 1px 1px 0 rgb(var(--color-text-body));'
           }}>{trackName}</h2>
         </div>
         <div className="absolute inset-0 flex items-end">
