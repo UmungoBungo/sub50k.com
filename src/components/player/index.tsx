@@ -5,8 +5,7 @@ import {
     PlayIcon, PauseIcon, BackwardIcon
 } from '@heroicons/react/24/solid/index.js';
 
-
-const RemotionPlayer: React.FC<{ durationInSeconds: number, filename: string, trackName: string }> = ({ durationInSeconds, filename, trackName }) => {
+const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackName: string }> = ({ durationInSeconds, filename, trackName }) => {
     const playerRef = useRef<PlayerRef>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [compWidth, setCompWidth] = useState(5);
@@ -98,4 +97,4 @@ const RemotionPlayer: React.FC<{ durationInSeconds: number, filename: string, tr
     );
 };
 
-export default RemotionPlayer;
+export default AudioTitle;

@@ -15,7 +15,7 @@ export const AudioPlayerComp = ({ filename, trackName }: { filename: string, tra
 
   return (
     <div className="flex">
-      <Audio src={staticFile(filename)} volume={(f) =>
+      <Audio src={filename} volume={(f) =>
         interpolate(f, [0, 30, durationInFrames - 30, durationInFrames], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })
       } />
       <div className="relative h-10 flex w-fit">
