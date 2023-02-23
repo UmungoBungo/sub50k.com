@@ -79,7 +79,7 @@ const RemotionPlayer: React.FC<{ durationInSeconds: number, filename: string, tr
                 <Player
                     ref={playerRef}
                     component={AudioPlayerComp}
-                    durationInFrames={fps * durationInSeconds}
+                    durationInFrames={durationInSeconds ? fps * durationInSeconds : 20}
                     compositionWidth={compWidth}
                     compositionHeight={43}
                     inputProps={{
