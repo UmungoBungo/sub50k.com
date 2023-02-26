@@ -31,13 +31,6 @@ export const AudioPlayerComp = ({ filename, trackName }: { filename: string, tra
         </div>
         <h2 className="text-3xl font-bold h-10 invisible whitespace-nowrap">{trackName}</h2>
       </div>
-      <div className="ml-2 text-default flex items-end font-mono text-xs font-medium leading-5">
-        <span className="flex w-10 justify-center">{toHHMMSS(Math.round(frame / 30))}</span>
-        <span className="flex w-4 justify-center text-center">/</span>
-        <span className="flex w-10 justify-center">
-          {toHHMMSS(durationInFrames / 30)}
-        </span>
-      </div>
     </div>
   );
 };

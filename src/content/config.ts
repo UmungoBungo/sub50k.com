@@ -10,7 +10,9 @@ const artistCollection = defineCollection({
     publishDate: z.coerce.date(),
     monthlyListeners: z.number(),
     banner: z.string(),
-    avatar: z.string()
+    avatar: z.string(),
+    artistSpotifyLink: z.string(),
+    artistBandcampLink: z.string().optional()
   }),
 });
 // 3. Export a single `collections` object to register your collection(s)

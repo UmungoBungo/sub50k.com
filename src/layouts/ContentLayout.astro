@@ -20,9 +20,19 @@ export interface Props {
   bannerSrc: string;
   avatarSrc: string;
   monthlyListeners: number;
+  artistSpotifyLink: string;
+  artistBandcampLink?: string;
 }
 
-const { title, date, bannerSrc, avatarSrc, monthlyListeners } = Astro.props;
+const {
+  title,
+  date,
+  bannerSrc,
+  avatarSrc,
+  monthlyListeners,
+  artistSpotifyLink,
+  artistBandcampLink,
+} = Astro.props;
 const formattedDate = new Date(date).toLocaleDateString("en-us", {
   year: "numeric",
   month: "short",
@@ -64,11 +74,45 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
         </div>
         <div class="px-6 lg:px-0">
           <h1 class="m-0 mb-[0.25em] text-primary-main">{title}</h1>
-          <span class="block mb-[2em] text-text-muted space-x-4"
-            ><span>{formattedDate}</span>
-            <span>{monthlyListeners.toLocaleString("en-US")} listeners</span
-            ></span
-          >
+          <div class="flex">
+            <div class="not-prose flex space-x-2">
+              {
+                artistBandcampLink && (
+                  <a
+                    class="text-xl unset hover:text-text-link"
+                    href={artistBandcampLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i
+                      class="fa-brands fa-bandcamp"
+                      aria-hidden="true"
+                      title={`${title} Bandcamp link`}
+                    />
+                    <span class="fa-sr-only">{title} Bandcamp link</span>
+                  </a>
+                )
+              }
+              <a
+                class="text-xl unset hover:text-text-link"
+                href={artistSpotifyLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i
+                  class="fa-brands fa-spotify"
+                  aria-hidden="true"
+                  title={`${title} Spotify link`}></i>
+                <span class="fa-sr-only">{title} Spotify link</span>
+              </a>
+            </div>
+            <span class="text-text-muted ml-2 flex flex-col sm:flex-row">
+              <span class="sm:mr-1">
+                {monthlyListeners.toLocaleString("en-US")} monthly listeners,
+              </span>
+              <span> at {formattedDate}</span>
+            </span>
+          </div>
           <slot name="content" />
         </div>
       </section>
