@@ -1,20 +1,21 @@
 import { Audio, useVideoConfig, interpolate, useCurrentFrame } from "remotion";
 
-export const AudioPlayerComp = ({ filename, trackName }: { filename: string, trackName: string }) => {
+export const AudioPlayerComp = ({ filename, trackName, overflowBy }: { filename: string, trackName: string, overflowBy: number }) => {
   const { durationInFrames } = useVideoConfig();
   const frame = useCurrentFrame();
 
-  function toHHMMSS(sec_num: number) {
-    var minutes = Math.floor((sec_num - Math.floor(sec_num / 3600) * 3600) / 60);
-    var seconds = sec_num - Math.floor(sec_num / 3600) * 3600 - minutes * 60;
+  const scrollLeft = interpolate(frame,
+    [0, durationInFrames],
+    [0, overflowBy],
+    {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+    }
+  );
 
-    let minutesString = minutes < 10 ? `0${minutes}` : minutes.toString();
-    let secondsString = seconds < 10 ? `0${seconds}` : seconds.toString();
-    return `${minutesString}:${secondsString}`;
-  }
 
   return (
-    <div className="flex">
+    <div className="flex" style={{ marginLeft: `-${scrollLeft}px` }}>
       <Audio src={filename} volume={(f) =>
         interpolate(f, [0, 30, durationInFrames - 30, durationInFrames], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })
       } />
