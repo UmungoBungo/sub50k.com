@@ -1,4 +1,5 @@
-import { Player, PlayerRef } from "@remotion/player";
+import { Player } from "@remotion/player";
+import type { PlayerRef } from "@remotion/player";
 import { useRef, useState, useMemo, useEffect } from "react";
 import { AudioPlayerComp } from "./audioPlayerComp";
 import {
@@ -11,12 +12,15 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
     const [isPlaying, setIsPlaying] = useState(false);
     const [compWidth, setCompWidth] = useState(5);
     const [audioLoaded, setAudioLoaded] = useState(false);
+    const [initialRenderComplete, setInitialRenderComplete] = useState(false);
+
     const fps = 30;
 
     const titleRef = useRef(null);
     const playerWrapper = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        setInitialRenderComplete(true);
         const { current } = playerRef;
         if (!current) {
             return;
@@ -94,7 +98,7 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
                     <span className="block sm:hidden"><PlayTime playerRef={playerRef} durationInFrames={fps * durationInSeconds} /></span>
                 </div>
                 <div ref={playerWrapper} className="relative group overflow-hidden">
-                    <Player
+                    {initialRenderComplete && <Player
                         ref={playerRef}
                         component={AudioPlayerComp}
                         durationInFrames={durationInSeconds ? fps * durationInSeconds : 20}
@@ -104,7 +108,7 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
                             filename: filename, trackName: trackName, overflowBy: overflowBy, setAudioLoaded: setAudioLoaded
                         }}
                         fps={fps}
-                    />
+                    />}
                     <h2 ref={titleRef} className="text-3xl font-bold h-10 invisible absolute whitespace-nowrap">{trackName}</h2>
                     <div className="absolute inset-0 group-hover:opacity-100 opacity-0 transition-opacity">
                         <div className="h-10 flex items-end">
