@@ -10,6 +10,7 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
     const playerRef = useRef<PlayerRef>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [compWidth, setCompWidth] = useState(5);
+    const [audioLoaded, setAudioLoaded] = useState(false);
     const fps = 30;
 
     const titleRef = useRef(null);
@@ -82,7 +83,7 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
         <>
             <div className="flex not-prose sm:items-center flex-col sm:flex-row space-y-2 sm:space-y-0">
                 <div className="flex items-end">
-                    <button type='button' className='bg-bg-body hover:ring-text-link focus:border-text-link focus:ring-text-link mr-2 flex h-10 w-10 items-center justify-center rounded border border-text-muted hover:ring-1 hover:ring-offset-0 focus:outline-none text-primary-main' onClick={handleTogglePlay}>{isPlaying ? <PauseIcon className="h-5 w-5" /> : <PlayIcon className="h-5 w-5" />}</button>
+                    <button type='button' disabled={!audioLoaded} className='bg-bg-body hover:ring-text-link focus:border-text-link focus:ring-text-link mr-2 flex h-10 w-10 items-center justify-center rounded border border-text-muted hover:ring-1 hover:ring-offset-0 focus:outline-none text-primary-main' onClick={handleTogglePlay}>{isPlaying ? <PauseIcon className="h-5 w-5" /> : <PlayIcon className="h-5 w-5" />}</button>
                     <span className="block sm:hidden"><PlayTime playerRef={playerRef} durationInFrames={fps * durationInSeconds} /></span>
                 </div>
                 <div ref={playerWrapper} className="relative group overflow-hidden">
@@ -93,7 +94,7 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
                         compositionWidth={compWidth}
                         compositionHeight={43}
                         inputProps={{
-                            filename: filename, trackName: trackName, overflowBy: overflowBy
+                            filename: filename, trackName: trackName, overflowBy: overflowBy, setAudioLoaded: setAudioLoaded
                         }}
                         fps={fps}
                     />

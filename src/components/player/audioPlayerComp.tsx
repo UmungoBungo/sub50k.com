@@ -1,6 +1,7 @@
-import { Audio, useVideoConfig, interpolate, useCurrentFrame } from "remotion";
+import { useEffect } from "react";
+import { Audio, useVideoConfig, interpolate, useCurrentFrame, prefetch } from "remotion";
 
-export const AudioPlayerComp = ({ filename, trackName, overflowBy }: { filename: string, trackName: string, overflowBy: number }) => {
+export const AudioPlayerComp = ({ filename, trackName, overflowBy, setAudioLoaded }: { filename: string, trackName: string, overflowBy: number, setAudioLoaded: (state: boolean) => void }) => {
   const { durationInFrames } = useVideoConfig();
   const frame = useCurrentFrame();
 
@@ -13,6 +14,15 @@ export const AudioPlayerComp = ({ filename, trackName, overflowBy }: { filename:
     }
   );
 
+  useEffect(() => {
+    const { waitUntilDone } = prefetch(filename, {
+      method: "blob-url",
+    });
+
+    waitUntilDone().then(() => {
+      setAudioLoaded(true);
+    });
+  }, [])
 
   return (
     <div className="flex" style={{ marginLeft: `-${scrollLeft}px` }}>
