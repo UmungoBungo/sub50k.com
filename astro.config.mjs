@@ -13,6 +13,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
+import image from "@astrojs/image";
 const SERVER_PORT = 3000;
 // the url to access your blog during local development
 const LOCALHOST_URL = `http://localhost:${SERVER_PORT}`;
@@ -28,8 +29,6 @@ if (isBuild) {
 }
 
 // https://astro.build/config
-
-// https://astro.build/config
 export default defineConfig({
   server: {
     port: SERVER_PORT
@@ -39,5 +38,5 @@ export default defineConfig({
     config: {
       applyBaseStyles: false
     }
-  }), react(), mdx()]
+  }), react(), mdx(), image()]
 });
