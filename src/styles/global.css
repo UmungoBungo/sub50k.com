@@ -14,6 +14,8 @@
     .theme-sleek {
         /* Tailwind pink-500 #ec4899 */
         --color-primary-main: 236 72 153;
+        /* Tailwind pink-300 #f9a8d4 */
+        --color-secondary-main: 244 114 182;
 
         /* Tailwind gray-700 #374151 */
         --color-text-body: 55 65 81;
@@ -46,6 +48,8 @@
     .theme-sleek.dark {
         /* Tailwind lime-400 #a3e635 */
         --color-primary-main: 163 230 53;
+        /* Tailwind lime-300 #bef264 */
+        --color-secondary-main: 190 242 100;
 
         /* Tailwind stone-300 #d6d3d1 */
         --color-text-body: 214 211 209;

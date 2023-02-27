@@ -14,6 +14,9 @@ module.exports = {
         primary: {
           main: "rgb(var(--color-primary-main) / <alpha-value>)",
         },
+        secondary: {
+          main: "rgb(var(--color-secondary-main) / <alpha-value>)",
+        },
         text: {
           body: "rgb(var(--color-text-body) / <alpha-value>)",
           bold: "rgb(var(--color-text-bold) / <alpha-value>)",

@@ -74,12 +74,12 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
         </div>
         <div class="px-6 lg:px-0">
           <h1 class="m-0 mb-[0.25em] text-primary-main">{title}</h1>
-          <div class="flex">
-            <div class="not-prose flex space-x-2">
+          <div class="flex sm:justify-between mb-8">
+            <div class="not-prose flex space-x-3">
               {
                 artistBandcampLink && (
                   <a
-                    class="text-xl unset hover:text-text-link"
+                    class="text-3xl sm:text-2xl unset hover:text-text-link flex items-center justify-center"
                     href={artistBandcampLink}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -94,7 +94,7 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
                 )
               }
               <a
-                class="text-xl unset hover:text-text-link"
+                class="text-3xl sm:text-2xl unset hover:text-text-link flex items-center justify-center"
                 href={artistSpotifyLink}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -106,11 +106,21 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
                 <span class="fa-sr-only">{title} Spotify link</span>
               </a>
             </div>
-            <span class="text-text-muted ml-2 flex flex-col sm:flex-row">
-              <span class="sm:mr-1">
-                {monthlyListeners.toLocaleString("en-US")} monthly listeners,
+            <span class="text-text-muted ml-4">
+              <span class="sm:hidden flex flex-col">
+                <span class="sm:mr-1">
+                  <span class="text-secondary-main"
+                    >{monthlyListeners.toLocaleString("en-US")}</span
+                  > monthly listeners,
+                </span>
+                <span> at {formattedDate}</span>
               </span>
-              <span> at {formattedDate}</span>
+              <span class="hidden sm:flex flex-row text-right">
+                <span> {formattedDate}, monthly listeners:</span>
+                <span class="sm:ml-1 text-secondary-main">
+                  {monthlyListeners.toLocaleString("en-US")}
+                </span>
+              </span>
             </span>
           </div>
           <slot name="content" />

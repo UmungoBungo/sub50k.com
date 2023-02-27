@@ -83,7 +83,14 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
         <>
             <div className="flex not-prose sm:items-center flex-col sm:flex-row space-y-2 sm:space-y-0">
                 <div className="flex items-end">
-                    <button type='button' disabled={!audioLoaded} className='bg-bg-body hover:ring-text-link focus:border-text-link focus:ring-text-link mr-2 flex h-10 w-10 items-center justify-center rounded border border-text-muted hover:ring-1 hover:ring-offset-0 focus:outline-none text-primary-main' onClick={handleTogglePlay}>{isPlaying ? <PauseIcon className="h-5 w-5" /> : <PlayIcon className="h-5 w-5" />}</button>
+                    <button
+                        type='button'
+                        aria-label="play audio sample"
+                        disabled={!audioLoaded}
+                        className='bg-bg-body hover:ring-text-link focus:border-text-link focus:ring-text-link mr-2 flex h-10 w-10 items-center justify-center rounded border border-text-muted hover:ring-1 hover:ring-offset-0 focus:outline-none text-primary-main'
+                        onClick={handleTogglePlay}>
+                        {isPlaying ? <PauseIcon className="h-5 w-5" /> : <PlayIcon className="h-5 w-5" />}
+                    </button>
                     <span className="block sm:hidden"><PlayTime playerRef={playerRef} durationInFrames={fps * durationInSeconds} /></span>
                 </div>
                 <div ref={playerWrapper} className="relative group overflow-hidden">
@@ -101,7 +108,13 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
                     <h2 ref={titleRef} className="text-3xl font-bold h-10 invisible absolute whitespace-nowrap">{trackName}</h2>
                     <div className="absolute inset-0 group-hover:opacity-100 opacity-0 transition-opacity">
                         <div className="h-10 flex items-end">
-                            <button type='button' className='bg-bg-body hover:ring-text-link focus:border-text-link focus:ring-text-link mr-2 flex h-5 w-5 items-center justify-center rounded border border-text-muted hover:ring-1 hover:ring-offset-0 focus:outline-none text-primary-main' onClick={handleReset}><BackwardIcon className="h-3 w-3" /></button>
+                            <button
+                                type='button'
+                                aria-label="reset audio sample"
+                                className='bg-bg-body hover:ring-text-link focus:border-text-link focus:ring-text-link mr-2 flex h-5 w-5 items-center justify-center rounded border border-text-muted hover:ring-1 hover:ring-offset-0 focus:outline-none text-primary-main'
+                                onClick={handleReset}>
+                                <BackwardIcon className="h-3 w-3" />
+                            </button>
                         </div>
                     </div>
                 </div>
