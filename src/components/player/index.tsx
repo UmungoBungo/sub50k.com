@@ -21,6 +21,9 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
 
     useEffect(() => {
         setInitialRenderComplete(true);
+    }, []);
+
+    useEffect(() => {
         const { current } = playerRef;
         if (!current) {
             return;
@@ -39,7 +42,7 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
             current.removeEventListener("pause", pauseListener);
             current.removeEventListener("play", playListener)
         };
-    }, []);
+    }, [initialRenderComplete]);
 
     const observer = useMemo(() => {
         return new ResizeObserver((entries) => {

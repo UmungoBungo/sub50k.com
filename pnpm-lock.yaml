@@ -10,7 +10,7 @@ specifiers:
   '@astrojs/tailwind': ^3.0.1
   '@heroicons/react': ^2.0.16
   '@markdoc/markdoc': ^0.2.2
-  '@remotion/player': 3.3.31
+  '@remotion/player': ^3.3.56
   '@tailwindcss/typography': ^0.5.9
   '@types/react': ^18.0.21
   '@types/react-dom': ^18.0.6
@@ -21,7 +21,7 @@ specifiers:
   prettier-plugin-astro: ^0.8.0
   react: ^18.0.0
   react-dom: ^18.0.0
-  remotion: 3.3.31
+  remotion: ^3.3.56
   slugify: ^1.6.5
   tailwindcss: ^3.2.4
   typescript: ^4.9.4
@@ -37,7 +37,7 @@ dependencies:
   '@astrojs/tailwind': 3.0.1_zqmj4yr6zm445m5bmaubtw24au
   '@heroicons/react': 2.0.16_react@18.2.0
   '@markdoc/markdoc': 0.2.2_pmekkgnqduwlme35zpnqhenc34
-  '@remotion/player': 3.3.31_biqbaboplfbrettd7655fr4n2y
+  '@remotion/player': 3.3.56_biqbaboplfbrettd7655fr4n2y
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.6
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
@@ -47,7 +47,7 @@ dependencies:
   gray-matter: 4.0.3
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  remotion: 3.3.31_biqbaboplfbrettd7655fr4n2y
+  remotion: 3.3.56_biqbaboplfbrettd7655fr4n2y
   slugify: 1.6.5
   tailwindcss: 3.2.6
   zod: 3.20.6
@@ -829,15 +829,15 @@ packages:
       escalade: 3.1.1
     dev: false
 
-  /@remotion/player/3.3.31_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-2tN2nMXSpM/atEM7uQ4R9C9EmngW4yPJyvbKAjeqVuZXt3Lzomn1skOXpOlUrTBVloK3zm3D4ZxYy4l8hEDaOw==}
+  /@remotion/player/3.3.56_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-DFNRtbcF3gN6of1zMEFlUbm6+9i81wgrSs60F4C74YW2UuVbNpAHfBWpa+/VDtsO7x5bkYcAlhkzvPsBaqHefg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      remotion: 3.3.31_biqbaboplfbrettd7655fr4n2y
+      remotion: 3.3.56_biqbaboplfbrettd7655fr4n2y
     dev: false
 
   /@rollup/pluginutils/5.0.2:
@@ -3333,8 +3333,8 @@ packages:
       unist-util-visit: 4.1.2
     dev: false
 
-  /remotion/3.3.31_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-c3lp4aCOmNtHh8jJlzUJmCMCkUPbMdiGG2V/p/9RHDmHR1/2+/I2aBU/6S5ycWpO4S4QTV3PE5QtymgFA7uSYw==}
+  /remotion/3.3.56_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-M1skZCffdewRtutruY0xmMyilb1IjYg0IunCePVHoq34CnUJfMtklLBTv2ux/pQQDDQSK9SueC+PprkXMxWAtg==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
