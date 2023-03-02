@@ -30,8 +30,10 @@ import Footer from "../components/Footer.astro";
     <FontAwesome />
   </head>
 
-  <body class="min-h-screen max-w-3xl mx-auto px-6 sm:px-8">
-    <Header />
+  <body class="min-h-screen">
+    <div class="max-w-3xl w-full mx-auto px-6 sm:px-8">
+      <Header />
+    </div>
     <main id="main">
       <slot name="main" />
     </main>

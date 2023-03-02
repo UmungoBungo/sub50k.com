@@ -4,6 +4,9 @@ import PageLayout from "../layouts/PageLayout.astro";
 import PageMeta from "../components/PageMeta.astro";
 import { SITE_TITLE } from "../config";
 import bannerVid from "../videos/Sub50kBanner.mp4";
+import CardSub from "../components/home/card-sub.astro";
+import CardOver from "../components/home/card-over.astro";
+import "../components/home/style.css";
 
 const sortedPosts = (await getCollection("artist")).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
@@ -13,51 +16,85 @@ const sortedPosts = (await getCollection("artist")).sort(
 <PageLayout>
   <PageMeta title={SITE_TITLE} slot="meta" />
   <section slot="main">
-    <video
-      src={bannerVid}
-      class="w-full rounded border border-white md:mb-16 lg:mb-24 mb-8"
-      autoplay
-      muted
-      playsinline></video>
+    <div
+      class="h-[80vh] max-w-6xl mx-auto w-full grid grid-cols-4 relative overflow-hidden"
+    >
+      <div
+        class="absolute h-full w-full z-30"
+        style="background: radial-gradient(71.89999999999999% 72.7% at 50% 19.7%,rgba(0,145,255,0) 0%, rgb(var(--color-bg-body)) 100%);"
+      >
+      </div>
+      <div class="col-span-1 flex flex-col items-center space-y-6 cardListDown">
+        <CardOver />
+        <CardSub />
+        <CardOver />
+        <CardOver />
+        <CardSub />
+        <CardOver />
+      </div>
+      <div class="col-span-1 flex flex-col items-center space-y-6 cardListUp">
+        <CardOver />
+        <CardOver />
+        <CardSub />
+      </div>
+      <div class="col-span-1 flex flex-col items-center space-y-6 cardListDown">
+        <CardOver />
+        <CardSub />
+        <CardOver />
+      </div>
+      <div class="col-span-1 flex flex-col items-center space-y-6 cardListUp">
+        <CardSub />
+        <CardOver />
+        <CardOver />
+      </div>
+    </div>
+    <div class="max-w-3xl mx-auto px-6 sm:px-8">
+      <video
+        src={bannerVid}
+        class="w-full rounded border border-white md:mb-16 lg:mb-24 mb-8"
+        autoplay
+        muted
+        playsinline></video>
 
-    <ul>
-      {
-        sortedPosts.map((post) => {
-          const formattedDate = new Date(
-            post.data.publishDate
-          ).toLocaleDateString("en-us", {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          });
-          return (
-            <li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start">
-              <div class="flex items-center">
-                <div
-                  class="h-6 w-6 border border-white/50 bg-cover bg-center rounded-full mr-2"
-                  style={{ backgroundImage: `url(${post.data.avatar});` }}
-                />
-                <div class="title">
-                  <a
-                    href={`/artist/${post.slug}`}
-                    class="unset hover:text-text-link"
-                  >
-                    {post.data.name}
-                  </a>
+      <ul>
+        {
+          sortedPosts.map((post) => {
+            const formattedDate = new Date(
+              post.data.publishDate
+            ).toLocaleDateString("en-us", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            });
+            return (
+              <li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start">
+                <div class="flex items-center">
+                  <div
+                    class="h-6 w-6 border border-white/50 bg-cover bg-center rounded-full mr-2"
+                    style={{ backgroundImage: `url(${post.data.avatar});` }}
+                  />
+                  <div class="title">
+                    <a
+                      href={`/artist/${post.slug}`}
+                      class="unset hover:text-text-link"
+                    >
+                      {post.data.name}
+                    </a>
+                  </div>
+                  <span class="ml-8 highlight">
+                    {post.data.monthlyListeners.toLocaleString("en-US")}
+                  </span>
                 </div>
-                <span class="ml-8 highlight">
-                  {post.data.monthlyListeners.toLocaleString("en-US")}
-                </span>
-              </div>
-              <div class="text-text-muted text-sm italic">
-                <time datetime={post.data.publishDate.toISOString()}>
-                  {formattedDate}
-                </time>
-              </div>
-            </li>
-          );
-        })
-      }
-    </ul>
+                <div class="text-text-muted text-sm italic">
+                  <time datetime={post.data.publishDate.toISOString()}>
+                    {formattedDate}
+                  </time>
+                </div>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
   </section>
 </PageLayout>

@@ -11,6 +11,7 @@ specifiers:
   '@heroicons/react': ^2.0.16
   '@markdoc/markdoc': ^0.2.2
   '@remotion/player': ^3.3.56
+  '@tailwindcss/line-clamp': ^0.4.2
   '@tailwindcss/typography': ^0.5.9
   '@types/react': ^18.0.21
   '@types/react-dom': ^18.0.6
@@ -38,6 +39,7 @@ dependencies:
   '@heroicons/react': 2.0.16_react@18.2.0
   '@markdoc/markdoc': 0.2.2_pmekkgnqduwlme35zpnqhenc34
   '@remotion/player': 3.3.56_biqbaboplfbrettd7655fr4n2y
+  '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.6
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.6
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
@@ -852,6 +854,14 @@ packages:
       '@types/estree': 1.0.0
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    dev: false
+
+  /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.2.6:
+    resolution: {integrity: sha512-HFzAQuqYCjyy/SX9sLGB1lroPzmcnWv1FHkIpmypte10hptf4oPUfucryMKovZh2u0uiS9U5Ty3GghWfEJGwVw==}
+    peerDependencies:
+      tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
+    dependencies:
+      tailwindcss: 3.2.6
     dev: false
 
   /@tailwindcss/typography/0.5.9_tailwindcss@3.2.6:

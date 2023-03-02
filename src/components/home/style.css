@@ -1,0 +1,25 @@
+
+
+.cardListDown {
+    animation-duration: 80s;
+    animation-duration: 5s;
+    animation-name: scrollDown;
+    animation-iteration-count: infinite;
+}
+
+@keyframes scrollDown {
+    0% {transform: translateY(-80%);}
+    100% {transform: translateY(80%);}
+}
+
+.cardListUp {
+    animation-duration: 80s;
+    animation-name: scrollUp;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes scrollUp {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(-100%);}
+}
