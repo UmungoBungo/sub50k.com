@@ -21,3 +21,49 @@
     0% {transform: translateY(0);}
     100% {transform: translateY(-50.6%);}
 }
+
+.artistCards {
+    --cardHeight: 26vh;
+}
+
+.artistCards > div {
+    animation-duration: 60s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.firstCard {
+    transform: translateY(calc(-1 * (var(--cardHeight))));
+    animation-name: scrollFirstCard;
+}
+
+@keyframes scrollFirstCard {
+    100% {transform: translateY(100vh);}
+}
+
+.secondCard {
+    transform: translateY(0vh);
+    animation-name: scrollSecondCard;
+}
+
+@keyframes scrollSecondCard {
+    100% {transform: translateY(calc(100vh + var(--cardHeight)));}
+}
+
+.thirdCard {
+    transform: translateY(calc(0vh + var(--cardHeight)));
+    animation-name: scrollThirdCard;
+}
+
+@keyframes scrollThirdCard {
+    100% {transform: translateY(calc(100vh + 2 * var(--cardHeight)));}
+}
+
+.fourthCard {
+    transform: translateY(calc(0vh + 2 * var(--cardHeight)));
+    animation-name: scrollFourthCard;
+}
+
+@keyframes scrollFourthCard {
+    100% {transform: translateY(calc(100vh + 3 * var(--cardHeight)));}
+}
