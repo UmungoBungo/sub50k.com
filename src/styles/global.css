@@ -238,7 +238,6 @@
     }
 
     .textOutline {
-        color: theme('colors.bg.body');
         text-shadow: -1px -1px 0 theme('colors.text.body'), 1px -1px 0 theme('colors.text.body'), -1px 1px 0 theme('colors.text.body'), 1px 1px 0 theme('colors.text.body');
     }
 
