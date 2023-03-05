@@ -7,7 +7,7 @@ import {
 } from '@heroicons/react/24/solid/index.js';
 import { PlayTime } from './playtime'
 
-const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackName: string }> = ({ durationInSeconds, filename, trackName }) => {
+const AudioTitle: React.FC<{ durationInSeconds: number, cloudinaryPath: string, trackName: string }> = ({ durationInSeconds, cloudinaryPath, trackName }) => {
     const playerRef = useRef<PlayerRef>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [compWidth, setCompWidth] = useState(5);
@@ -108,7 +108,7 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
                         compositionWidth={compWidth}
                         compositionHeight={43}
                         inputProps={{
-                            filename: filename, trackName: trackName, overflowBy: overflowBy, setAudioLoaded: setAudioLoaded
+                            cloudinaryPath: cloudinaryPath, trackName: trackName, overflowBy: overflowBy, setAudioLoaded: setAudioLoaded
                         }}
                         fps={fps}
                     />}
