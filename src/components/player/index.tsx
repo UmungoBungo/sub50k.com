@@ -101,7 +101,7 @@ const AudioTitle: React.FC<{ durationInSeconds: number, cloudinaryPath: string, 
                     <span className="block sm:hidden"><PlayTime playerRef={playerRef} durationInFrames={fps * durationInSeconds} /></span>
                 </div>
                 <div ref={playerWrapper} className="relative group overflow-hidden">
-                    {initialRenderComplete && <Player
+                    {<Player
                         ref={playerRef}
                         component={AudioPlayerComp}
                         durationInFrames={durationInSeconds ? fps * durationInSeconds : 20}
