@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Audio, useVideoConfig, interpolate, useCurrentFrame, prefetch } from "remotion";
 
-export const AudioPlayerComp = ({ filename, trackName, overflowBy, setAudioLoaded }: { filename: string, trackName: string, overflowBy: number, setAudioLoaded: (state: boolean) => void }) => {
+export const AudioPlayerComp = ({ cloudinaryPath, trackName, overflowBy, setAudioLoaded }: { cloudinaryPath: string, trackName: string, overflowBy: number, setAudioLoaded: (state: boolean) => void }) => {
   const { durationInFrames } = useVideoConfig();
   const frame = useCurrentFrame();
 
@@ -14,8 +14,10 @@ export const AudioPlayerComp = ({ filename, trackName, overflowBy, setAudioLoade
     }
   );
 
+  const trackUrl = `https://res.cloudinary.com/sub50k/video/upload/f_auto,q_auto:best/${cloudinaryPath}`
+
   useEffect(() => {
-    const { waitUntilDone } = prefetch(filename, {
+    const { waitUntilDone } = prefetch(trackUrl, {
       method: "blob-url",
     });
 
@@ -26,7 +28,7 @@ export const AudioPlayerComp = ({ filename, trackName, overflowBy, setAudioLoade
 
   return (
     <div className="flex" style={{ marginLeft: `-${scrollLeft}px` }}>
-      <Audio src={filename} volume={(f) =>
+      <Audio src={trackUrl} volume={(f) =>
         interpolate(f, [0, 60, durationInFrames - 60, durationInFrames], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })
       } />
       <div className="relative h-10 flex w-fit">
