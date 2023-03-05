@@ -14,6 +14,9 @@ const sortedPosts = (await getCollection("artist")).sort(
 ---
 
 <PageLayout>
+  <script>
+    import "../components/home/cardHandle.js";
+  </script>
   <PageMeta title={SITE_TITLE} slot="meta" />
   <section slot="main">
     <div
