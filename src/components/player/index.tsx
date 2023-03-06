@@ -112,7 +112,7 @@ const AudioTitle: React.FC<{ durationInSeconds: number, cloudinaryPath: string, 
                     </span>
                 </div>
                 <div ref={playerWrapper} className="relative group overflow-hidden">
-                    {<Player
+                    <Player
                         ref={playerRef}
                         component={AudioPlayerComp}
                         durationInFrames={durationInSeconds ? fps * durationInSeconds : 20}
@@ -122,7 +122,7 @@ const AudioTitle: React.FC<{ durationInSeconds: number, cloudinaryPath: string, 
                             cloudinaryPath: cloudinaryPath, trackName: trackName, overflowBy: overflowBy, setAudioLoaded: setAudioLoaded
                         }}
                         fps={fps}
-                    />}
+                    />
                     <h2 ref={titleRef} className="text-3xl font-bold h-10 invisible absolute whitespace-nowrap">{trackName}</h2>
                     <div className="absolute inset-0 group-hover:opacity-100 focus-within:opacity-100 opacity-0 transition-opacity">
                         <div className="h-10 flex items-end">
