@@ -15,7 +15,13 @@ const sortedPosts = (await getCollection('artist'))
 
 <PageLayout>
 	<script>
-		import '../components/home/cardHandle.js';
+		// after 5 seconds, add a <CardSub /> component to the div that has the class "artistCards"
+
+		// setTimeout(() => {
+		// 	console.log('here');
+		// }, 1000);
+		// import '../components/home/cardHandle.js';
+		import '../components/home/addCard.js';
 	</script>
 	<PageMeta title={SITE_TITLE} slot="meta" />
 	<section slot="main">
@@ -27,100 +33,12 @@ const sortedPosts = (await getCollection('artist'))
 				style="background: radial-gradient(71.89999999999999% 72.7% at 50% 19.7%,rgba(0,145,255,0) 0%, rgb(var(--color-bg-body)) 100%);"
 			>
 			</div>
-			<div class="col-span-1 flex flex-col items-center space-y-6 cardListDown">
-				<CardOver />
-				<CardSub
-					banner={'v1677141531/audio/Igorrr/banner.jpg'}
-					avatar={'https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto:best/v1677141845/audio/Igorrr/avatar.jpg'}
-					artistName={'Igorrr'}
-					text={'Aric Improta is a Grammy nominated drummer who plays for the bands Fever 333 and Night Verses.'}
-					listeners={42872}
-				/>
-				<CardOver />
-				<CardOver />
-				<CardSub
-					banner={'v1677720102/audio/aric-improta/banner.jpg'}
-					avatar={'https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto/v1677498205/audio/aric-improta/avatar.png'}
-					artistName={'Aric Improta'}
-					text={'Aric Improta is a Grammy nominated drummer who plays for the bands Fever 333 and Night Verses.'}
-					listeners={819}
-				/>
-				<CardOver />
-			</div>
-			<div class="col-span-1 flex flex-col items-center space-y-6 cardListUp">
-				<CardOver />
-				<CardOver />
-				<CardSub
-					banner={'v1677475574/audio/XTRMST/banner.png'}
-					avatar={'https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto:best/v1677139695/audio/XTRMST/avatar.jpg'}
-					artistName={'XTRMST'}
-					text={'Aric Improta is a Grammy nominated drummer who plays for the bands Fever 333 and Night Verses.'}
-					listeners={1222}
-				/>
-				<CardOver />
-				<CardOver />
-				<CardSub
-					banner={'v1677720102/audio/aric-improta/banner.jpg'}
-					avatar={'https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto/v1677498205/audio/aric-improta/avatar.png'}
-					artistName={'Aric Improta'}
-					text={'Aric Improta is a Grammy nominated drummer who plays for the bands Fever 333 and Night Verses.'}
-					listeners={819}
-				/>
+			<div></div>
+			<div class="col-span-1 flex flex-col items-center relative artistCards">
 			</div>
 			<div class="col-span-1 flex flex-col items-center relative artistCards">
-				<div class="firstCard absolute top-0">
-					<CardOver />
-				</div>
-				<div class="secondCard absolute top-0">
-					<CardSub
-						banner={'v1677720102/audio/aric-improta/banner.jpg'}
-						avatar={'https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto/v1677498205/audio/aric-improta/avatar.png'}
-						artistName={'Aric Improta'}
-						text={'Aric Improta is a Grammy nominated drummer who plays for the bands Fever 333 and Night Verses.'}
-						listeners={819}
-					/>
-				</div>
-				<div class="thirdCard absolute top-0">
-					<CardSub
-						banner={'v1677720102/audio/aric-improta/banner.jpg'}
-						avatar={'https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto/v1677498205/audio/aric-improta/avatar.png'}
-						artistName={'Aric Improta'}
-						text={'Aric Improta is a Grammy nominated drummer who plays for the bands Fever 333 and Night Verses.'}
-						listeners={819}
-					/>
-				</div>
-				<div class="fourthCard absolute top-0">
-					<CardOver />
-				</div>
-				<!-- <CardOver />
-        <CardOver />
-        <CardSub
-          banner={"v1677720102/audio/aric-improta/banner.jpg"}
-          avatar={"https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto/v1677498205/audio/aric-improta/avatar.png"}
-          artistName={"Aric Improta"}
-          text={"Aric Improta is a Grammy nominated drummer who plays for the bands Fever 333 and Night Verses."}
-          listeners={819}
-        />
-        <CardOver /> -->
 			</div>
-			<div class="col-span-1 flex flex-col items-center space-y-6 cardListUp">
-				<CardSub
-					banner={'v1677720102/audio/aric-improta/banner.jpg'}
-					avatar={'https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto/v1677498205/audio/aric-improta/avatar.png'}
-					text={'Aric Improta is a Grammy nominated drummer who plays for the bands Fever 333 and Night Verses.'}
-					listeners={819}
-				/>
-				<CardOver />
-				<CardOver />
-				<CardSub
-					banner={'v1677720102/audio/aric-improta/banner.jpg'}
-					avatar={'https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto/v1677498205/audio/aric-improta/avatar.png'}
-					text={'Aric Improta is a Grammy nominated drummer who plays for the bands Fever 333 and Night Verses.'}
-					listeners={819}
-				/>
-				<CardOver />
-				<CardOver />
-			</div>
+			<div></div>
 		</div>
 		<div class="max-w-3xl mx-auto px-6 sm:px-8">
 			<video
