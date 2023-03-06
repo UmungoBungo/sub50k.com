@@ -14,6 +14,8 @@ export const AudioPlayerComp = ({ cloudinaryPath, trackName, overflowBy, setAudi
     }
   );
 
+  console.log('overflowBy', overflowBy)
+
   const trackUrl = `https://res.cloudinary.com/sub50k/video/upload/f_auto,q_auto:best/${cloudinaryPath}`
 
   useEffect(() => {
