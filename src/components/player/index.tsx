@@ -3,11 +3,11 @@ import type { PlayerRef } from "@remotion/player";
 import { useRef, useState, useMemo, useEffect } from "react";
 import { AudioPlayerComp } from "./audioPlayerComp";
 import {
-    PlayIcon, PauseIcon, BackwardIcon
+    PlayIcon, PauseIcon, BackwardIcon, ArrowTopRightOnSquareIcon
 } from '@heroicons/react/24/solid/index.js';
 import { PlayTime } from './playtime'
 
-const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackName: string }> = ({ durationInSeconds, filename, trackName }) => {
+const AudioTitle: React.FC<{ startFromInSeconds: number, durationInSeconds: number, cloudinaryPath: string, trackName: string, spotifyLink: string }> = ({ startFromInSeconds, durationInSeconds, cloudinaryPath, trackName, spotifyLink }) => {
     const playerRef = useRef<PlayerRef>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [compWidth, setCompWidth] = useState(5);
@@ -18,6 +18,7 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
 
     const titleRef = useRef(null);
     const playerWrapper = useRef<HTMLDivElement>(null);
+    const clientWidthRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         setInitialRenderComplete(true);
@@ -83,37 +84,51 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
     const [overflowBy, setOverflowBy] = useState(0)
 
     useEffect(() => {
-        setOverflowBy(playerWrapper.current ? playerWrapper.current.scrollWidth - playerWrapper.current.clientWidth : 0)
-    }, [playerWrapper.current?.clientWidth])
+        setOverflowBy((playerWrapper.current && clientWidthRef.current) ? playerWrapper.current.scrollWidth - clientWidthRef.current.clientWidth : 0)
+    }, [playerWrapper.current?.scrollWidth, clientWidthRef.current?.clientWidth])
 
     return (
         <>
-            <div className="flex not-prose sm:items-center flex-col sm:flex-row space-y-2 sm:space-y-0">
+            <div ref={clientWidthRef} className="flex not-prose sm:items-center flex-col-reverse items-start sm:flex-row space-y-2 sm:space-y-0">
                 <div className="flex items-end">
                     <button
                         type='button'
                         aria-label="play audio sample"
                         disabled={!audioLoaded}
-                        className='bg-bg-body hover:ring-text-link focus:border-text-link focus:ring-text-link mr-2 flex h-10 w-10 items-center justify-center rounded border border-text-muted hover:ring-1 hover:ring-offset-0 focus:outline-none text-primary-main'
+                        className='bg-bg-body hover:ring-text-link focus:border-text-link focus:ring-text-link mr-2 flex sm:h-10 sm:w-10 h-6 w-6 items-center justify-center rounded border border-text-muted hover:ring-1 hover:ring-offset-0 focus:outline-none text-primary-main'
                         onClick={handleTogglePlay}>
-                        {isPlaying ? <PauseIcon className="h-5 w-5" /> : <PlayIcon className="h-5 w-5" />}
+                        {isPlaying ? <PauseIcon className="sm:h-5 sm:w-5 h-4 w-4" /> : <PlayIcon className="sm:h-5 sm:w-5 h-4 w-4" />}
                     </button>
-                    <span className="block sm:hidden"><PlayTime playerRef={playerRef} durationInFrames={fps * durationInSeconds} /></span>
+                    <span className="flex sm:hidden">
+                        <PlayTime playerRef={playerRef} durationInFrames={fps * durationInSeconds} startFromInSeconds={startFromInSeconds} />
+                        <a
+                            href={spotifyLink}
+                            className='bg-bg-body relative unset border-b border-transparent hover:border-text-link ml-2 focus:ring-text-link flex items-center text-text-muted justify-center focus:outline-none focus:border-text-link hover:text-primary-main'
+                        >
+                            <ArrowTopRightOnSquareIcon className="h-3.5 w-3.5" />
+                            <div className="ml-1 text-xs" >
+                                Track on Spotify
+                            </div>
+                        </a>
+                    </span>
                 </div>
-                <div ref={playerWrapper} className="relative group overflow-hidden">
-                    {initialRenderComplete && <Player
+                <div ref={playerWrapper} className="relative group overflow-hidden w-full">
+                    <Player
                         ref={playerRef}
                         component={AudioPlayerComp}
                         durationInFrames={durationInSeconds ? fps * durationInSeconds : 20}
                         compositionWidth={compWidth}
                         compositionHeight={43}
                         inputProps={{
-                            filename: filename, trackName: trackName, overflowBy: overflowBy, setAudioLoaded: setAudioLoaded
+                            cloudinaryPath,
+                            trackName,
+                            overflowBy,
+                            setAudioLoaded
                         }}
                         fps={fps}
-                    />}
+                    />
                     <h2 ref={titleRef} className="text-3xl font-bold h-10 invisible absolute whitespace-nowrap">{trackName}</h2>
-                    <div className="absolute inset-0 group-hover:opacity-100 opacity-0 transition-opacity">
+                    <div className="absolute inset-0 group-hover:opacity-100 focus-within:opacity-100 opacity-0 transition-opacity">
                         <div className="h-10 flex items-end">
                             <button
                                 type='button'
@@ -126,7 +141,18 @@ const AudioTitle: React.FC<{ durationInSeconds: number, filename: string, trackN
                     </div>
                 </div>
             </div>
-            <span className="hidden sm:block mt-2"><PlayTime playerRef={playerRef} durationInFrames={fps * durationInSeconds} /></span>
+            <span className="hidden sm:flex mt-2 not-prose">
+                <PlayTime playerRef={playerRef} durationInFrames={fps * durationInSeconds} startFromInSeconds={startFromInSeconds} />
+                <a
+                    href={spotifyLink}
+                    className='bg-bg-body relative unset border-b border-transparent hover:border-text-link ml-2 focus:ring-text-link flex items-center text-text-muted justify-center focus:outline-none focus:border-text-link hover:text-primary-main'
+                >
+                    <ArrowTopRightOnSquareIcon className="h-3.5 w-3.5" />
+                    <div className="ml-1 text-xs" >
+                        Track on Spotify
+                    </div>
+                </a>
+            </span>
         </>
     );
 };
