@@ -18,6 +18,7 @@ const AudioTitle: React.FC<{ durationInSeconds: number, cloudinaryPath: string, 
 
     const titleRef = useRef(null);
     const playerWrapper = useRef<HTMLDivElement>(null);
+    const clientWidthRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         setInitialRenderComplete(true);
@@ -83,12 +84,12 @@ const AudioTitle: React.FC<{ durationInSeconds: number, cloudinaryPath: string, 
     const [overflowBy, setOverflowBy] = useState(0)
 
     useEffect(() => {
-        setOverflowBy(playerWrapper.current ? playerWrapper.current.scrollWidth - playerWrapper.current.clientWidth : 0)
-    }, [playerWrapper.current?.clientWidth])
+        setOverflowBy((playerWrapper.current && clientWidthRef.current) ? playerWrapper.current.scrollWidth - clientWidthRef.current.clientWidth : 0)
+    }, [playerWrapper.current?.scrollWidth, clientWidthRef.current?.clientWidth])
 
     return (
         <>
-            <div className="flex not-prose sm:items-center flex-col-reverse items-start sm:flex-row space-y-2 sm:space-y-0">
+            <div ref={clientWidthRef} className="flex not-prose sm:items-center flex-col-reverse items-start sm:flex-row space-y-2 sm:space-y-0">
                 <div className="flex items-end">
                     <button
                         type='button'
@@ -111,7 +112,7 @@ const AudioTitle: React.FC<{ durationInSeconds: number, cloudinaryPath: string, 
                         </a>
                     </span>
                 </div>
-                <div ref={playerWrapper} className="relative group overflow-hidden">
+                <div ref={playerWrapper} className="relative group overflow-hidden w-full">
                     <Player
                         ref={playerRef}
                         component={AudioPlayerComp}
