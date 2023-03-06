@@ -1,63 +1,63 @@
 ---
-import { getCollection } from "astro:content";
-import PageLayout from "../layouts/PageLayout.astro";
-import PageMeta from "../components/PageMeta.astro";
-import { SITE_TITLE } from "../config";
-import bannerVid from "../videos/Sub50kBanner.mp4";
+import {getCollection} from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+import PageMeta from '../components/PageMeta.astro';
+import {SITE_TITLE} from '../config';
+import bannerVid from '../videos/Sub50kBanner.mp4';
 
-const sortedPosts = (await getCollection("artist")).sort(
-  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
-);
+const sortedPosts = (await getCollection('artist'))
+	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+	.filter((post) => !post.data.draft);
 ---
 
 <PageLayout>
-  <PageMeta title={SITE_TITLE} slot="meta" />
-  <section slot="main">
-    <video
-      src={bannerVid}
-      class="w-full rounded border border-white md:mb-16 lg:mb-24 mb-8"
-      autoplay
-      muted
-      playsinline></video>
+	<PageMeta title={SITE_TITLE} slot="meta" />
+	<section slot="main">
+		<video
+			src={bannerVid}
+			class="w-full rounded border border-white md:mb-16 lg:mb-24 mb-8"
+			autoplay
+			muted
+			playsinline></video>
 
-    <ul>
-      {
-        sortedPosts.map((post) => {
-          const formattedDate = new Date(
-            post.data.publishDate
-          ).toLocaleDateString("en-us", {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          });
-          return (
-            <li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start">
-              <div class="flex items-center">
-                <div
-                  class="h-6 w-6 border border-white/50 bg-cover bg-center rounded-full mr-2"
-                  style={{ backgroundImage: `url(${post.data.avatar});` }}
-                />
-                <div class="title">
-                  <a
-                    href={`/artist/${post.slug}`}
-                    class="unset hover:text-text-link"
-                  >
-                    {post.data.name}
-                  </a>
-                </div>
-                <span class="ml-8 highlight">
-                  {post.data.monthlyListeners.toLocaleString("en-US")}
-                </span>
-              </div>
-              <div class="text-text-muted text-sm italic">
-                <time datetime={post.data.publishDate.toISOString()}>
-                  {formattedDate}
-                </time>
-              </div>
-            </li>
-          );
-        })
-      }
-    </ul>
-  </section>
+		<ul>
+			{
+				sortedPosts.map((post) => {
+					const formattedDate = new Date(
+						post.data.publishDate
+					).toLocaleDateString('en-us', {
+						year: 'numeric',
+						month: 'short',
+						day: 'numeric',
+					});
+					return (
+						<li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start">
+							<div class="flex items-center">
+								<div
+									class="h-6 w-6 border border-white/50 bg-cover bg-center rounded-full mr-2"
+									style={{backgroundImage: `url(${post.data.avatar});`}}
+								/>
+								<div class="title">
+									<a
+										href={`/artist/${post.slug}`}
+										class="unset hover:text-text-link"
+									>
+										{post.data.name}
+									</a>
+								</div>
+								<span class="ml-8 highlight">
+									{post.data.monthlyListeners.toLocaleString('en-US')}
+								</span>
+							</div>
+							<div class="text-text-muted text-sm italic">
+								<time datetime={post.data.publishDate.toISOString()}>
+									{formattedDate}
+								</time>
+							</div>
+						</li>
+					);
+				})
+			}
+		</ul>
+	</section>
 </PageLayout>
