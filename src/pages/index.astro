@@ -4,25 +4,17 @@ import PageLayout from '../layouts/PageLayout.astro';
 import PageMeta from '../components/PageMeta.astro';
 import {SITE_TITLE} from '../config';
 import bannerVid from '../videos/Sub50kBanner.mp4';
-import CardSub from '../components/home/card-sub.astro';
-import CardOver from '../components/home/card-over.astro';
 import '../components/home/style.css';
+import ScrollingCards from '../components/home/scrollingCards.astro';
 
-const sortedPosts = (await getCollection('artist'))
+const allPosts = await getCollection('artist');
+
+const sortedPosts = allPosts
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
 	.filter((post) => !post.data.draft);
 ---
 
 <PageLayout>
-	<script>
-		// after 5 seconds, add a <CardSub /> component to the div that has the class "artistCards"
-
-		// setTimeout(() => {
-		// 	console.log('here');
-		// }, 1000);
-		// import '../components/home/cardHandle.js';
-		import '../components/home/addCard.js';
-	</script>
 	<PageMeta title={SITE_TITLE} slot="meta" />
 	<section slot="main">
 		<div
@@ -33,12 +25,10 @@ const sortedPosts = (await getCollection('artist'))
 				style="background: radial-gradient(71.89999999999999% 72.7% at 50% 19.7%,rgba(0,145,255,0) 0%, rgb(var(--color-bg-body)) 100%);"
 			>
 			</div>
-			<div></div>
-			<div class="col-span-1 flex flex-col items-center relative artistCards">
-			</div>
-			<div class="col-span-1 flex flex-col items-center relative artistCards">
-			</div>
-			<div></div>
+			<ScrollingCards index={0} allPosts={allPosts} />
+			<ScrollingCards index={1} allPosts={allPosts} />
+			<ScrollingCards index={2} allPosts={allPosts} />
+			<ScrollingCards index={3} allPosts={allPosts} />
 		</div>
 		<div class="max-w-3xl mx-auto px-6 sm:px-8">
 			<video

@@ -5,6 +5,7 @@ const artistCollection = defineCollection({
 	schema: z.object({
 		draft: z.boolean(),
 		name: z.string(),
+		description: z.string(),
 		tags: z.array(z.string()),
 		forFansOf: z.array(z.string()),
 		image: z.string().optional(),

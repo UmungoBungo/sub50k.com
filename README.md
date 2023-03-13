@@ -1,7 +1,11 @@
 # TODO
 
-- Actually write out the article for XTRMST and Igorrr
-- Create meta tags + images for articles, and home page
-- Add email subscriptions
+- New landing page:
 
-Positive card design: https://play.tailwindcss.com/spk0vRPDq9
+  - Add in a bunch of drafts
+  - randomise including artists above 50k
+
+- Write out article for Igorrr
+- Add email subscriptions
+- Create meta tags + images for articles
+- Create better SEO previews
