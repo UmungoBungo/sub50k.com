@@ -76,7 +76,7 @@ const {index = [0], allPosts = []} = Astro.props;
                    ${
 											listeners < 50000
 												? `<img
-                        src=${avatar}
+                        src=https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto:best/${avatar}
                         class="h-16 rounded-full border-2 border-gray-700"
                         alt="avatar"
                     />`
@@ -97,7 +97,7 @@ const {index = [0], allPosts = []} = Astro.props;
 										}
                     <div class="mt-6 prose">
                         <h2
-                            class="border-b text-xl uppercase  ${
+                            class="border-b text-xl uppercase whitespace-nowrap overflow-ellipsis ${
 															listeners < 50000
 																? 'border-primary-main'
 																: 'text-gray-200 border-gray-200'
@@ -165,9 +165,8 @@ const {index = [0], allPosts = []} = Astro.props;
 			const newCard = document.createElement('div');
 
 			const banner = 'v1677720102/audio/aric-improta/banner.jpg';
-			const avatar =
-				'https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto/v1677498205/audio/aric-improta/avatar.png';
-			const artistName = 'Aric Improta';
+			const avatar = 'v1677498205/audio/aric-improta/avatar.png';
+			const artistName = 'Bersarin Quartett';
 			const text =
 				'Aric Improta is a Grammy nominated drummer who plays for the bands Fever 333 and Night Verses.';
 			const listeners = 819;
