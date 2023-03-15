@@ -1,10 +1,10 @@
 ---
-const {index = [0], allPosts = []} = Astro.props;
+const {index = [0], posts = []} = Astro.props;
 ---
 
 <card-column
 	data-index={index}
-	data-posts={JSON.stringify(allPosts)}
+	data-posts={JSON.stringify(posts)}
 	class="col-span-1 flex flex-col items-center relative artistCards"
 >
 </card-column>
@@ -129,14 +129,16 @@ const {index = [0], allPosts = []} = Astro.props;
 			const indexNumber = this.dataset.index as unknown as number;
 			const rawArtists = this.dataset.posts as unknown as string;
 			const allArtists = JSON.parse(rawArtists) as Array<any>;
+			const numberOfCards = allArtists.length;
+			let cardCount = 0;
 
-			setInterval(() => {
+			function addScrollCard() {
 				const artistCardsArr = document.querySelectorAll('.artistCards');
 
 				const newCard = document.createElement('div');
 
-				let randomArtist =
-					allArtists[Math.floor(Math.random() * allArtists.length)].data;
+				let randomArtist = allArtists[cardCount];
+				cardCount = cardCount === numberOfCards - 1 ? 0 : cardCount + 1;
 
 				newCard.innerHTML = generateInnerHTML({
 					banner: randomArtist.banner,
@@ -151,43 +153,16 @@ const {index = [0], allPosts = []} = Astro.props;
 				);
 				artistCardsArr[indexNumber]?.appendChild(newCard);
 
-				// after 5 second remove this child from the DOM
 				setTimeout(() => {
 					newCard.remove();
 				}, 15000);
+			}
+
+			addScrollCard();
+
+			setInterval(() => {
+				addScrollCard();
 			}, 3750);
-
-			const artistCardsArr = document.querySelectorAll('.artistCards');
-
-			// forEach 4 times
-			Array.from(Array(5)).forEach(() => {});
-
-			const newCard = document.createElement('div');
-
-			const banner = 'v1677720102/audio/aric-improta/banner.jpg';
-			const avatar = 'v1677498205/audio/aric-improta/avatar.png';
-			const artistName = 'Bersarin Quartett';
-			const text =
-				'Aric Improta is a Grammy nominated drummer who plays for the bands Fever 333 and Night Verses.';
-			const listeners = 819;
-
-			newCard.innerHTML = generateInnerHTML({
-				banner,
-				avatar,
-				artistName,
-				text,
-				listeners: 60000,
-			});
-
-			newCard.classList.add(
-				indexNumber % 2 === 0 ? 'scrollDownCard' : 'scrollUpCard'
-			);
-			artistCardsArr[indexNumber]?.appendChild(newCard);
-
-			// after 5 second remove this child from the DOM
-			setTimeout(() => {
-				newCard.remove();
-			}, 15000);
 		}
 	}
 
