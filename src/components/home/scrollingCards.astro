@@ -114,12 +114,13 @@ const {index = [0], posts = []} = Astro.props;
                         ${text}
                     </p>
                 </div>
-                <div class="ml-2 pt-4 text-center font-mono text-lg uppercase">
-                    monthly: ${
+                <div class="ml-2 pt-4 text-center">
+                    <span class="font-mono text-lg">${
 											listeners < 50000
 												? listeners.toLocaleString('en-US')
 												: '50k+'
-										}
+										}</span>
+                    <span class="text-sm text-gray-400">/ month</span>
                 </div>
             </div>
         </div>
