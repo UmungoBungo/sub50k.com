@@ -2,6 +2,14 @@
     --cardHeight: 19.5rem; 
 }
 
+.artistCards:hover .scrollDownCard {
+    animation-play-state: paused;
+}
+
+.artistCards:hover .scrollUpCard {
+    animation-play-state: paused;
+}
+
 .artistCards > div {
     animation-duration: 15s;
     animation-timing-function: linear;
@@ -15,7 +23,7 @@
 
 @keyframes scrollDownward {
     0% {transform: translateY(calc(-1 * (var(--cardHeight))));}
-    100% {transform: translateY(calc(3.5 * (var(--cardHeight))));}
+    100% {transform: translateY(calc(3.4 * (var(--cardHeight))));}
 }
 
 .scrollUpCard {
@@ -23,7 +31,7 @@
 }
 
 @keyframes scrollUpward {
-    0% {transform: translateY(calc(3.5 * (var(--cardHeight))));}
+    0% {transform: translateY(calc(3.4 * (var(--cardHeight))));}
     100% {transform: translateY(calc(-1 * (var(--cardHeight))));}
 }
 
