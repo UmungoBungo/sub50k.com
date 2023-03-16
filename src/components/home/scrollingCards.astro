@@ -154,9 +154,9 @@ const {index = [0], posts = []} = Astro.props;
 				);
 				artistCardsArr[indexNumber]?.appendChild(newCard);
 
-				setTimeout(() => {
+				newCard.onanimationend = () => {
 					newCard.remove();
-				}, 15000);
+				};
 			}
 
 			addScrollCard();
