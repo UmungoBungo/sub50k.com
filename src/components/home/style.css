@@ -1,5 +1,5 @@
 .artistCards {
-    --cardHeight: 26vh;
+    --cardHeight: 19.5rem; 
 }
 
 .artistCards > div {
@@ -15,7 +15,7 @@
 
 @keyframes scrollDownward {
     0% {transform: translateY(calc(-1 * (var(--cardHeight))));}
-    100% {transform: translateY(80vh);}
+    100% {transform: translateY(calc(3.5 * (var(--cardHeight))));}
 }
 
 .scrollUpCard {
@@ -23,7 +23,7 @@
 }
 
 @keyframes scrollUpward {
-    0% {transform: translateY(80vh);}
+    0% {transform: translateY(calc(3.5 * (var(--cardHeight))));}
     100% {transform: translateY(calc(-1 * (var(--cardHeight))));}
 }
 
