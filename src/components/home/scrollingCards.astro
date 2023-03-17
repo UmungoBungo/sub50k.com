@@ -133,7 +133,15 @@ const {index = [0], posts = []} = Astro.props;
 			const numberOfCards = allArtists.length;
 			let cardCount = 0;
 
-			function addScrollCard() {
+			let initialised = false;
+
+			async function addScrollCard() {
+				if (!initialised) {
+					await new Promise((resolve) =>
+						setTimeout(resolve, 500 * indexNumber)
+					);
+					initialised = true;
+				}
 				const artistCardsArr = document.querySelectorAll('.artistCards');
 
 				const newCard = document.createElement('div');
@@ -149,9 +157,46 @@ const {index = [0], posts = []} = Astro.props;
 					listeners: randomArtist.monthlyListeners,
 				});
 
-				newCard.classList.add(
-					indexNumber % 2 === 0 ? 'scrollDownCard' : 'scrollUpCard'
-				);
+				newCard.classList.add('scrollCard');
+				if (indexNumber % 2 === 0) {
+					newCard.style.setProperty('--animFrom', `-1`);
+					newCard.style.setProperty('--animTo', `0`);
+					let iterationCount = 0;
+
+					newCard.onanimationiteration = () => {
+						if (iterationCount === 0) {
+							addScrollCard();
+						}
+						iterationCount++;
+						newCard.style.setProperty(
+							'--animFrom',
+							(iterationCount - 1).toString()
+						);
+						newCard.style.setProperty('--animTo', iterationCount.toString());
+					};
+				} else {
+					const initAnimFrom = 3;
+					const initAnimTo = 2;
+					newCard.style.setProperty('--animFrom', initAnimFrom.toString());
+					newCard.style.setProperty('--animTo', initAnimTo.toString());
+					let iterationCount = 0;
+
+					newCard.onanimationiteration = () => {
+						if (iterationCount === 0) {
+							addScrollCard();
+						}
+						iterationCount++;
+						newCard.style.setProperty(
+							'--animFrom',
+							(initAnimFrom - iterationCount).toString()
+						);
+						newCard.style.setProperty(
+							'--animTo',
+							(initAnimTo - iterationCount).toString()
+						);
+					};
+				}
+
 				artistCardsArr[indexNumber]?.appendChild(newCard);
 
 				newCard.onanimationend = () => {
@@ -160,12 +205,7 @@ const {index = [0], posts = []} = Astro.props;
 			}
 
 			addScrollCard();
-
-			setInterval(() => {
-				addScrollCard();
-			}, 3750);
 		}
 	}
-
 	customElements.define('card-column', CardColumn);
 </script>
