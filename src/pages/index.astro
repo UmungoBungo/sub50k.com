@@ -80,10 +80,10 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 	<PageMeta title={SITE_TITLE} slot="meta" />
 	<section slot="main">
 		<div
-			class="h-[80vh] max-w-6xl mx-auto w-full grid grid-cols-4 relative overflow-hidden"
+			class="relative mx-auto grid h-[80vh] w-full max-w-6xl grid-cols-3 overflow-hidden lg:grid-cols-4"
 		>
 			<div
-				class="absolute h-full w-full z-30 pointer-events-none"
+				class="pointer-events-none absolute z-30 h-full w-full"
 				style="background: radial-gradient(71.89999999999999% 72.7% at 50% 19.7%,rgba(0,145,255,0) 0%, rgb(var(--color-bg-body)) 100%);"
 			>
 			</div>
@@ -92,10 +92,10 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 			<ScrollingCards index={2} posts={thirdColumnPosts} />
 			<ScrollingCards index={3} posts={fourthColumnPosts} />
 		</div>
-		<div class="max-w-3xl mx-auto px-6 sm:px-8">
+		<div class="mx-auto max-w-3xl px-6 sm:px-8">
 			<video
 				src={bannerVid}
-				class="w-full rounded border border-white md:mb-16 lg:mb-24 mb-8"
+				class="mb-8 w-full rounded border border-white md:mb-16 lg:mb-24"
 				autoplay
 				muted
 				playsinline></video>
@@ -111,10 +111,10 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 							day: 'numeric',
 						});
 						return (
-							<li class="grid grid-cols-[1fr] md:grid-cols-[1fr_auto] mb-3 md:gap-2 items-start">
+							<li class="mb-3 grid grid-cols-[1fr] items-start md:grid-cols-[1fr_auto] md:gap-2">
 								<div class="flex items-center">
 									<div
-										class="h-6 w-6 border border-white/50 bg-cover bg-center rounded-full mr-2"
+										class="mr-2 h-6 w-6 rounded-full border border-white/50 bg-cover bg-center"
 										style={{
 											backgroundImage: `url(https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto:best/${post.data.avatar});`,
 										}}
@@ -127,7 +127,7 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 											{post.data.name}
 										</a>
 									</div>
-									<span class="ml-8 highlight">
+									<span class="highlight ml-8">
 										{post.data.monthlyListeners.toLocaleString('en-US')}
 									</span>
 								</div>

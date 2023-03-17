@@ -1,11 +1,12 @@
 ---
 const {index = [0], posts = []} = Astro.props;
+import Card from './card.astro';
 ---
 
 <card-column
 	data-index={index}
 	data-posts={JSON.stringify(posts)}
-	class="col-span-1 flex flex-col items-center relative artistCards"
+	class="artistCards relative col-span-1 flex flex-col items-center"
 >
 </card-column>
 

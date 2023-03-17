@@ -37,7 +37,9 @@
     "zod": "^3.20.2"
   },
   "devDependencies": {
+    "prettier": "^2.8.4",
     "prettier-plugin-astro": "^0.8.0",
+    "prettier-plugin-tailwindcss": "^0.2.4",
     "typescript": "^4.9.4"
   }
 }
