@@ -78,6 +78,8 @@ const {index = [0], posts = []} = Astro.props;
 												? `<img
                         src=https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto:best/${avatar}
                         class="h-16 rounded-full border-2 border-gray-700"
+                        height="64"
+                        width="64"
                         alt="avatar"
                     />`
 												: `<svg
@@ -87,6 +89,8 @@ const {index = [0], posts = []} = Astro.props;
                     stroke-width="1.5"
                     stroke="currentColor"
                     class="w-16 h-16 rounded-full border-2 border-gray-700 bg-gray-500"
+                    height="64"
+                    width="64"
                 >
                     <path
                         stroke-linecap="round"
