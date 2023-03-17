@@ -58,7 +58,7 @@ const randomisedPosts = allPosts.sort(() => Math.random() - 0.5);
 let firstColumnPosts = randomisedPosts
 	.slice(0, randomisedPosts.length / 4)
 	.map((post) => post.data);
-firstColumnPosts = addDummyCards(firstColumnPosts);
+// firstColumnPosts = addDummyCards(firstColumnPosts);
 
 let secondColumnPosts = randomisedPosts
 	.slice(randomisedPosts.length / 4, randomisedPosts.length / 2)
@@ -80,7 +80,7 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 	<PageMeta title={SITE_TITLE} slot="meta" />
 	<section slot="main">
 		<div
-			class="relative mx-auto grid h-[80vh] w-full max-w-6xl grid-cols-3 overflow-hidden lg:grid-cols-4"
+			class="relative mx-auto grid h-[80vh] w-full max-w-6xl grid-cols-2 overflow-hidden sm:grid-cols-3 lg:grid-cols-4"
 		>
 			<div
 				class="pointer-events-none absolute z-30 h-full w-full"
@@ -89,7 +89,9 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 			</div>
 			<ScrollingCards index={0} posts={firstColumnPosts} />
 			<ScrollingCards index={1} posts={secondColumnPosts} />
-			<ScrollingCards index={2} posts={thirdColumnPosts} />
+			<span class="hidden sm:block">
+				<ScrollingCards index={2} posts={thirdColumnPosts} />
+			</span>
 			<span class="hidden lg:block">
 				<ScrollingCards index={3} posts={fourthColumnPosts} />
 			</span>

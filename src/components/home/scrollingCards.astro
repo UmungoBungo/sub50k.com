@@ -29,14 +29,16 @@ import Card from './card.astro';
 			}) {
 				return `
         <div
-        class="group relative w-52 h-[15.5rem] lg:w-64 lg:h-[19.5rem] overflow-hidden rounded-lg border border-gray-400/50 bg-gray-700 p-4 lg:p-6 text-gray-200 ring-1 ring-gray-900/5 ${
-					listeners < 50000 ? 'shadow-lg shadow-green-400' : 'opacity-10'
+        class="group relative w-40 h-[13rem] sm:w-52 sm:h-[15.5rem] lg:w-64 lg:h-[19.5rem] overflow-hidden rounded-lg border border-gray-400/50 bg-gray-700 p-2 py-4 sm:p-4 lg:p-6 text-gray-200 ring-1 ring-gray-900/5 ${
+					listeners < 50000
+						? 'shadow-md sm:shadow-lg shadow-green-400'
+						: 'opacity-10'
 				}"
         >
             ${
 							listeners < 50000
 								? `<div
-                class="absolute top-2 left-0 z-30 m-2 lg:m-3 flex -rotate-12 items-center rounded-md border lg:border-2 border-green-300 bg-gray-900 px-1 py-0.5 text-xs lg:text-sm text-green-300"
+                class="absolute top-2 left-0 z-30 m-1 sm:m-2 lg:m-3 flex -rotate-12 items-center rounded-md border lg:border-2 border-green-300 bg-gray-900 px-1 py-0.5 text-xs lg:text-sm text-green-300"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +46,7 @@ import Card from './card.astro';
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="h-5 w-5 mr-1"
+                    class="h-3 w-3 sm:h-5 sm:w-5 mr-0.5 sm:mr-1"
                 >
                     <path
                         stroke-linecap="round"
@@ -56,7 +58,7 @@ import Card from './card.astro';
             </div>`
 								: ''
 						}
-            <div class="absolute inset-0 z-10 h-28 lg:h-36">
+            <div class="absolute inset-0 z-10 h-20 sm:h-28 lg:h-36">
             ${
 							listeners < 50000
 								? ` <img
@@ -68,17 +70,17 @@ import Card from './card.astro';
 						}
             </div>
             <div
-                class="absolute inset-0 z-10 h-[7.1rem] lg:h-[9.1rem] bg-gradient-to-b from-transparent to-gray-700"
+                class="absolute inset-0 z-10 h-[5.1rem] sm:h-[7.1rem] lg:h-[9.1rem] bg-gradient-to-b from-transparent to-gray-700"
             >
             </div>
             <!-- Top banner -->
-            <div class="relative z-20 h-28 lg:h-32">
+            <div class="relative z-20 h-20 sm:h-28 lg:h-32">
                 <div class="flex flex-col items-center">
                    ${
 											listeners < 50000
 												? `<img
                         src=https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto:best/${avatar}
-                        class="h-14 w-14 lg:h-16 lg:w-16 rounded-full border-2 border-gray-700"
+                        class="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 rounded-full border-2 border-gray-700"
                         height="64"
                         width="64"
                         alt="avatar"
@@ -89,7 +91,7 @@ import Card from './card.astro';
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="h-14 w-14 lg:h-16 lg:w-16 rounded-full border-2 border-gray-700 bg-gray-500"
+                    class="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 rounded-full border-2 border-gray-700 bg-gray-500"
                     height="64"
                     width="64"
                 >
@@ -100,9 +102,9 @@ import Card from './card.astro';
                     ></path>
                 </svg>`
 										}
-                    <div class="mt-3 lg:mt-6 prose">
+                    <div class="mt-2 sm:mt-3 lg:mt-6 prose">
                         <h2
-                            class="border-b text-xl uppercase whitespace-nowrap overflow-ellipsis ${
+                            class="border-b text-base sm:text-xl uppercase whitespace-nowrap overflow-ellipsis ${
 															listeners < 50000
 																? 'border-primary-main'
 																: 'text-gray-200 border-gray-200'
@@ -113,19 +115,19 @@ import Card from './card.astro';
                     </div>
                 </div>
             </div>
-            <div class="lg:mt-4 divide-y divide-gray-300/50">
-                <div class="pb-2 lg:pb-4 text-sm">
+            <div class="mt-2 sm:mt-0 lg:mt-4 divide-y divide-gray-300/50">
+                <div class="pb-2 lg:pb-4 text-xs sm:text-sm">
                     <p class="line-clamp-3">
                         ${text}
                     </p>
                 </div>
                 <div class="ml-2 pt-2 lg:pt-4 text-center">
-                    <span class="font-mono text-lg">${
+                    <span class="font-mono sm:text-lg">${
 											listeners < 50000
 												? listeners.toLocaleString('en-US')
 												: '50k+'
 										}</span>
-                    <span class="text-sm text-gray-400">/ month</span>
+                    <span class="text-xs sm:text-sm text-gray-400">/ month</span>
                 </div>
             </div>
         </div>
