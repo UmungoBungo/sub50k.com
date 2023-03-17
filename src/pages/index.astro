@@ -58,7 +58,7 @@ const randomisedPosts = allPosts.sort(() => Math.random() - 0.5);
 let firstColumnPosts = randomisedPosts
 	.slice(0, randomisedPosts.length / 4)
 	.map((post) => post.data);
-// firstColumnPosts = addDummyCards(firstColumnPosts);
+firstColumnPosts = addDummyCards(firstColumnPosts);
 
 let secondColumnPosts = randomisedPosts
 	.slice(randomisedPosts.length / 4, randomisedPosts.length / 2)
