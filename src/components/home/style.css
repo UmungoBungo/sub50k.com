@@ -1,5 +1,13 @@
-:root {
-	--cardHeight: 21rem;
+@media (min-width: 1024px) {
+	:root {
+		--cardHeight: 21rem;
+	}
+}
+
+@media (max-width: 1024px) {
+	:root {
+		--cardHeight: 17.5rem;
+	}
 }
 
 .artistCards:hover .scrollCard {

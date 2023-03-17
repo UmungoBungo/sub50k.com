@@ -90,7 +90,9 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 			<ScrollingCards index={0} posts={firstColumnPosts} />
 			<ScrollingCards index={1} posts={secondColumnPosts} />
 			<ScrollingCards index={2} posts={thirdColumnPosts} />
-			<ScrollingCards index={3} posts={fourthColumnPosts} />
+			<span class="hidden lg:block">
+				<ScrollingCards index={3} posts={fourthColumnPosts} />
+			</span>
 		</div>
 		<div class="mx-auto max-w-3xl px-6 sm:px-8">
 			<video
