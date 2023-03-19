@@ -1,12 +1,11 @@
 ---
 const {index = [0], posts = []} = Astro.props;
-import Card from './card.astro';
 ---
 
 <card-column
 	data-index={index}
 	data-posts={JSON.stringify(posts)}
-	class="artistCards relative col-span-1 flex flex-col items-center"
+	class="artistCards relative col-span-1 flex h-full flex-col items-center"
 >
 </card-column>
 
@@ -20,20 +19,24 @@ import Card from './card.astro';
 				artistName,
 				text,
 				listeners,
+				indexNumber,
 			}: {
 				banner: string;
 				avatar: string;
 				artistName: string;
 				text: string;
 				listeners: number;
+				indexNumber: number;
 			}) {
 				return `
         <div
-        class="group relative w-40 h-[13rem] sm:w-52 sm:h-[15.5rem] lg:w-64 lg:h-[19.5rem] overflow-hidden rounded-lg border border-gray-400/50 bg-gray-700 p-2 py-4 sm:p-4 lg:p-6 text-gray-200 ring-1 ring-gray-900/5 ${
+        class="group scrollCard absolute relative w-40 h-[13rem] sm:w-52 sm:h-[15.5rem] lg:w-64 lg:h-[19.5rem] overflow-hidden rounded-lg border border-gray-400/50 bg-gray-700 p-2 py-4 sm:p-4 lg:p-6 text-gray-200 ring-1 ring-gray-900/5 ${
 					listeners < 50000
 						? 'shadow-md sm:shadow-lg shadow-green-400'
 						: 'opacity-10'
-				}"
+				}
+				${indexNumber % 2 === 0 ? 'top-0' : 'bottom-0'}
+				"
         >
             ${
 							listeners < 50000
@@ -162,28 +165,30 @@ import Card from './card.astro';
 					artistName: randomArtist.name,
 					text: randomArtist.description,
 					listeners: randomArtist.monthlyListeners,
+					indexNumber,
 				});
 
-				newCard.classList.add('scrollCard');
 				if (indexNumber % 2 === 0) {
-					newCard.style.setProperty('--animFrom', `-1`);
+					// newCard.style.setProperty('--animFrom', `-1`);
+					// newCard.style.setProperty('--animTo', `0`);
+					newCard.style.setProperty('--animFrom', `0`);
 					newCard.style.setProperty('--animTo', `0`);
 					let iterationCount = 0;
 
-					newCard.onanimationiteration = () => {
-						if (iterationCount === 0) {
-							addScrollCard();
-						}
-						iterationCount++;
-						newCard.style.setProperty(
-							'--animFrom',
-							(iterationCount - 1).toString()
-						);
-						newCard.style.setProperty('--animTo', iterationCount.toString());
-					};
+					// newCard.onanimationiteration = () => {
+					// 	if (iterationCount === 0) {
+					// 		// addScrollCard();
+					// 	}
+					// 	iterationCount++;
+					// 	newCard.style.setProperty(
+					// 		'--animFrom',
+					// 		(iterationCount - 1).toString()
+					// 	);
+					// 	newCard.style.setProperty('--animTo', iterationCount.toString());
+					// };
 				} else {
-					const initAnimFrom = 3;
-					const initAnimTo = 2;
+					const initAnimFrom = 1;
+					const initAnimTo = 0;
 					newCard.style.setProperty('--animFrom', initAnimFrom.toString());
 					newCard.style.setProperty('--animTo', initAnimTo.toString());
 					let iterationCount = 0;
@@ -207,7 +212,7 @@ import Card from './card.astro';
 				artistCardsArr[indexNumber]?.appendChild(newCard);
 
 				newCard.onanimationend = () => {
-					newCard.remove();
+					// newCard.remove();
 				};
 			}
 
