@@ -29,15 +29,6 @@ const {index = [0], posts = []} = Astro.props;
 				indexNumber: number;
 			}) {
 				return `
-        <div
-        class="group scrollCard absolute relative w-40 h-[13rem] sm:w-52 sm:h-[15.5rem] lg:w-64 lg:h-[19.5rem] overflow-hidden rounded-lg border border-gray-400/50 bg-gray-700 p-2 py-4 sm:p-4 lg:p-6 text-gray-200 ring-1 ring-gray-900/5 ${
-					listeners < 50000
-						? 'shadow-md sm:shadow-lg shadow-green-400'
-						: 'opacity-10'
-				}
-				${indexNumber % 2 === 0 ? 'top-0' : 'bottom-0'}
-				"
-        >
             ${
 							listeners < 50000
 								? `<div
@@ -133,7 +124,6 @@ const {index = [0], posts = []} = Astro.props;
                     <span class="text-xs sm:text-sm text-gray-400">/ month</span>
                 </div>
             </div>
-        </div>
         `;
 			}
 
@@ -154,10 +144,16 @@ const {index = [0], posts = []} = Astro.props;
 				}
 				const artistCardsArr = document.querySelectorAll('.artistCards');
 
-				const newCard = document.createElement('div');
-
 				let randomArtist = allArtists[cardCount];
 				cardCount = cardCount === numberOfCards - 1 ? 0 : cardCount + 1;
+
+				const newCard = document.createElement('div');
+				newCard.className =
+					'group scrollCard absolute relative w-40 h-[13rem] sm:w-52 sm:h-[15.5rem] lg:w-64 lg:h-[19.5rem] overflow-hidden rounded-lg border border-gray-400/50 bg-gray-700 p-2 py-4 sm:p-4 lg:p-6 text-gray-200 ring-1 ring-gray-900/5';
+
+				randomArtist.monthlyListeners < 50000
+					? newCard.classList.add('shadow-md', 'shadow-green-400')
+					: newCard.classList.add('opacity-10');
 
 				newCard.innerHTML = generateInnerHTML({
 					banner: randomArtist.banner,
@@ -169,28 +165,28 @@ const {index = [0], posts = []} = Astro.props;
 				});
 
 				if (indexNumber % 2 === 0) {
-					// newCard.style.setProperty('--animFrom', `-1`);
-					// newCard.style.setProperty('--animTo', `0`);
-					newCard.style.setProperty('--animFrom', `0`);
+					newCard.style.setProperty('--animFrom', `-1`);
 					newCard.style.setProperty('--animTo', `0`);
+					newCard.classList.add('top-0');
 					let iterationCount = 0;
 
-					// newCard.onanimationiteration = () => {
-					// 	if (iterationCount === 0) {
-					// 		// addScrollCard();
-					// 	}
-					// 	iterationCount++;
-					// 	newCard.style.setProperty(
-					// 		'--animFrom',
-					// 		(iterationCount - 1).toString()
-					// 	);
-					// 	newCard.style.setProperty('--animTo', iterationCount.toString());
-					// };
+					newCard.onanimationiteration = () => {
+						if (iterationCount === 0) {
+							addScrollCard();
+						}
+						iterationCount++;
+						newCard.style.setProperty(
+							'--animFrom',
+							(iterationCount - 1).toString()
+						);
+						newCard.style.setProperty('--animTo', iterationCount.toString());
+					};
 				} else {
 					const initAnimFrom = 1;
 					const initAnimTo = 0;
 					newCard.style.setProperty('--animFrom', initAnimFrom.toString());
 					newCard.style.setProperty('--animTo', initAnimTo.toString());
+					newCard.classList.add('bottom-0');
 					let iterationCount = 0;
 
 					newCard.onanimationiteration = () => {
@@ -212,7 +208,7 @@ const {index = [0], posts = []} = Astro.props;
 				artistCardsArr[indexNumber]?.appendChild(newCard);
 
 				newCard.onanimationend = () => {
-					// newCard.remove();
+					newCard.remove();
 				};
 			}
 
