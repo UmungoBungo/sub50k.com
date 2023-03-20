@@ -16,24 +16,50 @@
 	}
 }
 
-.artistCards:hover .scrollCard {
+.artistCards:hover .scrollCardDown {
+	animation-play-state: paused;
+}
+
+.artistCards:hover .scrollCardUp {
 	animation-play-state: paused;
 }
 
 .scrollCard {
-	animation-duration: 5s;
+	animation-duration: 25s;
 	animation-timing-function: linear;
-	animation-iteration-count: 5;
 	position: absolute;
-	animation-name: scrollAnim;
+	transition-property: rotate, scale;
+	transition-duration: 0.25s;
 }
 
-@keyframes scrollAnim {
+.scrollCard:hover {
+	rotate: 0.8deg;
+	/* scale: 1.01; */
+}
+
+.scrollCardDown {
+	animation-name: scrollAnimDown;
+}
+
+@keyframes scrollAnimDown {
 	0% {
-		transform: translateY(calc(var(--animFrom) * (var(--cardHeight))));
+		transform: translateY(calc(-1 * (var(--cardHeight))));
 	}
 	100% {
-		transform: translateY(calc(var(--animTo) * (var(--cardHeight))));
+		transform: translateY(calc(5 * (var(--cardHeight))));
+	}
+}
+
+.scrollCardUp {
+	animation-name: scrollAnimUp;
+}
+
+@keyframes scrollAnimUp {
+	0% {
+		transform: translateY(calc(1 * (var(--cardHeight))));
+	}
+	100% {
+		transform: translateY(calc(-5 * (var(--cardHeight))));
 	}
 }
 

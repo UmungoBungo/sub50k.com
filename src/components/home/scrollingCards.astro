@@ -192,55 +192,22 @@ const {index = [0], posts = []} = Astro.props;
 				});
 
 				// after 5 seconds, addScrollCard() will be called again
+				const timeForCardToAppear = 4250;
+
 				const cardTime = setTimeout(() => {
 					addScrollCard();
-				}, 5000);
+				}, timeForCardToAppear);
 				cardTimings.push({
 					name: randomArtist.name,
 					timer: cardTime,
 					startTime: Date.now(),
-					remainingTime: 5000,
+					remainingTime: timeForCardToAppear,
 				});
 
 				if (Number(indexNumber) % 2 === 0) {
-					newCard.style.setProperty('--animFrom', `-1`);
-					newCard.style.setProperty('--animTo', `0`);
-					newCard.classList.add('top-0');
-					let iterationCount = 0;
-
-					newCard.onanimationiteration = () => {
-						if (iterationCount === 0) {
-							// addScrollCard();
-						}
-						iterationCount++;
-						newCard.style.setProperty(
-							'--animFrom',
-							(iterationCount - 1).toString()
-						);
-						newCard.style.setProperty('--animTo', iterationCount.toString());
-					};
+					newCard.classList.add('top-0', 'scrollCardDown');
 				} else {
-					const initAnimFrom = 1;
-					const initAnimTo = 0;
-					newCard.style.setProperty('--animFrom', initAnimFrom.toString());
-					newCard.style.setProperty('--animTo', initAnimTo.toString());
-					newCard.classList.add('bottom-0');
-					let iterationCount = 0;
-
-					newCard.onanimationiteration = () => {
-						if (iterationCount === 0) {
-							// addScrollCard();
-						}
-						iterationCount++;
-						newCard.style.setProperty(
-							'--animFrom',
-							(initAnimFrom - iterationCount).toString()
-						);
-						newCard.style.setProperty(
-							'--animTo',
-							(initAnimTo - iterationCount).toString()
-						);
-					};
+					newCard.classList.add('bottom-0', 'scrollCardUp');
 				}
 
 				artistCardsArr[Number(indexNumber)]?.appendChild(newCard);
