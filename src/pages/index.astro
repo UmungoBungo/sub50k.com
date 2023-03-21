@@ -6,6 +6,9 @@ import {SITE_TITLE} from '../config';
 import bannerVid from '../videos/Sub50kBanner.mp4';
 import '../components/home/style.css';
 import ScrollingCards from '../components/home/scrollingCards.astro';
+import { Image } from '@astrojs/image/components';
+import GoogleFont from "../layouts/GoogleFont.astro";
+
 
 const allPosts = await getCollection('artist');
 
@@ -96,7 +99,21 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 				<ScrollingCards index={3} posts={fourthColumnPosts} />
 			</span>
 		</div>
-		<div class="mx-auto max-w-3xl px-6 sm:px-8">
+		<div
+			class="mx-auto grid h-[15vh] w-full max-w-6xl grid-cols-3 overflow-hidden border-2"
+		>
+			<div class="col-span-2"></div>
+			<div class="col-span-1 handScale relative h-full w-full prose">
+				<img class='absolute inset-0 flex items-center justify-center' src={`https://res.cloudinary.com/sub50k/image/upload/v1679400647/site/pinching-hand.svg`} alt="pinching hand" aspectRatio="1:1" />
+				<h2
+				class="absolute inset-0 textScale h-full w-full text-xl text-primary-main font-extrabold"
+				>
+				SUB 50k
+			</h2>
+			</div>
+		</div>
+
+		<!-- <div class="mx-auto max-w-3xl px-6 sm:px-8">
 			<video
 				src={bannerVid}
 				class="mb-8 w-full rounded border border-white md:mb-16 lg:mb-24"
@@ -145,6 +162,6 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 					})
 				}
 			</ul>
-		</div>
+		</div> -->
 	</section>
 </PageLayout>
