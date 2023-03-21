@@ -30,7 +30,7 @@ const {index = [0], posts = []} = Astro.props;
             ${
 							listeners < 50000
 								? `<div
-                class="absolute top-2 left-0 z-30 m-1 sm:m-2 lg:m-3 flex -rotate-12 items-center rounded-md border lg:border-2 border-green-300 bg-gray-900 px-1 py-0.5 text-xs lg:text-sm text-green-300"
+                class="absolute top-2 left-0 z-30 m-1 sm:m-2 lg:m-3 flex -rotate-12 items-center rounded-md border lg:border-2 dark:border-green-300 border-pink-300 bg-gray-900 px-1 py-0.5 text-xs lg:text-sm dark:text-green-300 text-pink-300"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -98,9 +98,9 @@ const {index = [0], posts = []} = Astro.props;
                         <h2
                             class="border-b text-base sm:text-xl uppercase whitespace-nowrap overflow-ellipsis ${
 															listeners < 50000
-																? 'border-primary-main'
+																? 'border-primary-main text-primary-main'
 																: 'text-gray-200 border-gray-200'
-														}" text-primary-main
+														}" 
                         >
                             ${artistName}
                         </h2>
@@ -177,10 +177,14 @@ const {index = [0], posts = []} = Astro.props;
 
 				const newCard = document.createElement('div');
 				newCard.className =
-					'group scrollCard absolute relative w-40 h-[13rem] sm:w-52 sm:h-[15.5rem] lg:w-64 lg:h-[19.5rem] overflow-hidden rounded-lg border border-gray-400/50 bg-gray-700 p-2 py-4 sm:p-4 lg:p-6 text-gray-200 ring-1 ring-gray-900/5';
+					'group scrollCard absolute relative w-40 h-[13rem] sm:w-52 sm:h-[15.5rem] lg:w-64 lg:h-[19.5rem] overflow-hidden rounded-lg border border-gray-400/50 bg-gray-700 text-gray-200 p-2 py-4 sm:p-4 lg:p-6 ring-1 ring-gray-900/5';
 
 				randomArtist.monthlyListeners < 50000
-					? newCard.classList.add('shadow-md', 'shadow-green-400')
+					? newCard.classList.add(
+							'shadow-md',
+							'dark:shadow-green-400',
+							'shadow-pink-400'
+					  )
 					: newCard.classList.add('opacity-10');
 
 				newCard.innerHTML = generateInnerHTML({
