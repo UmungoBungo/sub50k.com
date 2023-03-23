@@ -13,7 +13,6 @@ import FontAwesome from './FontAwesome.astro';
 import ThemeScript from './ThemeScript.astro';
 import Favicon from './Favicon.astro';
 import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 ---
 
 <!DOCTYPE html>
@@ -29,14 +28,13 @@ import Footer from '../components/Footer.astro';
 		<FontAwesome />
 	</head>
 
-	<body class="min-h-screen">
-		<div class="max-w-3xl w-full mx-auto px-6 sm:px-8">
+	<body class="relative min-h-screen">
+		<div class="mx-auto w-full max-w-3xl px-6 sm:px-8">
 			<Header />
 		</div>
 		<main id="main">
 			<slot name="main" />
 		</main>
-		<Footer />
 		<style>
 			body {
 				display: grid;

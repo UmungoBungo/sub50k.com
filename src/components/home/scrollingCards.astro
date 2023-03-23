@@ -1,0 +1,232 @@
+---
+const {index = [0], posts = []} = Astro.props;
+---
+
+<card-column
+	data-index={index}
+	data-posts={JSON.stringify(posts)}
+	class="artistCards relative col-span-1 flex h-full flex-col items-center"
+>
+</card-column>
+
+<script>
+	class CardColumn extends HTMLElement {
+		constructor() {
+			super();
+			function generateInnerHTML({
+				banner,
+				avatar,
+				artistName,
+				text,
+				listeners,
+			}: {
+				banner: string;
+				avatar: string;
+				artistName: string;
+				text: string;
+				listeners: number;
+			}) {
+				return `
+            ${
+							listeners < 50000
+								? `<div
+                class="absolute top-2 left-0 z-30 m-1 sm:m-2 lg:m-3 flex -rotate-12 items-center rounded-md border lg:border-2 dark:border-green-300 border-pink-300 bg-gray-900 px-1 py-0.5 text-xs lg:text-sm dark:text-green-300 text-pink-300"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="h-3 w-3 sm:h-5 sm:w-5 mr-0.5 sm:mr-1"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
+                    ></path>
+                </svg>
+                Sub 50k
+            </div>`
+								: ''
+						}
+            <div class="absolute inset-0 z-10 h-20 sm:h-28 lg:h-36">
+            ${
+							listeners < 50000
+								? ` <img
+                    src=https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto,w_748/${banner}
+                    class="h-full w-full object-cover opacity-80 grayscale"
+                    alt="banner"
+                />`
+								: `<div class="h-full w-full backgroundImage opacity-80 grayscale"></div>`
+						}
+            </div>
+            <div
+                class="absolute inset-0 z-10 h-[5.1rem] sm:h-[7.1rem] lg:h-[9.1rem] bg-gradient-to-b from-transparent to-gray-700"
+            >
+            </div>
+            <!-- Top banner -->
+            <div class="relative z-20 h-20 sm:h-28 lg:h-32">
+                <div class="flex flex-col items-center">
+                   ${
+											listeners < 50000
+												? `<img
+                        src=https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto:best/${avatar}
+                        class="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 rounded-full border-2 border-gray-700"
+                        height="64"
+                        width="64"
+                        alt="avatar"
+                    />`
+												: `<svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 rounded-full border-2 border-gray-700 bg-gray-500"
+                    height="64"
+                    width="64"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                    ></path>
+                </svg>`
+										}
+                    <div class="mt-2 sm:mt-3 lg:mt-6 prose">
+                        <h2
+                            class="border-b text-base sm:text-xl uppercase whitespace-nowrap overflow-ellipsis ${
+															listeners < 50000
+																? 'border-primary-main text-primary-main'
+																: 'text-gray-200 border-gray-200'
+														}" 
+                        >
+                            ${artistName}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-2 sm:mt-0 lg:mt-4 divide-y divide-gray-300/50">
+                <div class="pb-2 lg:pb-4 text-xs sm:text-sm">
+                    <p class="line-clamp-3">
+                        ${text}
+                    </p>
+                </div>
+                <div class="ml-2 pt-2 lg:pt-4 text-center">
+                    <span class="font-mono sm:text-lg">${
+											listeners < 50000
+												? listeners.toLocaleString('en-US')
+												: '50k+'
+										}</span>
+                    <span class="text-xs sm:text-sm text-gray-400">/ month</span>
+                </div>
+            </div>
+        `;
+			}
+
+			const indexNumber = this.dataset.index as unknown as string;
+			const rawArtists = this.dataset.posts as unknown as string;
+			const allArtists = JSON.parse(rawArtists) as Array<any>;
+			const numberOfCards = allArtists.length;
+			let cardCount = 0;
+
+			let initialised = false;
+
+			let cardTimings: any = [];
+
+			const artistCardsArr = document.querySelectorAll('.artistCards');
+
+			let elapsedTime = 0;
+
+			// on hover, pause the transition animation. Keep track of how long the transition has been going, and then restart when not hovering anymore
+			// If hovered again, keep track of the remaining amount of time
+			artistCardsArr[Number(indexNumber)].addEventListener('mouseenter', () => {
+				elapsedTime =
+					Date.now() - cardTimings[cardTimings.length - 1].startTime;
+				clearTimeout(cardTimings[cardTimings.length - 1].timer);
+			});
+			artistCardsArr[Number(indexNumber)].addEventListener('mouseleave', () => {
+				cardTimings[cardTimings.length - 1].remainingTime =
+					cardTimings[cardTimings.length - 1].remainingTime - elapsedTime;
+				const newTimer = setTimeout(() => {
+					addScrollCard();
+				}, cardTimings[cardTimings.length - 1].remainingTime);
+				cardTimings[cardTimings.length - 1].timer = newTimer;
+				cardTimings[cardTimings.length - 1].startTime = Date.now();
+			});
+
+			async function addScrollCard() {
+				if (!initialised) {
+					// function to stagger cards apeparing across the screen
+					await new Promise((resolve) =>
+						setTimeout(resolve, 500 * Number(indexNumber))
+					);
+					initialised = true;
+				}
+
+				let randomArtist: {
+					avatar: string;
+					banner: string;
+					description: string;
+					monthlyListeners: number;
+					name: string;
+				} = allArtists[cardCount];
+
+				cardCount = cardCount === numberOfCards - 1 ? 0 : cardCount + 1;
+
+				const newCard = document.createElement('div');
+				newCard.className =
+					'group scrollCard absolute relative w-40 h-[13rem] sm:w-52 sm:h-[15.5rem] lg:w-64 lg:h-[19.5rem] overflow-hidden rounded-lg border border-gray-400/50 bg-gray-700 text-gray-200 p-2 py-4 sm:p-4 lg:p-6 ring-1 ring-gray-900/5';
+
+				randomArtist.monthlyListeners < 50000
+					? newCard.classList.add(
+							'shadow-md',
+							'dark:shadow-green-400',
+							'shadow-pink-400'
+					  )
+					: newCard.classList.add('opacity-10');
+
+				newCard.innerHTML = generateInnerHTML({
+					banner: randomArtist.banner,
+					avatar: randomArtist.avatar,
+					artistName: randomArtist.name,
+					text: randomArtist.description,
+					listeners: randomArtist.monthlyListeners,
+				});
+
+				// after 5 seconds, addScrollCard() will be called again
+				const timeForCardToAppear = 4250;
+
+				const cardTime = setTimeout(() => {
+					addScrollCard();
+				}, timeForCardToAppear);
+				cardTimings.push({
+					name: randomArtist.name,
+					timer: cardTime,
+					startTime: Date.now(),
+					remainingTime: timeForCardToAppear,
+				});
+
+				if (Number(indexNumber) % 2 === 0) {
+					newCard.classList.add('top-0', 'scrollCardDown');
+				} else {
+					newCard.classList.add('bottom-0', 'scrollCardUp');
+				}
+
+				artistCardsArr[Number(indexNumber)]?.appendChild(newCard);
+
+				newCard.onanimationend = () => {
+					newCard.remove();
+					// remove the card from cardTimings
+					cardTimings = cardTimings.filter(
+						(card: {name: string}) => card.name !== randomArtist.name
+					);
+				};
+			}
+
+			addScrollCard();
+		}
+	}
+	customElements.define('card-column', CardColumn);
+</script>

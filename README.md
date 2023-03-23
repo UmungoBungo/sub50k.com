@@ -1,5 +1,20 @@
 # TODO
 
-- Actually write out the article for XTRMST and Igorrr
-- Create meta tags + images for articles, and home page
-- Add email subscriptions
+## Posts
+
+- Write out article for Igorrr
+
+## Email Newsletter
+
+- Make email subscriptions actually sign up
+- Welcome email
+- Template for new posts
+
+## SEO
+
+- Create meta tags + images for articles
+- Create better SEO previews
+
+## Other
+
+- Add about page

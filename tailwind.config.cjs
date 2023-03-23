@@ -25,6 +25,7 @@ module.exports = {
           code: "rgb(var(--color-text-code) / <alpha-value>)",
           link: "rgb(var(--color-text-link) / <alpha-value>)",
           selection: "rgb(var(--color-text-selection) / <alpha-value>)",
+          ctaBtn: "rgb(var(--color-text-cta-btn) / <alpha-value>)",
         },
         bg: {
           body: "rgb(var(--color-bg-body) / <alpha-value>)",
@@ -111,7 +112,10 @@ module.exports = {
           },
         },
       }),
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      }
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [require("@tailwindcss/typography"), require('@tailwindcss/line-clamp'),require('@tailwindcss/forms')],
 };

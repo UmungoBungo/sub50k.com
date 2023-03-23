@@ -4,10 +4,13 @@ import NoFooterLayout from '../layouts/NoFooterLayout.astro';
 import PageMeta from '../components/PageMeta.astro';
 import {SITE_TITLE} from '../config';
 import '../components/home/style.css';
-import ScrollingCards from '../components/home/scrollingCards.astro';
 import SignUpBottom from 'src/components/SignUpBottom.astro';
 
 const allPosts = await getCollection('artist');
+
+const sortedPosts = allPosts
+	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+	.filter((post) => !post.data.draft);
 
 function addDummyCards(
 	columnPosts: {
@@ -75,24 +78,50 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 <NoFooterLayout>
 	<PageMeta title={SITE_TITLE} slot="meta" />
 	<section slot="main">
-		<div
-			class="cardContainer relative mx-auto grid h-[80vh] w-full max-w-6xl grid-cols-2 overflow-hidden sm:grid-cols-3 lg:grid-cols-4"
-		>
-			<div
-				class="pointer-events-none absolute z-30 h-full w-full"
-				style="background: radial-gradient(71.89999999999999% 72.7% at 50% 19.7%,rgba(0,145,255,0) 0%, rgb(var(--color-bg-body)) 100%);"
-			>
-			</div>
-			<ScrollingCards index={0} posts={firstColumnPosts} />
-			<ScrollingCards index={1} posts={secondColumnPosts} />
-			<span class="hidden sm:block">
-				<ScrollingCards index={2} posts={thirdColumnPosts} />
-			</span>
-			<span class="hidden lg:block">
-				<ScrollingCards index={3} posts={fourthColumnPosts} />
-			</span>
+		<div class="mx-auto max-w-3xl px-6 sm:px-8">
+			<ul>
+				{
+					sortedPosts.map((post) => {
+						const formattedDate = new Date(
+							post.data.publishDate
+						).toLocaleDateString('en-us', {
+							year: 'numeric',
+							month: 'short',
+							day: 'numeric',
+						});
+						return (
+							<li class="mb-3 grid grid-cols-[1fr] items-start md:grid-cols-[1fr_auto] md:gap-2">
+								<div class="flex items-center">
+									<div
+										class="mr-2 h-6 w-6 rounded-full border border-white/50 bg-cover bg-center"
+										style={{
+											backgroundImage: `url(https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto:best/${post.data.avatar});`,
+										}}
+									/>
+									<div class="title">
+										<a
+											href={`/artist/${post.slug}`}
+											class="unset hover:text-text-link"
+										>
+											{post.data.name}
+										</a>
+									</div>
+									<span class="highlight ml-8">
+										{post.data.monthlyListeners.toLocaleString('en-US')}
+									</span>
+								</div>
+								<div class="text-text-muted text-sm italic">
+									<time datetime={post.data.publishDate.toISOString()}>
+										{formattedDate}
+									</time>
+								</div>
+							</li>
+						);
+					})
+				}
+			</ul>
 		</div>
-		<div class="absolute inset-x-0 bottom-0 z-40 w-full">
+		<div class="fixed inset-x-0 bottom-0 z-40 w-full">
 			<SignUpBottom />
 		</div>
 	</section>
