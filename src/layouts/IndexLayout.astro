@@ -12,6 +12,7 @@ import GoogleFont from './GoogleFont.astro';
 import FontAwesome from './FontAwesome.astro';
 import ThemeScript from './ThemeScript.astro';
 import Favicon from './Favicon.astro';
+import Header from '../components/Header.astro';
 ---
 
 <!DOCTYPE html>
@@ -28,6 +29,9 @@ import Favicon from './Favicon.astro';
 	</head>
 
 	<body class="relative min-h-screen">
+		<div class="mx-auto w-full max-w-3xl px-6 sm:px-8">
+			<Header />
+		</div>
 		<main id="main">
 			<slot name="main" />
 		</main>
