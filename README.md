@@ -1,11 +1,20 @@
 # TODO
 
-- New landing page:
-
-  - Add in a bunch of drafts
-  - randomise including artists above 50k
+## Posts
 
 - Write out article for Igorrr
-- Add email subscriptions
+
+## Email Newsletter
+
+- Make email subscriptions actually sign up
+- Welcome email
+- Template for new posts
+
+## SEO
+
 - Create meta tags + images for articles
 - Create better SEO previews
+
+## Other
+
+- Add about page
