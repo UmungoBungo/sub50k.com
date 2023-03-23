@@ -1,14 +1,10 @@
 ---
 import {getCollection} from 'astro:content';
-import PageLayout from '../layouts/PageLayout.astro';
+import IndexLayout from '../layouts/IndexLayout.astro';
 import PageMeta from '../components/PageMeta.astro';
 import {SITE_TITLE} from '../config';
-import bannerVid from '../videos/Sub50kBanner.mp4';
 import '../components/home/style.css';
 import ScrollingCards from '../components/home/scrollingCards.astro';
-import { Image } from '@astrojs/image/components';
-import GoogleFont from "../layouts/GoogleFont.astro";
-
 
 const allPosts = await getCollection('artist');
 
@@ -79,7 +75,7 @@ let fourthColumnPosts = randomisedPosts
 fourthColumnPosts = addDummyCards(fourthColumnPosts);
 ---
 
-<PageLayout>
+<IndexLayout>
 	<PageMeta title={SITE_TITLE} slot="meta" />
 	<section slot="main">
 		<div
@@ -100,19 +96,47 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 			</span>
 		</div>
 		<div
-			class="mx-auto grid h-[15vh] w-full max-w-6xl grid-cols-3 overflow-hidden border-2"
+			class="absolute inset-x-0 bottom-0 z-40 mx-auto flex w-full max-w-md flex-col overflow-hidden px-2 py-4"
 		>
-			<div class="col-span-2"></div>
-			<div class="col-span-1 handScale relative h-full w-full prose">
-				<img class='absolute inset-0 flex items-center justify-center' src={`https://res.cloudinary.com/sub50k/image/upload/v1679400647/site/pinching-hand.svg`} alt="pinching hand" aspectRatio="1:1" />
-				<h2
-				class="absolute inset-0 textScale h-full w-full text-xl text-primary-main font-extrabold"
-				>
-				SUB 50k
-			</h2>
+			<div class="flex h-full w-full items-end justify-between">
+				<h1 class="text-2xl font-extrabold text-primary-main sm:text-4xl">
+					SUB 50k
+				</h1>
+				<div class="flex text-sm sm:text-base">
+					weekly
+					<img
+						class="mx-1 h-6 w-6"
+						src={`https://res.cloudinary.com/sub50k/image/upload/v1679400647/site/pinching-hand.svg`}
+						alt="pinching hand"
+					/>
+					newsletter
+				</div>
+			</div>
+			<div class="py-4">
+				<div class="flex rounded-md shadow-sm">
+					<input
+						type="text"
+						name="username"
+						id="username"
+						autocomplete="username"
+						placeholder="email address"
+						class="block w-full min-w-0 flex-1 rounded-none rounded-l-md border-0 bg-bg-body py-1.5 text-sm text-text-body ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-main sm:text-sm sm:leading-6"
+					/>
+					<button
+						type="button"
+						class="inline-flex items-center gap-x-1.5 rounded-r-md border border-l-0 border-gray-300 bg-primary-main py-1.5 px-2.5 align-middle text-sm font-semibold text-text-selection shadow-sm hover:bg-bg-selection focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+					>
+						Subscribe
+						<i class="fa-solid fa-envelope -mr-0.5"></i>
+					</button>
+				</div>
+			</div>
+			<div
+				class="w-full text-right text-sm text-text-muted sm:justify-start sm:text-sm"
+			>
+				Great artists. Under 50k listeners.
 			</div>
 		</div>
-
 		<!-- <div class="mx-auto max-w-3xl px-6 sm:px-8">
 			<video
 				src={bannerVid}
@@ -164,4 +188,4 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 			</ul>
 		</div> -->
 	</section>
-</PageLayout>
+</IndexLayout>
