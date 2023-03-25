@@ -1,9 +1,32 @@
-<div class="mx-auto flex w-full max-w-md flex-col px-2 py-4">
-	<div class="flex h-full w-full items-end justify-between">
-		<h1 class="text-2xl font-extrabold text-primary-main sm:text-4xl">
-			SUB 50k
-		</h1>
-		<div class="flex text-sm sm:text-base">
+<div
+	class="mx-auto flex h-28 w-full max-w-lg items-center justify-between px-2 py-4"
+>
+	<div class="flex h-full flex-col justify-start">
+		<div class="flex h-10 items-center">
+			<h1 class="text-2xl font-extrabold text-primary-main sm:text-4xl">
+				SUB 50k
+			</h1>
+		</div>
+		<div
+			class="mt-1 flex h-10 flex-col text-sm text-text-muted sm:h-6 sm:flex-row sm:items-center"
+		>
+			<span>Great artists.</span>
+			<span class="ml-0 sm:ml-1">Under 50k listeners.</span>
+		</div>
+	</div>
+	<div class="flex h-full flex-col items-end">
+		<div class="flex h-10 items-center">
+			<form action="https://tinyletter.com/Sub50k">
+				<button
+					type="submit"
+					class="inline-flex items-center gap-x-1.5 rounded-md border border-gray-300 bg-primary-main py-1.5 px-2.5 align-middle text-sm font-semibold text-text-ctaBtn shadow-sm hover:bg-bg-selection hover:text-text-selection focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:py-1.5"
+				>
+					Subscribe
+					<i class="fa-solid fa-envelope -mr-0.5"></i>
+				</button>
+			</form>
+		</div>
+		<div class="mt-1 flex h-10 items-center justify-center text-sm sm:h-6">
 			weekly
 			<img
 				class="mx-1 h-6 w-6"
@@ -12,29 +35,5 @@
 			/>
 			newsletter
 		</div>
-	</div>
-	<div class="py-4">
-		<div class="flex rounded-md shadow-sm">
-			<input
-				type="text"
-				name="username"
-				id="username"
-				autocomplete="username"
-				placeholder="email address"
-				class="block w-full min-w-0 flex-1 rounded-none rounded-l-md border-0 bg-bg-body py-1.5 text-sm text-text-body ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-main sm:text-sm sm:leading-6"
-			/>
-			<button
-				type="button"
-				class="inline-flex items-center gap-x-1.5 rounded-r-md border border-l-0 border-gray-300 bg-primary-main py-1.5 px-2.5 align-middle text-sm font-semibold text-text-ctaBtn shadow-sm hover:bg-bg-selection hover:text-text-selection focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-			>
-				Subscribe
-				<i class="fa-solid fa-envelope -mr-0.5"></i>
-			</button>
-		</div>
-	</div>
-	<div
-		class="w-full text-right text-sm text-text-muted sm:justify-start sm:text-sm"
-	>
-		Great artists. Under 50k listeners.
 	</div>
 </div>
