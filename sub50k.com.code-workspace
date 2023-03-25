@@ -2,12 +2,7 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "../thatwaspro_still"
 		}
 	],
-	"settings": {
-		"prettier.configPath": ".prettierrc.js"
-	}
+	"settings": {}
 }

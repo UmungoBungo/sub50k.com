@@ -138,22 +138,25 @@ const formattedDate = new Date(date).toLocaleDateString('en-us', {
 						to get an update each time I post about a new artist that has less
 						than 50,000 monthly listeners, enter your email and hit subscribe.
 					</p>
-					<div class="flex max-w-sm rounded-md shadow-sm">
-						<input
-							type="text"
-							name="username"
-							id="username"
-							autocomplete="username"
-							placeholder="email address"
-							class="block w-full min-w-0 flex-1 rounded-none rounded-l-md border-0 bg-bg-body py-1.5 text-sm text-text-body ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-main sm:text-sm sm:leading-6"
-						/>
-						<button
-							type="button"
-							class="inline-flex items-center gap-x-1.5 rounded-r-md border border-l-0 border-gray-300 bg-primary-main py-1.5 px-2.5 align-middle text-sm font-semibold text-text-ctaBtn shadow-sm hover:bg-bg-selection hover:text-text-selection focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-						>
-							Subscribe
-							<i class="fa-solid fa-envelope -mr-0.5"></i>
-						</button>
+					<div class="not-prose flex items-center">
+						<form action="https://tinyletter.com/Sub50k">
+							<button
+								type="submit"
+								class="inline-flex items-center gap-x-1.5 rounded-md border border-gray-300 bg-primary-main py-1.5 px-2.5 align-middle text-sm font-semibold text-text-ctaBtn shadow-sm hover:bg-bg-selection hover:text-text-selection focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:py-1.5"
+							>
+								Subscribe
+								<i class="fa-solid fa-envelope -mr-0.5"></i>
+							</button>
+						</form>
+						<div class="ml-4 flex">
+							<span>weekly</span>
+							<img
+								class="mx-1 h-6 w-6"
+								src={`https://res.cloudinary.com/sub50k/image/upload/v1679400647/site/pinching-hand.svg`}
+								alt="pinching hand"
+							/>
+							<span>newsletter</span>
+						</div>
 					</div>
 				</div>
 			</section>
