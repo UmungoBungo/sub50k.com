@@ -15,6 +15,15 @@ const artistCollection = defineCollection({
 		avatar: z.string(),
 		artistSpotifyLink: z.string(),
 		artistBandcampLink: z.string().optional(),
+		jumpInLinks: z
+			.array(
+				z.object({
+					name: z.string(),
+					link: z.string(),
+					description: z.string(),
+				})
+			)
+			.optional(),
 	}),
 });
 // 3. Export a single `collections` object to register your collection(s)

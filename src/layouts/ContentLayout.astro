@@ -1,9 +1,4 @@
 ---
-/* 
-  This layout is used in pages that render markdoc content
-  - pages/blog/[slug].astro
-*/
-
 // Import the global.css file here so that it is included on
 import '../styles/global.css';
 
@@ -14,7 +9,7 @@ import Favicon from './Favicon.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import {Picture} from '@astrojs/image/components';
-import SignUpBottom from 'src/components/SignUpBottom.astro';
+import JumpInLinks from './JumpInLinks.astro';
 
 export interface Props {
 	title: string;
@@ -24,6 +19,13 @@ export interface Props {
 	monthlyListeners: number;
 	artistSpotifyLink: string;
 	artistBandcampLink?: string;
+	jumpInLinks:
+		| {
+				name: string;
+				link: string;
+				description: string;
+		  }[]
+		| undefined;
 }
 
 const {
@@ -34,6 +36,7 @@ const {
 	monthlyListeners,
 	artistSpotifyLink,
 	artistBandcampLink,
+	jumpInLinks,
 } = Astro.props;
 const formattedDate = new Date(date).toLocaleDateString('en-us', {
 	year: 'numeric',
@@ -132,11 +135,12 @@ const formattedDate = new Date(date).toLocaleDateString('en-us', {
 						</span>
 					</div>
 					<slot name="content" />
+					{jumpInLinks && <JumpInLinks jumpInLinks={jumpInLinks} />}
 					<h2>Not signed up?</h2>
 					<p>
 						If you made it this far, perhaps you like what you read. If you want
 						to get an update each time I post about a new artist that has less
-						than 50,000 monthly listeners, hit subscribe.
+						than 50,000 monthly listeners, hit Subscribe.
 					</p>
 					<div class="not-prose flex items-center">
 						<form action="https://tinyletter.com/Sub50k">

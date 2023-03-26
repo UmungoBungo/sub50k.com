@@ -2,12 +2,10 @@
 
 ## Posts
 
-- Write out article for Igorrr
+- Write out article for Arcane Roots
 
 ## Email Newsletter
 
-- Make email subscriptions actually sign up
-- Welcome email
 - Template for new posts
 
 ## SEO
