@@ -2,7 +2,6 @@
 import {CollectionEntry, getCollection} from 'astro:content';
 
 import ArtistPostMeta from '../../components/ArtistPostMeta.astro';
-import {SITE_URL} from '../../config';
 import ContentLayout from '../../layouts/ContentLayout.astro';
 
 interface Props {
@@ -33,6 +32,7 @@ const {Content} = await entry.render();
 	monthlyListeners={entry.data.monthlyListeners}
 	artistSpotifyLink={entry.data.artistSpotifyLink}
 	artistBandcampLink={entry.data.artistBandcampLink}
+	jumpInLinks={entry.data.jumpInLinks}
 >
 	<ArtistPostMeta
 		title={entry.data.name}

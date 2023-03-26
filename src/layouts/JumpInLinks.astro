@@ -1,0 +1,32 @@
+---
+export interface Props {
+	jumpInLinks:
+		| {
+				name: string;
+				link: string;
+				description: string;
+		  }[];
+}
+
+const {jumpInLinks} = Astro.props;
+---
+
+<h2>
+	Jump in <i class="fa-solid fa-person-through-window ml-1 text-primary-main"
+	></i>
+</h2>
+<p>
+	If you like what you hear, and want to explore some more outside of the
+	discography on Spotify, here are similar artists, similar sounds, other
+	side-projects, and more.
+</p>
+{
+	jumpInLinks.map((link) => (
+		<>
+			<h4>
+				<a href={link.link}>{link.name}</a>
+			</h4>
+			<p>{link.description}</p>
+		</>
+	))
+}

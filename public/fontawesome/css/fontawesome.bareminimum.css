@@ -184,6 +184,10 @@
 	content: '\f09e';
 }
 
+.fa-person-through-window::before {
+	content: '\e5a9';
+}
+
 .sr-only,
 .fa-sr-only {
 	position: absolute;
