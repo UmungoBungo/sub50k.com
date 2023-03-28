@@ -5,7 +5,7 @@ import { AudioPlayerComp } from "./audioPlayerComp";
 import {
     PlayIcon, PauseIcon, BackwardIcon, ArrowTopRightOnSquareIcon
 } from '@heroicons/react/24/solid/index.js';
-import { PlayTime } from './playtime'
+// import { PlayTime } from './playtime'
 
 const AudioTitle: React.FC<{ startFromInSeconds: number, durationInSeconds: number, cloudinaryPath: string, trackName: string, spotifyLink: string }> = ({ startFromInSeconds, durationInSeconds, cloudinaryPath, trackName, spotifyLink }) => {
     const playerRef = useRef<PlayerRef>(null);
@@ -100,7 +100,7 @@ const AudioTitle: React.FC<{ startFromInSeconds: number, durationInSeconds: numb
                         {isPlaying ? <PauseIcon className="sm:h-5 sm:w-5 h-4 w-4" /> : <PlayIcon className="sm:h-5 sm:w-5 h-4 w-4" />}
                     </button>
                     <span className="flex sm:hidden">
-                        <PlayTime playerRef={playerRef} durationInFrames={fps * durationInSeconds} startFromInSeconds={startFromInSeconds} />
+                        {/* <PlayTime playerRef={playerRef} durationInFrames={fps * durationInSeconds} startFromInSeconds={startFromInSeconds} /> */}
                         <a
                             href={spotifyLink}
                             className='bg-bg-body relative unset border-b border-transparent hover:border-text-link ml-2 focus:ring-text-link flex items-center text-text-muted justify-center focus:outline-none focus:border-text-link hover:text-primary-main'
@@ -142,7 +142,7 @@ const AudioTitle: React.FC<{ startFromInSeconds: number, durationInSeconds: numb
                 </div>
             </div>
             <span className="hidden sm:flex mt-2 not-prose">
-                <PlayTime playerRef={playerRef} durationInFrames={fps * durationInSeconds} startFromInSeconds={startFromInSeconds} />
+                {/* <PlayTime playerRef={playerRef} durationInFrames={fps * durationInSeconds} startFromInSeconds={startFromInSeconds} /> */}
                 <a
                     href={spotifyLink}
                     className='bg-bg-body relative unset border-b border-transparent hover:border-text-link ml-2 focus:ring-text-link flex items-center text-text-muted justify-center focus:outline-none focus:border-text-link hover:text-primary-main'
