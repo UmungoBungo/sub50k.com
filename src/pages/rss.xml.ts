@@ -25,7 +25,7 @@ export async function get() {
 			title: artist.data.name,
 			pubDate: artist.data.publishDate,
 			description: artist.data.description,
-			link: `${baseUrl}/artist/${artist.data.name}`,
+			link: `${baseUrl}/artist/${artist.data.name.toLowerCase()}`,
 		})),
 		// (optional) inject custom xml
 		customData: `<language>en-us</language>`,
