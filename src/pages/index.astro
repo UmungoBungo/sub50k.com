@@ -38,7 +38,7 @@ function addDummyCards(
 		artistSpotifyLink: '',
 	};
 
-	for (let i = 0; i < 6; i++) {
+	for (let i = 0; i < 3; i++) {
 		const randomIndex = Math.floor(Math.random() * columnPosts.length);
 		const thisDummyCard = {
 			...dummyCard,
@@ -75,25 +75,86 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 <NoFooterLayout>
 	<PageMeta title={SITE_TITLE} slot="meta" />
 	<section slot="main">
-		<div
-			class="cardContainer relative mx-auto grid h-[80vh] w-full max-w-6xl grid-cols-2 overflow-hidden sm:grid-cols-3 lg:grid-cols-4"
-		>
+		<div class="relative h-[70vh] w-full">
 			<div
-				class="pointer-events-none absolute z-30 h-full w-full"
-				style="background: radial-gradient(71.89999999999999% 72.7% at 50% 19.7%,rgba(0,145,255,0) 0%, rgb(var(--color-bg-body)) 100%);"
+				class="cardContainer relative mx-auto grid h-[60vh] w-full max-w-6xl grid-cols-2 overflow-hidden sm:grid-cols-3 lg:grid-cols-4"
 			>
+				<div
+					class="pointer-events-none absolute z-30 h-full w-full"
+					style="background: radial-gradient(71.89999999999999% 72.7% at 50% 19.7%,rgba(0,145,255,0) 0%, rgb(var(--color-bg-body)) 100%);"
+				>
+				</div>
+				<ScrollingCards index={0} posts={firstColumnPosts} />
+				<ScrollingCards index={1} posts={secondColumnPosts} />
+				<span class="hidden sm:block">
+					<ScrollingCards index={2} posts={thirdColumnPosts} />
+				</span>
+				<span class="hidden lg:block">
+					<ScrollingCards index={3} posts={fourthColumnPosts} />
+				</span>
 			</div>
-			<ScrollingCards index={0} posts={firstColumnPosts} />
-			<ScrollingCards index={1} posts={secondColumnPosts} />
-			<span class="hidden sm:block">
-				<ScrollingCards index={2} posts={thirdColumnPosts} />
-			</span>
-			<span class="hidden lg:block">
-				<ScrollingCards index={3} posts={fourthColumnPosts} />
-			</span>
+			<div class="absolute inset-x-0 bottom-0 z-40 w-full">
+				<SignUpBottom />
+			</div>
 		</div>
-		<div class="absolute inset-x-0 bottom-0 z-40 w-full">
-			<SignUpBottom />
+		<div class="mx-auto mt-16 max-w-2xl lg:max-w-5xl lg:px-8">
+			<div
+				class="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12"
+			>
+				<div class="max-w-xs px-2.5 lg:max-w-none">
+					<img
+						src={'https://res.cloudinary.com/sub50k/image/upload/c_scale,f_auto,q_auto:best,w_512/v1680007880/site/me.jpg'}
+						alt=""
+						sizes="(min-width: 1024px) 32rem, 20rem"
+						class="aspect-square rotate-3 rounded-2xl object-cover"
+						title="not actually me."
+					/>
+				</div>
+				<div class="prose lg:order-first lg:row-span-2">
+					<h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+						I’m Matt. I live in Australia, where I code and listen to music.
+					</h1>
+					<h2
+						class="text-xl font-bold tracking-tight text-primary-main sm:text-2xl"
+					>
+						I'm highlighting awesome artists that have less than 50,000 monthly
+						listeners.
+					</h2>
+					<div
+						class="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400"
+					>
+						<p>
+							I’ve loved listening to music since my early teens, and have been
+							through phases of liking certain styles and rejecting others. Over
+							time, I realised the only person missing out is the listener... or
+							the one that doesn't listen I guess.
+						</p>
+						<p>
+							Pursuing my musical taste has led me to some weird places, and
+							really there isn't anything that is off the table. But this
+							website isn't about finding difficult listens. These are
+							incredible, underappreciated artists.
+						</p>
+						<p>
+							Listening to music that is more obscure is mostly a lonely
+							pursuit, barring a few friends that I each share particular genres
+							with. If you like what you hear - share it around, subscribe to
+							stay up to date, and email me with any thoughts or
+							recommendations.
+						</p>
+						<div class="not-prose flex justify-center pb-10">
+							<a class="unset" href="/artists">
+								<div
+									class="inline-flex items-center gap-x-1.5 rounded-md border border-gray-300 bg-primary-main py-1.5 px-2.5 align-middle text-sm font-semibold text-text-ctaBtn shadow-sm hover:bg-bg-selection hover:text-text-selection focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:py-1.5"
+								>
+									Jump In
+									<i class="fa-solid fa-person-through-window ml-1"></i>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 </NoFooterLayout>

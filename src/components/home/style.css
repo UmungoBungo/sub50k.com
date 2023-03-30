@@ -25,16 +25,9 @@
 }
 
 .scrollCard {
-	animation-duration: 25s;
+	animation-duration: 15s;
 	animation-timing-function: linear;
 	position: absolute;
-	transition-property: rotate, scale;
-	transition-duration: 0.25s;
-}
-
-.scrollCard:hover {
-	/* rotate: 0.8deg; */
-	/* scale: 1.01; */
 }
 
 .scrollCardDown {
