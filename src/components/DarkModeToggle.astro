@@ -1,108 +1,132 @@
 ---
 ---
 
-<mode-toggle class="flex">
-  <button
-    class="justify-self-end bg-neutral-200 dark:bg-neutral-700 ml-4 inline-flex h-6 w-11 items-center rounded-full"
-    id="mode-toggle"
-    role="switch"
-    type="button"
-    tabindex="0"
-    aria-checked="false"
-    data-headlessui-state=""
-    ><span class="sr-only">Toggle dark mode</span><span
-      id="mode-circle"
-      class="light inline-block h-4 w-4 rounded-full bg-gradient-to-tr invisible"
-      ><span class="absolute top-0 right-0 w-[10px] h-[10px] rounded-full bg-gray-700 scale-[0]"></span>
-    </span>
-  </button>
+<mode-toggle class="ml-4 flex h-6 items-center">
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 20 20"
+		fill="currentColor"
+		class="mr-1 h-4 w-4"
+	>
+		<path
+			d="M10 2a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 2zM10 15a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 15zM10 7a3 3 0 100 6 3 3 0 000-6zM15.657 5.404a.75.75 0 10-1.06-1.06l-1.061 1.06a.75.75 0 001.06 1.06l1.06-1.06zM6.464 14.596a.75.75 0 10-1.06-1.06l-1.06 1.06a.75.75 0 001.06 1.06l1.06-1.06zM18 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0118 10zM5 10a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 015 10zM14.596 15.657a.75.75 0 001.06-1.06l-1.06-1.061a.75.75 0 10-1.06 1.06l1.06 1.06zM5.404 6.464a.75.75 0 001.06-1.06l-1.06-1.06a.75.75 0 10-1.061 1.06l1.06 1.06z"
+		></path>
+	</svg>
+	<button
+		class="inline-flex h-6 w-11 items-center justify-self-end rounded-full bg-neutral-200 dark:bg-neutral-700"
+		id="mode-toggle"
+		role="switch"
+		type="button"
+		tabindex="0"
+		aria-checked="false"
+		data-headlessui-state=""
+		><span class="sr-only">Toggle dark mode</span><span
+			id="mode-circle"
+			class="light invisible inline-block h-4 w-4 rounded-full bg-gradient-to-tr"
+			><span
+				class="absolute top-0 right-0 h-[10px] w-[10px] scale-[0] rounded-full bg-gray-700"
+			></span>
+		</span>
+	</button>
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 20 20"
+		fill="currentColor"
+		class="ml-1 h-4 w-4"
+	>
+		<path
+			fill-rule="evenodd"
+			d="M7.455 2.004a.75.75 0 01.26.77 7 7 0 009.958 7.967.75.75 0 011.067.853A8.5 8.5 0 116.647 1.921a.75.75 0 01.808.083z"
+			clip-rule="evenodd"></path>
+	</svg>
 </mode-toggle>
 
 <script>
-  function updateHTMLTheme(mode: "light" | "dark") {
-    const themeColorMetaTag = document.head.querySelector('meta[name="theme-color"]');
+	function updateHTMLTheme(mode: 'light' | 'dark') {
+		const themeColorMetaTag = document.head.querySelector(
+			'meta[name="theme-color"]'
+		);
 
-    if (mode === "dark") {
-      document.documentElement.classList.remove("light");
-      document.documentElement.classList.add("dark");
-      if (themeColorMetaTag) {
-        // @ts-ignore
-        themeColorMetaTag.content = "#0e141b";
-      }
-    } else {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.classList.add("light");
-      if (themeColorMetaTag) {
-        // @ts-ignore
-        themeColorMetaTag.content = "#ffffff";
-      }
-    }
-  }
-  function updateStorageTheme(mode: "light" | "dark") {
-    if (mode === "dark") {
-      sessionStorage.setItem("theme", "dark");
-    } else {
-      sessionStorage.setItem("theme", "light");
-    }
-  }
-  class ModeToggle extends HTMLElement {
-    constructor() {
-      super();
-      let currentMode: "light" | "dark" = document.documentElement.classList.contains("dark")
-        ? "dark"
-        : "light";
+		if (mode === 'dark') {
+			document.documentElement.classList.remove('light');
+			document.documentElement.classList.add('dark');
+			if (themeColorMetaTag) {
+				// @ts-ignore
+				themeColorMetaTag.content = '#0e141b';
+			}
+		} else {
+			document.documentElement.classList.remove('dark');
+			document.documentElement.classList.add('light');
+			if (themeColorMetaTag) {
+				// @ts-ignore
+				themeColorMetaTag.content = '#ffffff';
+			}
+		}
+	}
+	function updateStorageTheme(mode: 'light' | 'dark') {
+		if (mode === 'dark') {
+			sessionStorage.setItem('theme', 'dark');
+		} else {
+			sessionStorage.setItem('theme', 'light');
+		}
+	}
+	class ModeToggle extends HTMLElement {
+		constructor() {
+			super();
+			let currentMode: 'light' | 'dark' =
+				document.documentElement.classList.contains('dark') ? 'dark' : 'light';
 
-      const toggle = this.querySelector("button");
-      const iconElem = toggle?.querySelector("#mode-circle");
+			const toggle = this.querySelector('button');
+			const iconElem = toggle?.querySelector('#mode-circle');
 
-      if (iconElem) {
-        // set the toggle mode based on the html classname set in ThemeScript.astro
-        if (currentMode === "dark") {
-          iconElem.classList.remove("light");
-          iconElem.classList.add("dark");
-        }
+			if (iconElem) {
+				// set the toggle mode based on the html classname set in ThemeScript.astro
+				if (currentMode === 'dark') {
+					iconElem.classList.remove('light');
+					iconElem.classList.add('dark');
+				}
 
-        // we load the toggle invisible to prevent flash
-        // remove visibility class after setting initial dark/light class
-        iconElem.classList.remove("invisible");
+				// we load the toggle invisible to prevent flash
+				// remove visibility class after setting initial dark/light class
+				iconElem.classList.remove('invisible');
 
-        // Each time the button is clicked, update the count.
-        toggle?.addEventListener("click", () => {
-          if (currentMode === "dark") {
-            const modeToSwitch = "light";
-            iconElem.classList.remove("dark");
-            iconElem.classList.add("light");
-            updateHTMLTheme(modeToSwitch);
-            updateStorageTheme(modeToSwitch);
-            currentMode = modeToSwitch;
-          } else {
-            const modeToSwitch = "dark";
-            iconElem.classList.remove("light");
-            iconElem.classList.add("dark");
-            updateHTMLTheme(modeToSwitch);
-            updateStorageTheme(modeToSwitch);
-            currentMode = modeToSwitch;
-          }
+				// Each time the button is clicked, update the count.
+				toggle?.addEventListener('click', () => {
+					if (currentMode === 'dark') {
+						const modeToSwitch = 'light';
+						iconElem.classList.remove('dark');
+						iconElem.classList.add('light');
+						updateHTMLTheme(modeToSwitch);
+						updateStorageTheme(modeToSwitch);
+						currentMode = modeToSwitch;
+					} else {
+						const modeToSwitch = 'dark';
+						iconElem.classList.remove('light');
+						iconElem.classList.add('dark');
+						updateHTMLTheme(modeToSwitch);
+						updateStorageTheme(modeToSwitch);
+						currentMode = modeToSwitch;
+					}
 
-          // prevent slide animation on page load for dark mode
-          if (!iconElem.classList.contains("duration-300")) {
-            iconElem.classList.add("duration-300");
-          }
-        });
-      }
-    }
-  }
+					// prevent slide animation on page load for dark mode
+					if (!iconElem.classList.contains('duration-300')) {
+						iconElem.classList.add('duration-300');
+					}
+				});
+			}
+		}
+	}
 
-  customElements.define("mode-toggle", ModeToggle);
+	customElements.define('mode-toggle', ModeToggle);
 </script>
 
 <style>
-  .light {
-    transform: translateX(0.25rem);
-    background-image: linear-gradient(to top right, #f472b6, #f472b6);
-  }
-  .dark {
-    transform: translateX(1.5rem);
-    background-image: linear-gradient(to top right, #84cc16, #84cc16);
-  }
+	.light {
+		transform: translateX(0.25rem);
+		background-image: linear-gradient(to top right, #f472b6, #f472b6);
+	}
+	.dark {
+		transform: translateX(1.5rem);
+		background-image: linear-gradient(to top right, #84cc16, #84cc16);
+	}
 </style>
