@@ -1,10 +1,8 @@
 ---
 import {getCollection} from 'astro:content';
-import NoFooterLayout from '../layouts/NoFooterLayout.astro';
+import PageLayout from '../layouts/PageLayout.astro';
 import PageMeta from '../components/PageMeta.astro';
 import {SITE_TITLE} from '../config';
-import '../components/home/style.css';
-import SignUpBottom from 'src/components/SignUpBottom.astro';
 
 const allPosts = await getCollection('artist');
 
@@ -13,54 +11,74 @@ const sortedPosts = allPosts
 	.filter((post) => !post.data.draft);
 ---
 
-<NoFooterLayout>
+<PageLayout>
 	<PageMeta title={SITE_TITLE} slot="meta" />
 	<section slot="main">
-		<div class="mx-auto max-w-3xl px-6 sm:px-8">
-			<ul>
-				{
-					sortedPosts.map((post) => {
-						const formattedDate = new Date(
-							post.data.publishDate
-						).toLocaleDateString('en-us', {
-							year: 'numeric',
-							month: 'short',
-							day: 'numeric',
-						});
-						return (
-							<li class="mb-3 grid grid-cols-[1fr] items-start md:grid-cols-[1fr_auto] md:gap-2">
-								<div class="flex items-center">
+		<div class="mx-auto max-w-3xl px-6 sm:px-8 space-y-8">
+			{
+				sortedPosts.map((post) => {
+					const formattedDate = new Date(
+						post.data.publishDate
+					).toLocaleDateString('en-us', {
+						year: 'numeric',
+						month: 'short',
+						day: 'numeric',
+					});
+					return (
+						<div>
+							<div class="rounded-md border-2 border-primary-main p-2 sm:p-6 flex relative overflow-hidden">
+								<div class="h-44 sm:h-40 sm:w-24 w-16 border-r-2 border-primary-main relative flex-none">
+									<div class="bg-gradient-to-r from-transparent to-bg-body absolute h-full w-full inset-0" />
 									<div
-										class="mr-2 h-6 w-6 rounded-full border border-white/50 bg-cover bg-center"
+										class="h-full w-full bg-cover bg-center"
 										style={{
-											backgroundImage: `url(https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto:best/${post.data.avatar});`,
+											backgroundImage: `url(https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto:best/${post.data.avatar})`,
 										}}
 									/>
-									<div class="title">
-										<a
-											href={`/artist/${post.slug}`}
-											class="unset hover:text-text-link"
-										>
-											{post.data.name}
-										</a>
+								</div>
+								<div class="ml-2 sm:ml-4 h-44 sm:h-40 flex flex-col justify-between max-w-full overflow-hidden">
+									<div>
+										<h2 class="text-xl font-extrabold text-primary-main sm:text-3xl">
+											<a
+												href={`/artist/${post.slug}`}
+												class="unset animated-link"
+											>
+												{post.data.name}
+											</a>
+										</h2>
+										<div class="block sm:hidden">
+											<span class="text-text-muted text-sm">monthly:</span>
+											{post.data.monthlyListeners.toLocaleString('en-US')}
+										</div>
 									</div>
-									<span class="highlight ml-8">
-										{post.data.monthlyListeners.toLocaleString('en-US')}
+									<div class="prose prose-sleek  text-sm sm:text-base">
+										<p class="flex line-clamp-3 sm:line-clamp-2">
+											{post.data.description}
+										</p>
+									</div>
+									<span class="flex overflow-x-auto max-w-full">
+										{post.data.tags?.map((tag) => {
+											return (
+												<span class="flex-none text-bg-body text-xs sm:text-sm bg-primary-main px-1 py-0.5 rounded mr-2 last:mr-0">
+													{tag}
+												</span>
+											);
+										})}
 									</span>
 								</div>
-								<div class="text-text-muted text-sm italic">
-									<time datetime={post.data.publishDate.toISOString()}>
-										{formattedDate}
-									</time>
+								<div class="hidden sm:block absolute top-0 right-0 px-2 rounded-bl-md bg-primary-main text-bg-body text-xl sm:text-2xl font-bold">
+									{post.data.monthlyListeners.toLocaleString('en-US')}
 								</div>
-							</li>
-						);
-					})
-				}
-			</ul>
-		</div>
-		<div class="fixed inset-x-0 bottom-0 z-40 w-full">
-			<SignUpBottom />
+							</div>
+							<div class="flex justify-end mt-1 text-text-muted text-xs sm:text-sm italic">
+								<time datetime={post.data.publishDate.toISOString()}>
+									{formattedDate}
+								</time>
+							</div>
+						</div>
+					);
+				})
+			}
 		</div>
 	</section>
-</NoFooterLayout>
+</PageLayout>
