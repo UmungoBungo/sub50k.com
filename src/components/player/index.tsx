@@ -145,6 +145,7 @@ const AudioTitle: React.FC<{ startFromInSeconds: number, durationInSeconds: numb
                 <PlayTime playerRef={playerRef} durationInFrames={fps * durationInSeconds} startFromInSeconds={startFromInSeconds} />
                 <a
                     href={spotifyLink}
+                    target="_blank"
                     className='bg-bg-body relative unset border-b border-transparent hover:border-text-link ml-2 focus:ring-text-link flex items-center text-text-muted justify-center focus:outline-none focus:border-text-link hover:text-primary-main'
                 >
                     <ArrowTopRightOnSquareIcon className="h-3.5 w-3.5" />
