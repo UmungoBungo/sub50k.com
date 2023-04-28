@@ -66,18 +66,13 @@ const formattedDate = new Date(date).toLocaleDateString('en-us', {
 			<section class="blog-post prose prose-sleek max-w-none">
 				<div class="relative mb-10 h-40 w-full sm:h-60 lg:mb-20">
 					<img
-						src={`https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto,w_748/${bannerSrc}`}
-						class="h-full w-full overflow-hidden object-cover lg:rounded"
+						srcset={`https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto,w_400/${bannerSrc} 400w,
+						https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto,w_800/${bannerSrc} 800w,
+						https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto,w_1000/${bannerSrc} 1000w`}
+						src={`https://res.cloudinary.com/sub50k/image/upload/f_auto/q_auto/,w_400/${bannerSrc}`}
 						alt={`${title} banner image`}
+						sizes="100vw"
 					/>
-					<!-- <Picture
-						class="h-full w-full overflow-hidden object-cover lg:rounded"
-						src={`https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto,w_748/${bannerSrc}`}
-						alt={`${title} banner image`}
-						widths={[400, 800]}
-						aspectRatio="7:3"
-						sizes="(min-width: 1024px) 896px, (max-width: 1024px) 510px"
-					/> -->
 					<div class="absolute -bottom-10 left-4 lg:-bottom-16 lg:left-4">
 						<div
 							class="h-20 w-20 overflow-hidden rounded-full border-2 border-bg-body bg-cover bg-center lg:h-32 lg:w-32 lg:border-4"
