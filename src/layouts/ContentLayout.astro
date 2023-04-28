@@ -66,10 +66,11 @@ const formattedDate = new Date(date).toLocaleDateString('en-us', {
 			<section class="blog-post prose prose-sleek max-w-none">
 				<div class="relative mb-10 h-40 w-full sm:h-60 lg:mb-20">
 					<img
-						srcset={`https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto,w_400/${bannerSrc} 400w,
-						https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto,w_800/${bannerSrc} 800w,
-						https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto,w_1000/${bannerSrc} 1000w`}
-						src={`https://res.cloudinary.com/sub50k/image/upload/f_auto/q_auto/,w_400/${bannerSrc}`}
+						srcset={`https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto:best,w_400/${bannerSrc} 400w,
+						https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto:best,w_800/${bannerSrc} 800w,
+						https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto:best,w_1000/${bannerSrc} 1000w`}
+						src={`https://res.cloudinary.com/sub50k/image/upload/f_auto/q_auto:best/,w_400/${bannerSrc}`}
+						class="h-full w-full overflow-hidden object-cover lg:rounded"
 						alt={`${title} banner image`}
 						sizes="100vw"
 					/>
