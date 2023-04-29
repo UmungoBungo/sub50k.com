@@ -4,7 +4,7 @@
 export const SITE_TITLE = 'Sub 50k';
 export const SITE_DESCRIPTION =
 	'Great artists on Spotify with less than 50k monthly listeners.';
-export const TWITTER_HANDLE = '@yourtwitterhandle';
+export const TWITTER_HANDLE = '@Umungobungo1';
 export const MY_NAME = 'Matt McGillivray';
 
 // setup in astro.config.mjs

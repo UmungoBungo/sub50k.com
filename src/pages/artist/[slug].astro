@@ -35,7 +35,9 @@ const {Content} = await entry.render();
 	jumpInLinks={entry.data.jumpInLinks}
 >
 	<ArtistPostMeta
-		title={entry.data.name}
+		artistName={entry.data.name}
+		monthlyListeners={entry.data.monthlyListeners.toLocaleString('en-US')}
+		description={entry.data.description}
 		publishDate={entry.data.publishDate.toISOString()}
 		pagePath={`/artist/${slug}`}
 		slot="meta"
