@@ -11,6 +11,7 @@ import Favicon from './Favicon.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import JumpInLinks from './JumpInLinks.astro';
+import {ViewTransitions} from 'astro:transitions';
 
 export interface Props {
 	title: string;
@@ -67,6 +68,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-us', {
 		<GoogleFontCollection />
 		<ThemeScript />
 		<FontAwesome />
+		<ViewTransitions />
 	</head>
 
 	<body class="mx-auto min-h-screen max-w-4xl px-0 lg:max-w-3xl lg:px-8">
@@ -86,6 +88,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-us', {
 							class="h-20 w-20 overflow-hidden rounded-full border-2 border-bg-body bg-bg-body lg:h-32 lg:w-32 lg:border-4"
 						>
 							<Image
+								transition:name={`${title} avatar`}
 								class="m-0 h-full w-full"
 								src={avatar}
 								alt={`${title} avatar image`}
@@ -94,7 +97,12 @@ const formattedDate = new Date(date).toLocaleDateString('en-us', {
 					</div>
 				</div>
 				<div class="px-6 lg:px-0">
-					<h1 class="m-0 mb-[0.25em] text-primary-main">{title}</h1>
+					<h1
+						class="m-0 mb-[0.25em] text-primary-main"
+						transition:name={`${title} title`}
+					>
+						{title}
+					</h1>
 					<div class="mb-8 flex sm:justify-between">
 						<div class="not-prose flex space-x-3">
 							{
@@ -138,7 +146,10 @@ const formattedDate = new Date(date).toLocaleDateString('en-us', {
 							</span>
 							<span class="hidden flex-row text-right sm:flex">
 								<span> {formattedDate}, monthly listeners:</span>
-								<span class="text-secondary-main sm:ml-1">
+								<span
+									class="text-secondary-main sm:ml-1"
+									transition:name={`${title} monthly`}
+								>
 									{monthlyListeners.toLocaleString('en-US')}
 								</span>
 							</span>

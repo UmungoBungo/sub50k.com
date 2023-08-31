@@ -32,6 +32,7 @@ const sortedPosts = allPosts
 									<div class="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent to-bg-body" />
 									<div class="h-full w-full bg-cover bg-center">
 										<Image
+											transition:name={`${post.data.name} avatar`}
 											class="h-full w-full object-cover"
 											src={post.data.avatar}
 											alt={`${post.data.name} avatar`}
@@ -40,7 +41,10 @@ const sortedPosts = allPosts
 								</div>
 								<div class="ml-2 flex h-44 max-w-full flex-col justify-between overflow-hidden sm:ml-4 sm:h-40">
 									<div>
-										<h2 class="text-xl font-extrabold text-primary-main sm:text-3xl">
+										<h2
+											class="text-xl font-extrabold text-primary-main sm:text-3xl"
+											transition:name={`${post.data.name} title`}
+										>
 											<a
 												href={`/artist/${post.slug}`}
 												class="unset animated-link"
@@ -50,7 +54,12 @@ const sortedPosts = allPosts
 										</h2>
 										<div class="block sm:hidden">
 											<span class="text-sm text-text-muted">monthly:</span>
-											{post.data.monthlyListeners.toLocaleString('en-US')}
+											<span
+												class="pl-1"
+												transition:name={`${post.data.name} monthly`}
+											>
+												{post.data.monthlyListeners.toLocaleString('en-US')}
+											</span>
 										</div>
 									</div>
 									<div class="prose prose-sleek  text-sm sm:text-base">
@@ -68,7 +77,10 @@ const sortedPosts = allPosts
 										})}
 									</span>
 								</div>
-								<div class="absolute top-0 right-0 hidden rounded-bl-md bg-primary-main px-2 text-xl font-bold text-bg-body sm:block sm:text-2xl">
+								<div
+									class="absolute top-0 right-0 hidden rounded-bl-md bg-primary-main px-2 text-xl font-bold text-bg-body sm:block sm:text-2xl"
+									transition:name={`${post.data.name} monthly`}
+								>
 									{post.data.monthlyListeners.toLocaleString('en-US')}
 								</div>
 							</div>

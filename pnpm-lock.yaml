@@ -65,6 +65,9 @@ dependencies:
   remotion:
     specifier: ^3.3.56
     version: 3.3.56(react-dom@18.2.0)(react@18.2.0)
+  sharp:
+    specifier: ^0.32.5
+    version: 0.32.5
   slugify:
     specifier: ^1.6.5
     version: 1.6.5
