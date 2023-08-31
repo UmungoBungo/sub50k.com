@@ -1,7 +1,6 @@
 ---
 import {getCollection} from 'astro:content';
 import type {CollectionEntry} from 'astro:content';
-import {Image} from 'astro:assets';
 
 import ArtistPostMeta from '../../components/ArtistPostMeta.astro';
 import ContentLayout from '../../layouts/ContentLayout.astro';
@@ -14,8 +13,7 @@ export async function getStaticPaths() {
 	const artists = await getCollection('artist');
 	return (
 		artists
-			// .filter((artist) => !artist.data.draft)
-			// .filter((artist) => artist.data.testing)
+			.filter((artist) => !artist.data.draft)
 			.map((entry) => ({
 				params: {slug: entry.slug},
 				props: {entry},

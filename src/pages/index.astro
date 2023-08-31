@@ -22,8 +22,16 @@ function addDummyCards(
 		description: string;
 		publishDate: Date;
 		monthlyListeners: number;
-		banner: string;
-		avatar: string;
+		banner: {
+			src: string;
+			width: number;
+			height: number;
+		};
+		avatar: {
+			src: string;
+			width: number;
+			height: number;
+		};
 		artistSpotifyLink: string;
 	}[]
 ) {
@@ -35,8 +43,16 @@ function addDummyCards(
 		description:
 			'Playing stadiums across worldwide from a young age, this artist has been a household name for decades.',
 		publishDate: new Date('2021-08-01T00:00:00.000Z'),
-		banner: '',
-		avatar: '',
+		banner: {
+			src: '',
+			width: 0,
+			height: 0,
+		},
+		avatar: {
+			src: '',
+			width: 0,
+			height: 0,
+		},
 		artistSpotifyLink: '',
 	};
 
