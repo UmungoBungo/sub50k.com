@@ -2,6 +2,8 @@
 // Import the global.css file here so that it is included on
 import '../styles/global.css';
 
+import {Image} from 'astro:assets';
+
 import GoogleFontCollection from './GoogleFontCollection.astro';
 import FontAwesome from './FontAwesome.astro';
 import ThemeScript from './ThemeScript.astro';
@@ -13,8 +15,18 @@ import JumpInLinks from './JumpInLinks.astro';
 export interface Props {
 	title: string;
 	date: Date;
-	bannerSrc: string;
-	avatarSrc: string;
+	banner: {
+		src: string;
+		width: number;
+		height: number;
+		format: 'png' | 'jpg' | 'jpeg' | 'tiff' | 'webp' | 'gif' | 'svg';
+	};
+	avatar: {
+		src: string;
+		width: number;
+		height: number;
+		format: 'png' | 'jpg' | 'jpeg' | 'tiff' | 'webp' | 'gif' | 'svg';
+	};
 	monthlyListeners: number;
 	artistSpotifyLink: string;
 	artistBandcampLink?: string;
@@ -30,8 +42,8 @@ export interface Props {
 const {
 	title,
 	date,
-	bannerSrc,
-	avatarSrc,
+	banner,
+	avatar,
 	monthlyListeners,
 	artistSpotifyLink,
 	artistBandcampLink,
@@ -64,22 +76,20 @@ const formattedDate = new Date(date).toLocaleDateString('en-us', {
 		<main id="main">
 			<section class="blog-post prose prose-sleek max-w-none">
 				<div class="relative mb-10 h-40 w-full sm:h-60 lg:mb-20">
-					<img
-						srcset={`https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto:best,w_400/${bannerSrc} 400w,
-						https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto:best,w_800/${bannerSrc} 800w,
-						https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto:best,w_1000/${bannerSrc} 1000w`}
-						src={`https://res.cloudinary.com/sub50k/image/upload/f_auto/q_auto:best/,w_400/${bannerSrc}`}
+					<Image
 						class="h-full w-full overflow-hidden object-cover lg:rounded"
+						src={banner}
 						alt={`${title} banner image`}
-						sizes="100vw"
 					/>
 					<div class="absolute -bottom-10 left-4 lg:-bottom-16 lg:left-4">
 						<div
-							class="h-20 w-20 overflow-hidden rounded-full border-2 border-bg-body bg-cover bg-center lg:h-32 lg:w-32 lg:border-4"
-							style={{
-								backgroundImage: `url(https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto:best/${avatarSrc});`,
-							}}
+							class="h-20 w-20 overflow-hidden rounded-full border-2 border-bg-body bg-bg-body lg:h-32 lg:w-32 lg:border-4"
 						>
+							<Image
+								class="m-0 h-full w-full"
+								src={avatar}
+								alt={`${title} avatar image`}
+							/>
 						</div>
 					</div>
 				</div>
@@ -90,7 +100,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-us', {
 							{
 								artistBandcampLink && (
 									<a
-										class="unset hover:text-text-link flex items-center justify-center text-3xl sm:text-2xl"
+										class="unset flex items-center justify-center text-3xl hover:text-text-link sm:text-2xl"
 										href={artistBandcampLink}
 										target="_blank"
 										rel="noopener noreferrer"
