@@ -15,6 +15,12 @@ import Favicon from './Favicon.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import {ViewTransitions} from 'astro:transitions';
+
+interface Props {
+	hideFooter?: boolean;
+}
+
+const {hideFooter} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -31,26 +37,34 @@ import {ViewTransitions} from 'astro:transitions';
 		<ViewTransitions />
 	</head>
 
-	<body class="min-h-screen">
+	<body class=`min-h-screen ${hideFooter ? 'twoRow' : 'threeRow'}`>
 		<div class="mx-auto w-full max-w-3xl px-6 sm:px-8">
 			<Header />
 		</div>
 		<main id="main">
 			<slot name="main" />
 		</main>
-		<Footer />
+		{!hideFooter && <Footer />}
 		<style>
 			body {
 				display: grid;
+				grid-template-columns: minmax(0, 1fr);
+			}
+			main {
+				grid-area: main;
+			}
+			.threeRow {
 				grid-template-areas:
 					'header'
 					'main'
 					'footer';
 				grid-template-rows: 5rem minmax(0, 1fr) 5rem;
-				grid-template-columns: minmax(0, 1fr);
 			}
-			main {
-				grid-area: main;
+			.twoRow {
+				grid-template-areas:
+					'header'
+					'main';
+				grid-template-rows: 5rem minmax(0, 1fr);
 			}
 		</style>
 	</body>

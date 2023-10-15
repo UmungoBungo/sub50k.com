@@ -8,13 +8,13 @@ const {hideSignUp} = Astro.props;
 ---
 
 <footer
-	class="text-sm leading-[1.75] pt-4 mt-4 flex flex-col items-center border-t border-primary-main"
+	class="mt-4 flex flex-col items-center border-t border-primary-main pt-4 text-sm leading-[1.75]"
 >
 	{!hideSignUp && <SignUpBottom />}
-	<div class="mt-4">
+	<div class="mt-4 pb-4">
 		This blog is built by
 		<a
-			class="unset gradient-link tracking-wider font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#f57111] to-[#f79605] hover:after:bg-gradient-to-r hover:after:from-[#f57111] hover:after:to-[#f79605]"
+			class="unset gradient-link bg-gradient-to-r from-[#f57111] to-[#f79605] bg-clip-text font-bold tracking-wider text-transparent hover:after:bg-gradient-to-r hover:after:from-[#f57111] hover:after:to-[#f79605]"
 			href={'https:mattm9y.com'}
 			target="_blank"
 		>
@@ -24,6 +24,9 @@ const {hideSignUp} = Astro.props;
 </footer>
 
 <style>
+	footer {
+		grid-area: footer;
+	}
 	.gradient-link {
 		position: relative;
 		box-decoration-break: clone;

@@ -2,12 +2,12 @@
 import {getCollection} from 'astro:content';
 import {Image} from 'astro:assets';
 import me from '../assets/me.jpg';
-import NoFooterLayout from '../layouts/NoFooterLayout.astro';
 import PageMeta from '../components/PageMeta.astro';
 import {SITE_TITLE} from '../config';
 import '../components/home/style.css';
 import ScrollingCards from '../components/home/scrollingCards.astro';
 import SignUpBottom from 'src/components/SignUpBottom.astro';
+import PageLayout from 'src/layouts/PageLayout.astro';
 
 const allPosts = await getCollection('artist');
 
@@ -98,7 +98,7 @@ let fourthColumnPosts = randomisedPosts
 fourthColumnPosts = addDummyCards(fourthColumnPosts);
 ---
 
-<NoFooterLayout>
+<PageLayout hideFooter={true}>
 	<PageMeta title={SITE_TITLE} slot="meta" />
 	<section slot="main">
 		<div class="relative h-[70vh] w-full">
@@ -181,4 +181,4 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 			</div>
 		</div>
 	</section>
-</NoFooterLayout>
+</PageLayout>

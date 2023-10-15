@@ -1,4 +1,7 @@
-# TODO
+# TODO 
+- ensure light/dark mode stays consistent
+- rejig transitions as they aren't very nice still
+
 
 ## Posts
 
