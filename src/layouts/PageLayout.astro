@@ -35,6 +35,7 @@ const {hideFooter} = Astro.props;
 		<ThemeScript />
 		<FontAwesome />
 		<ViewTransitions />
+		<script is:inline src="/toggle-theme.js"></script>
 	</head>
 
 	<body class=`min-h-screen ${hideFooter ? 'twoRow' : 'threeRow'}`>

@@ -13,6 +13,7 @@ module.exports = {
 				current: 'currentColor',
 				primary: {
 					main: 'rgb(var(--color-primary-main) / <alpha-value>)',
+					// main: 'oklch(89% 0.27 128.85 / <alpha-value>)',
 				},
 				secondary: {
 					main: 'rgb(var(--color-secondary-main) / <alpha-value>)',
