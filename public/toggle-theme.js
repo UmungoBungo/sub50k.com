@@ -16,6 +16,22 @@ function getPreferTheme() {
 		? 'dark'
 		: 'light';
 }
+function updateHTMLTheme(mode) {
+	if (mode === 'dark') {
+		document.documentElement.classList.remove('light');
+		document.documentElement.classList.add('dark');
+	} else {
+		document.documentElement.classList.remove('dark');
+		document.documentElement.classList.add('light');
+	}
+}
+function updateStorageTheme(mode) {
+	if (mode === 'dark') {
+		sessionStorage.setItem('theme', 'dark');
+	} else {
+		sessionStorage.setItem('theme', 'light');
+	}
+}
 
 let themeValue = getPreferTheme();
 
@@ -26,21 +42,24 @@ function setPreference() {
 }
 
 function reflectPreference() {
-	const toggle = document.querySelector('button');
+	const toggle = document.querySelector('#mode-toggle');
 	const iconElem = toggle?.querySelector('#mode-circle');
-	console.log('iconElem', iconElem);
+
 	if (iconElem) {
 		// set the toggle mode based on the html classname set in ThemeScript.astro
 		if (themeValue === 'dark') {
 			iconElem.classList.remove('light');
 			iconElem.classList.add('dark');
 		}
+
+		// we load the toggle invisible to prevent flash
+		// remove visibility class after setting initial dark/light class
+		iconElem.classList.remove('invisible');
 	}
 
 	document.firstElementChild.setAttribute('data-theme', themeValue);
 	document.documentElement.classList.add(themeValue);
 
-	// document.querySelector('#theme-btn')?.setAttribute('aria-label', themeValue);
 	document
 		.querySelector('#mode-toggle')
 		?.setAttribute('aria-label', themeValue);
@@ -68,14 +87,30 @@ reflectPreference();
 
 window.onload = () => {
 	function setThemeFeature() {
-		console.log('!!!!!', currentTheme);
 		// set on load so screen readers can get the latest value on the button
 		reflectPreference();
+
+		const toggle = document.querySelector('#mode-toggle');
+		const iconElem = toggle?.querySelector('#mode-circle');
 
 		// now this script can find and listen for clicks on the control
 		// document.querySelector('#theme-btn')?.addEventListener('click', () => {
 		document.querySelector('#mode-toggle')?.addEventListener('click', () => {
-			themeValue = themeValue === 'light' ? 'dark' : 'light';
+			if (themeValue === 'dark') {
+				const modeToSwitch = 'light';
+				iconElem.classList.remove('dark');
+				iconElem.classList.add('light');
+				updateHTMLTheme(modeToSwitch);
+				updateStorageTheme(modeToSwitch);
+				themeValue = modeToSwitch;
+			} else {
+				const modeToSwitch = 'dark';
+				iconElem.classList.remove('light');
+				iconElem.classList.add('dark');
+				updateHTMLTheme(modeToSwitch);
+				updateStorageTheme(modeToSwitch);
+				themeValue = modeToSwitch;
+			}
 			setPreference();
 		});
 	}
