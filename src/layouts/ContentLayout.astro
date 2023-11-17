@@ -1,20 +1,24 @@
 ---
-// Import the global.css file here so that it is included on
-import '../styles/global.css';
+import {Image} from 'astro:assets';
 
-import GoogleFontCollection from './GoogleFontCollection.astro';
-import FontAwesome from './FontAwesome.astro';
-import ThemeScript from './ThemeScript.astro';
-import Favicon from './Favicon.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import JumpInLinks from './JumpInLinks.astro';
+import PageLayout from './PageLayout.astro';
 
-export interface Props {
+interface Props {
 	title: string;
 	date: Date;
-	bannerSrc: string;
-	avatarSrc: string;
+	banner: {
+		src: string;
+		width: number;
+		height: number;
+		format: 'png' | 'jpg' | 'jpeg' | 'tiff' | 'webp' | 'gif' | 'svg';
+	};
+	avatar: {
+		src: string;
+		width: number;
+		height: number;
+		format: 'png' | 'jpg' | 'jpeg' | 'tiff' | 'webp' | 'gif' | 'svg';
+	};
 	monthlyListeners: number;
 	artistSpotifyLink: string;
 	artistBandcampLink?: string;
@@ -30,8 +34,8 @@ export interface Props {
 const {
 	title,
 	date,
-	bannerSrc,
-	avatarSrc,
+	banner,
+	avatar,
 	monthlyListeners,
 	artistSpotifyLink,
 	artistBandcampLink,
@@ -44,141 +48,120 @@ const formattedDate = new Date(date).toLocaleDateString('en-us', {
 });
 ---
 
-<!DOCTYPE html>
-<html class="theme-sleek" lang="en">
-	<head>
-		<!-- Global Metadata -->
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<Favicon />
-		<slot name="meta" />
-		<GoogleFontCollection />
-		<ThemeScript />
-		<FontAwesome />
-	</head>
-
-	<body class="mx-auto min-h-screen max-w-4xl px-0 lg:max-w-3xl lg:px-8">
-		<span class="px-6 py-4 md:px-8 lg:px-0">
-			<Header />
-		</span>
-		<main id="main">
-			<section class="blog-post prose prose-sleek max-w-none">
-				<div class="relative mb-10 h-40 w-full sm:h-60 lg:mb-20">
-					<img
-						srcset={`https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto:best,w_400/${bannerSrc} 400w,
-						https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto:best,w_800/${bannerSrc} 800w,
-						https://res.cloudinary.com/sub50k/image/upload/ar_7:3,c_fill,f_auto,q_auto:best,w_1000/${bannerSrc} 1000w`}
-						src={`https://res.cloudinary.com/sub50k/image/upload/f_auto/q_auto:best/,w_400/${bannerSrc}`}
-						class="h-full w-full overflow-hidden object-cover lg:rounded"
-						alt={`${title} banner image`}
-						sizes="100vw"
-					/>
-					<div class="absolute -bottom-10 left-4 lg:-bottom-16 lg:left-4">
-						<div
-							class="h-20 w-20 overflow-hidden rounded-full border-2 border-bg-body bg-cover bg-center lg:h-32 lg:w-32 lg:border-4"
-							style={{
-								backgroundImage: `url(https://res.cloudinary.com/sub50k/image/upload/f_auto,q_auto:best/${avatarSrc});`,
-							}}
-						>
-						</div>
+<PageLayout>
+	<!-- <PageMeta title={SITE_TITLE} slot="meta" /> -->
+	<section
+		slot="main"
+		class="mx-auto min-h-screen max-w-4xl px-0 lg:max-w-3xl lg:px-8"
+	>
+		<section class="blog-post prose prose-sleek max-w-none">
+			<div class="relative mb-10 h-40 w-full sm:h-60 lg:mb-20">
+				<Image
+					class="h-full w-full overflow-hidden object-cover lg:rounded"
+					src={banner}
+					alt={`${title} banner image`}
+				/>
+				<div class="absolute -bottom-10 left-4 lg:-bottom-16 lg:left-4">
+					<div
+						class="h-20 w-20 overflow-hidden rounded-full border-2 border-bg-body bg-bg-body lg:h-32 lg:w-32 lg:border-4"
+					>
+						<Image
+							transition:name={`${title} avatar`}
+							class="m-0 h-full w-full"
+							src={avatar}
+							alt={`${title} avatar image`}
+						/>
 					</div>
 				</div>
-				<div class="px-6 lg:px-0">
-					<h1 class="m-0 mb-[0.25em] text-primary-main">{title}</h1>
-					<div class="mb-8 flex sm:justify-between">
-						<div class="not-prose flex space-x-3">
-							{
-								artistBandcampLink && (
-									<a
-										class="unset hover:text-text-link flex items-center justify-center text-3xl sm:text-2xl"
-										href={artistBandcampLink}
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										<i
-											class="fa-brands fa-bandcamp"
-											aria-hidden="true"
-											title={`${title} Bandcamp link`}
-										/>
-										<span class="fa-sr-only">{title} Bandcamp link</span>
-									</a>
-								)
-							}
-							<a
-								class="unset flex items-center justify-center text-3xl hover:text-text-link sm:text-2xl"
-								href={artistSpotifyLink}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<i
-									class="fa-brands fa-spotify"
-									aria-hidden="true"
-									title={`${title} Spotify link`}></i>
-								<span class="fa-sr-only">{title} Spotify link</span>
-							</a>
-						</div>
-						<span class="ml-4 text-text-muted">
-							<span class="flex flex-col sm:hidden">
-								<span class="sm:mr-1">
-									<span class="text-secondary-main">
-										{monthlyListeners.toLocaleString('en-US')}
-									</span> monthly listeners,
-								</span>
-								<span> at {formattedDate}</span>
-							</span>
-							<span class="hidden flex-row text-right sm:flex">
-								<span> {formattedDate}, monthly listeners:</span>
-								<span class="text-secondary-main sm:ml-1">
+			</div>
+			<div class="px-6 lg:px-0">
+				<h1
+					class="m-0 mb-[0.25em] text-primary-main"
+					transition:name={`${title} title`}
+				>
+					{title}
+				</h1>
+				<div class="mb-8 flex sm:justify-between">
+					<div class="not-prose flex space-x-3">
+						{
+							artistBandcampLink && (
+								<a
+									class="unset flex items-center justify-center text-3xl hover:text-text-link sm:text-2xl"
+									href={artistBandcampLink}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<i
+										class="fa-brands fa-bandcamp"
+										aria-hidden="true"
+										title={`${title} Bandcamp link`}
+									/>
+									<span class="fa-sr-only">{title} Bandcamp link</span>
+								</a>
+							)
+						}
+						<a
+							class="unset flex items-center justify-center text-3xl hover:text-text-link sm:text-2xl"
+							href={artistSpotifyLink}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<i
+								class="fa-brands fa-spotify"
+								aria-hidden="true"
+								title={`${title} Spotify link`}></i>
+							<span class="fa-sr-only">{title} Spotify link</span>
+						</a>
+					</div>
+					<span class="ml-4 text-text-muted">
+						<span class="flex flex-col sm:hidden">
+							<span class="sm:mr-1">
+								<span class="text-secondary-main">
 									{monthlyListeners.toLocaleString('en-US')}
-								</span>
+								</span> monthly listeners,
+							</span>
+							<span> at {formattedDate}</span>
+						</span>
+						<span class="hidden flex-row text-right sm:flex">
+							<span> {formattedDate}, monthly listeners:</span>
+							<span
+								class="text-secondary-main sm:ml-1"
+								transition:name={`${title} monthly`}
+							>
+								{monthlyListeners.toLocaleString('en-US')}
 							</span>
 						</span>
-					</div>
-					<slot name="content" />
-					{jumpInLinks && <JumpInLinks jumpInLinks={jumpInLinks} />}
-					<h2>Not signed up?</h2>
-					<p>
-						If you made it this far, perhaps you like what you read. If you want
-						to get an update each time I post about a new artist that has less
-						than 50,000 monthly listeners, hit Subscribe.
-					</p>
-					<div class="not-prose flex items-center">
-						<form action="https://tinyletter.com/Sub50k">
-							<button
-								type="submit"
-								class="inline-flex items-center gap-x-1.5 rounded-md border border-gray-300 bg-primary-main py-1.5 px-2.5 align-middle text-sm font-semibold text-text-ctaBtn shadow-sm hover:bg-bg-selection hover:text-text-selection focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:py-1.5"
-							>
-								Subscribe
-								<i class="fa-solid fa-envelope -mr-0.5"></i>
-							</button>
-						</form>
-						<div class="ml-4 flex">
-							<span>weekly</span>
-							<img
-								class="mx-1 h-6 w-6"
-								src={`https://res.cloudinary.com/sub50k/image/upload/v1679400647/site/pinching-hand.svg`}
-								alt="pinching hand"
-							/>
-							<span>newsletter</span>
-						</div>
+					</span>
+				</div>
+				<slot name="content" />
+				{jumpInLinks && <JumpInLinks jumpInLinks={jumpInLinks} />}
+				<h2>Not signed up?</h2>
+				<p>
+					If you made it this far, perhaps you like what you read. If you want
+					to get an update each time I post about a new artist that has less
+					than 50,000 monthly listeners, hit Subscribe.
+				</p>
+				<div class="not-prose flex items-center">
+					<form action="https://tinyletter.com/Sub50k">
+						<button
+							type="submit"
+							class="inline-flex items-center gap-x-1.5 rounded-md border border-gray-300 bg-primary-main py-1.5 px-2.5 align-middle text-sm font-semibold text-text-ctaBtn shadow-sm hover:bg-bg-selection hover:text-text-selection focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:py-1.5"
+						>
+							Subscribe
+							<i class="fa-solid fa-envelope -mr-0.5"></i>
+						</button>
+					</form>
+					<div class="ml-4 flex">
+						<span>weekly</span>
+						<img
+							class="mx-1 h-6 w-6"
+							src={`https://res.cloudinary.com/sub50k/image/upload/v1679400647/site/pinching-hand.svg`}
+							alt="pinching hand"
+						/>
+						<span>newsletter</span>
 					</div>
 				</div>
-			</section>
-		</main>
-		<Footer hideSignUp={true} />
-		<style>
-			body {
-				display: grid;
-				grid-template-areas:
-					'header'
-					'main'
-					'footer';
-				grid-template-rows: 5rem minmax(0, 1fr) 5rem;
-				grid-template-columns: minmax(0, 1fr);
-			}
-			main {
-				grid-area: main;
-			}
-		</style>
-	</body>
-</html>
+			</div>
+		</section>
+	</section>
+</PageLayout>

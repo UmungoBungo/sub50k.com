@@ -5,7 +5,7 @@
 /* 
     Tailwind colors listed here: https://tailwindcss.com/docs/customizing-colors
     
-    Why colors are written in rgb format (255 255 255) instead of hex (#ffffff)
+    Why colors are written in rgb format (100% 0 0) instead of hex (#ffffff)
     https://tailwindcss.com/docs/customizing-colors#using-css-variables 
 */
 @layer base {
@@ -27,18 +27,18 @@
 		/* Tailwind pink-500 #ec4899 */
 		--color-text-link: 236 72 153;
 		/* black */
-		--color-text-code: 0 0 0;
+		--color-text-code: 0% 0 0;
 		/* black */
-		--color-text-selection: 0 0 0;
+		--color-text-selection: 0% 0 0;
 
 		/* white */
-		--color-bg-body: 255 255 255;
+		--color-bg-body: 100% 0 0;
 		/* Tailwind pink-50 #fdf2f8 */
 		--color-bg-code: 253 242 248;
 		/* Tailwind pink-200 #fbcfe8 */
 		--color-bg-selection: 251 207 232;
 		/* white */
-		--color-text-cta-btn: 255 255 255;
+		--color-text-cta-btn: 100% 0 0;
 
 		/* Tailwind pink-100 #fce7f3 */
 		--color-border-code: 252 231 243;
@@ -47,36 +47,36 @@
 	/* dark theme */
 	.theme-sleek.dark {
 		/* Tailwind lime-400 #a3e635 */
-		--color-primary-main: 163 230 53;
+		--color-primary-main: 91% 0.28 128.85;
 		/* Tailwind lime-300 #bef264 */
-		--color-secondary-main: 190 242 100;
+		--color-secondary-main: 89.72% 0.179 126.67;
 
 		/* Tailwind stone-300 #d6d3d1 */
-		--color-text-body: 214 211 209;
+		--color-text-body: 86.87% 0.004 56.37;
 		/* white */
-		--color-text-heading: 255 255 255;
+		--color-text-heading: 100% 0 0;
 		/* white */
-		--color-text-bold: 255 255 255;
+		--color-text-bold: 100% 0 0;
 		/* Tailwind stone-400 #a8a29e */
-		--color-text-muted: 168 162 158;
+		--color-text-muted: 71.61% 0.009 56.26;
 		/* Tailwind lime-400 #a3e635 */
-		--color-text-link: 163 230 53;
+		--color-text-link: 89% 0.27 128.85;
 		/* black */
-		--color-text-code: 255 255 255;
+		--color-text-code: 100% 0 0;
 		/* black */
-		--color-text-selection: 0 0 0;
+		--color-text-selection: 0% 0 0;
 
 		/* #0e141b */
-		--color-bg-body: 14 20 27;
+		--color-bg-body: 18.85% 0.017 252.59;
 		/* Tailwind lime-500 #84cc16 */
-		--color-bg-code: 132 204 22;
+		--color-bg-code: 76.81% 0.2162 130.85;
 		/* Tailwind lime-300 #bef264 */
-		--color-bg-selection: 190 242 100;
+		--color-bg-selection: 89.72% 0.179 126.67;
 		/* black */
-		--color-text-cta-btn: 0 0 0;
+		--color-text-cta-btn: 0% 0 0;
 
 		/* Tailwind lime-100 #ecfccb */
-		--color-border-code: 236 252 203;
+		--color-border-code: 96.69% 0.066 122.33;
 	}
 
 	:root {

@@ -1,5 +1,6 @@
 ---
-import {CollectionEntry, getCollection} from 'astro:content';
+import {getCollection} from 'astro:content';
+import type {CollectionEntry} from 'astro:content';
 
 import ArtistPostMeta from '../../components/ArtistPostMeta.astro';
 import ContentLayout from '../../layouts/ContentLayout.astro';
@@ -10,12 +11,14 @@ interface Props {
 
 export async function getStaticPaths() {
 	const artists = await getCollection('artist');
-	return artists
-		.filter((artist) => !artist.data.draft)
-		.map((entry) => ({
-			params: {slug: entry.slug},
-			props: {entry},
-		}));
+	return (
+		artists
+			.filter((artist) => !artist.data.draft)
+			.map((entry) => ({
+				params: {slug: entry.slug},
+				props: {entry},
+			}))
+	);
 }
 
 const {entry} = Astro.props;
@@ -27,8 +30,8 @@ const {Content} = await entry.render();
 <ContentLayout
 	title={entry.data.name}
 	date={entry.data.publishDate}
-	bannerSrc={entry.data.banner}
-	avatarSrc={entry.data.avatar}
+	banner={entry.data.banner}
+	avatar={entry.data.avatar}
 	monthlyListeners={entry.data.monthlyListeners}
 	artistSpotifyLink={entry.data.artistSpotifyLink}
 	artistBandcampLink={entry.data.artistBandcampLink}

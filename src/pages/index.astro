@@ -1,11 +1,13 @@
 ---
 import {getCollection} from 'astro:content';
-import NoFooterLayout from '../layouts/NoFooterLayout.astro';
+import {Image} from 'astro:assets';
+import me from '../assets/me.jpg';
 import PageMeta from '../components/PageMeta.astro';
 import {SITE_TITLE} from '../config';
 import '../components/home/style.css';
 import ScrollingCards from '../components/home/scrollingCards.astro';
 import SignUpBottom from 'src/components/SignUpBottom.astro';
+import PageLayout from 'src/layouts/PageLayout.astro';
 
 const allPosts = await getCollection('artist');
 
@@ -20,8 +22,18 @@ function addDummyCards(
 		description: string;
 		publishDate: Date;
 		monthlyListeners: number;
-		banner: string;
-		avatar: string;
+		banner: {
+			src: string;
+			width: number;
+			height: number;
+			format: 'png' | 'jpg' | 'jpeg' | 'tiff' | 'webp' | 'gif' | 'svg';
+		};
+		avatar: {
+			src: string;
+			width: number;
+			height: number;
+			format: 'png' | 'jpg' | 'jpeg' | 'tiff' | 'webp' | 'gif' | 'svg';
+		};
 		artistSpotifyLink: string;
 	}[]
 ) {
@@ -33,8 +45,18 @@ function addDummyCards(
 		description:
 			'Playing stadiums across worldwide from a young age, this artist has been a household name for decades.',
 		publishDate: new Date('2021-08-01T00:00:00.000Z'),
-		banner: '',
-		avatar: '',
+		banner: {
+			src: '',
+			width: 0,
+			height: 0,
+			format: 'png',
+		},
+		avatar: {
+			src: '',
+			width: 0,
+			height: 0,
+			format: 'png',
+		},
 		artistSpotifyLink: '',
 	};
 
@@ -44,7 +66,11 @@ function addDummyCards(
 			...dummyCard,
 			name: `Artist #${Math.floor(Math.random() * (52 - 15 + 1)) + 15}`,
 		};
-		columnPosts.splice(randomIndex, 0, thisDummyCard);
+		columnPosts.splice(
+			randomIndex,
+			0,
+			thisDummyCard as (typeof columnPosts)[0]
+		);
 	}
 	return columnPosts;
 }
@@ -72,7 +98,7 @@ let fourthColumnPosts = randomisedPosts
 fourthColumnPosts = addDummyCards(fourthColumnPosts);
 ---
 
-<NoFooterLayout>
+<PageLayout hideFooter={true}>
 	<PageMeta title={SITE_TITLE} slot="meta" />
 	<section slot="main">
 		<div class="relative h-[70vh] w-full">
@@ -102,12 +128,10 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 				class="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12"
 			>
 				<div class="max-w-xs px-2.5 lg:max-w-none">
-					<img
-						src={'https://res.cloudinary.com/sub50k/image/upload/c_scale,f_auto,q_auto:best,w_512/v1680007880/site/me.jpg'}
-						alt=""
-						sizes="(min-width: 1024px) 32rem, 20rem"
+					<Image
 						class="aspect-square rotate-3 rounded-2xl object-cover"
-						title="not actually me."
+						src={me}
+						alt="not actually me."
 					/>
 				</div>
 				<div class="prose lg:order-first lg:row-span-2">
@@ -157,4 +181,4 @@ fourthColumnPosts = addDummyCards(fourthColumnPosts);
 			</div>
 		</div>
 	</section>
-</NoFooterLayout>
+</PageLayout>

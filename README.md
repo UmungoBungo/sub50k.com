@@ -1,4 +1,6 @@
-# TODO
+# TODO 
+- rejig transitions as they aren't very nice still
+
 
 ## Posts
 
